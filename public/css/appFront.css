@@ -1,0 +1,32 @@
+#header{
+    background-color: #778899;
+    height:200px;
+}
+.btnLg{
+     display: none;
+ }
+/*.searchBar{*/
+/*    margin-left: 13px;*/
+
+/*}*/
+
+/* TAILLE IPAD */
+@media (min-width: 576px) and (max-width: 770px) {
+
+}
+/* TAILLE ECRAN GRAND */
+
+@media (min-width: 992px) {
+    #header{
+        height: 100px;
+    }
+    .btnSm{
+        display: none;
+    }
+    .btnLg{
+        display: block;
+    }
+    .btnInscription{
+        height: 61px;
+    }
+}
