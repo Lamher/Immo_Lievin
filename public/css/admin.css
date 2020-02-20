@@ -1,0 +1,92 @@
+#header-admin {
+    width: 100%;
+    height: 60px;
+}
+
+.bg-immo,
+#header-admin {
+    background-color: #778899;
+}
+
+#navMobile-admin,
+#navFullscreen-admin, #content-admin {
+    background-color: #f0f0f0;
+}
+
+#navFullscreen-admin, #content-admin {
+    margin-top:10px;
+    border: 2px solid black;
+}
+
+#navFullscreen-admin, #navF-admin{
+    display: none;
+}
+
+
+.icon-admin {
+    color: white;
+    font-size: 30px;
+}
+
+a:hover {
+    color: rgb(235, 250, 255);
+}
+
+#logo-admin {
+    height: 50px;
+}
+
+#navMobile-admin {
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    display: block;
+}
+
+/* TAILLE TELEPHONE */
+@media (max-width: 575.98px) {
+    #content-admin{
+        margin:0;
+        border:0px;
+        background-color: white;
+    }
+}
+
+/* TAILLE IPAD */
+@media (min-width: 576px) and (max-width: 770px) {
+    #content-admin{
+        margin:0;
+        border:0px;
+        background-color: white;
+    }
+}
+
+/* TAILLE ECRAN MOYEN */
+@media (min-width: 771px) and (max-width: 991px) {
+    #navFullscreen-admin, #navF-admin {
+        display: block;
+    }
+
+    #navFullscreen-admin, #navF-admin, #content-admin{
+        min-height:600px;
+    }
+
+    #navMobile-admin {
+        display: none;
+    }
+}
+
+/* TAILLE ECRAN GRAND */
+
+@media (min-width: 992px) {
+    #navFullscreen-admin, #navF-admin {
+        display: block;
+    }
+
+    #navFullscreen-admin, #navF-admin, #content-admin{
+        min-height:600px;
+    }
+
+    #navMobile-admin {
+        display: none;
+    }
+}

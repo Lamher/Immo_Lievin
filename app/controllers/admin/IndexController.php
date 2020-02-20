@@ -12,12 +12,35 @@ class IndexController extends AppController
     {
         $tabPosts = ['name' => 'undeundeu'];
 
-        $this->render('index.index', $tabPosts);
+        $this->render('index.dashboard', $tabPosts);
     }
 
-    public function testparamsAction($name)
+    public function user_listAction()
     {
+        $tabPosts1 = ['name' => 'undeundeu'];
 
-        echo '<h1>' . $name . '<h1>';
+        $this->render('index.user_list', $tabPosts1);
     }
+
+    public function property_listAction()
+    {
+        $tabPosts1 = ['name' => 'undeundeu'];
+
+        $this->render('index.property_list', $tabPosts1);
+    }
+
+    public function message_listAction()
+    {
+        $tabPosts1 = ['name' => 'undeundeu'];
+
+        $this->render('index.message_list', $tabPosts1);
+    }
+
+    public function import_exportAction()
+    {
+        $tabPosts1 = ['name' => 'undeundeu'];
+
+        $this->render('index.import_export', $tabPosts1);
+    }
+    
 }
