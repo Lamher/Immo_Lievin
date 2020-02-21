@@ -11,6 +11,17 @@
 .menu-sm{
     background-color: #f0f0f0;
 }
+.footer{
+    background-color: #778899;
+    height: 200px;
+}
+i{
+    font-size: 40px;
+
+}
+ul li{
+    list-style-type: none;
+}
 /* Icon 1 */
 
 .animated-icon1, .animated-icon2, .animated-icon3 {
@@ -209,4 +220,19 @@
     .menu-sm{
         display: none;
     }
+    a:hover{
+        background-color:  #778899;
+    }
+    #footer{
+        display: flex;
+        justify-content: space-between;
+        height: 100px;
+        background-color:#778899;
+    }
+    .carousel{
+        width: 800px;
+        margin-left: 400px;
+    }
+
+
 }
