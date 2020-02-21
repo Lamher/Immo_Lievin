@@ -1,4 +1,4 @@
-<div id="header-admin" class="text-light d-flex flex-wrap align-items-center">
+<div id="header-admin" class=" text-light d-flex flex-wrap align-items-center">
     <div class="col-6 px-0">
         <img id="logo-admin" class='img-fluid' src=<?= BASE_URI . "images/immo_lievin_logo.png" ?> alt="Logo Immo Liévin" title="Logo Immo Liévin">
     </div>

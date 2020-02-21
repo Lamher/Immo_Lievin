@@ -9,16 +9,19 @@
 }
 
 #navMobile-admin,
-#navFullscreen-admin, #content-admin {
+#navFullscreen-admin,
+#content-admin {
     background-color: #f0f0f0;
 }
 
-#navFullscreen-admin, #content-admin {
-    margin-top:10px;
+#navFullscreen-admin,
+#content-admin {
+    margin-top: 10px;
     border: 2px solid black;
 }
 
-#navFullscreen-admin, #navF-admin{
+#navFullscreen-admin,
+#navF-admin {
     display: none;
 }
 
@@ -26,6 +29,10 @@
 .icon-admin {
     color: white;
     font-size: 30px;
+}
+
+.icon-table {
+    font-size: 20px;
 }
 
 a:hover {
@@ -42,51 +49,73 @@ a:hover {
     display: block;
 }
 
+#bloc-content-admin {
+    padding: 0px;
+}
+
 /* TAILLE TELEPHONE */
 @media (max-width: 575.98px) {
-    #content-admin{
-        margin:0;
-        border:0px;
+    #content-admin {
+        margin: 0;
+        border: 0px;
         background-color: white;
     }
 }
 
 /* TAILLE IPAD */
-@media (min-width: 576px) and (max-width: 770px) {
-    #content-admin{
-        margin:0;
-        border:0px;
+@media (min-width: 576px) and (max-width: 767px) {
+    #content-admin {
+        margin: 0;
+        border: 0px;
         background-color: white;
     }
 }
 
 /* TAILLE ECRAN MOYEN */
-@media (min-width: 771px) and (max-width: 991px) {
-    #navFullscreen-admin, #navF-admin {
+@media (min-width: 768px) and (max-width: 991px) {
+
+    #navFullscreen-admin,
+    #navF-admin {
         display: block;
     }
 
-    #navFullscreen-admin, #navF-admin, #content-admin{
-        min-height:600px;
+    #navFullscreen-admin,
+    #navF-admin,
+    #content-admin {
+        min-height: 1050px;
     }
 
     #navMobile-admin {
         display: none;
+    }
+
+    #bloc-content-admin {
+        padding-right: 10px;
+        padding-bottom: 10px;
     }
 }
 
 /* TAILLE ECRAN GRAND */
 
 @media (min-width: 992px) {
-    #navFullscreen-admin, #navF-admin {
+
+    #navFullscreen-admin,
+    #navF-admin {
         display: block;
     }
 
-    #navFullscreen-admin, #navF-admin, #content-admin{
-        min-height:600px;
+    #navFullscreen-admin,
+    #navF-admin,
+    #content-admin {
+        min-height: 1050px;
     }
 
     #navMobile-admin {
         display: none;
+    }
+
+    #bloc-content-admin {
+        padding-right: 10px;
+        padding-bottom: 10px;
     }
 }

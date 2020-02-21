@@ -14,6 +14,7 @@
             }
     },
     "require": {
-        "monolog/monolog": "^1.25"
+        "monolog/monolog": "^1.25",
+        "eternicode/bootstrap-datepicker": "^1.9"
     }
 }
