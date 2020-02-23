@@ -1,23 +1,23 @@
 <div id="content-admin" class="mt-10">
     <h1 class="text-center">Liste des biens</h1>
     <div class="d-flex align-content-center justify-content-center flex-column mx-3">
-
-        <table id="table-admin" class="table table-striped" cellspacing="0" width="100%">
-            <thead class="text-center">
+    <a id="btn-add" type="button" class="btn text-light font-weight-bold" href="<?= BASE_URI_ADMIN . 'index/property_create' ?>">Ajouter un bien</a>
+        <table id="table-admin" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead class="text-center ">
                 <tr>
-                    <th class="th-sm">Référence
+                    <th class="th-sm font-weight-bold">Référence
 
                     </th>
-                    <th class="th-sm">Vendeur
+                    <th class="th-sm font-weight-bold">Vendeur
 
                     </th>
-                    <th class="th-sm">Mettre en avant
+                    <th class="th-sm font-weight-bold">Mettre en avant
 
                     </th>
-                    <th class="th-sm">Modifier
+                    <th class="th-sm font-weight-bold">Modifier
 
                     </th>
-                    <th class="th-sm">Supprimer
+                    <th class="th-sm font-weight-bold">Supprimer
 
                     </th>
 

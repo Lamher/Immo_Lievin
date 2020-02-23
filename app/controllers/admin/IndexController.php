@@ -22,11 +22,39 @@ class IndexController extends AppController
         $this->render('index.user_list', $tabPosts1);
     }
 
+    public function user_createAction()
+    {
+        $tabPosts1 = ['name' => 'undeundeu'];
+
+        $this->render('index.user_create', $tabPosts1);
+    }
+
+    public function user_updateAction()
+    {
+        $tabPosts1 = ['name' => 'undeundeu'];
+
+        $this->render('index.user_update', $tabPosts1);
+    }
+
     public function property_listAction()
     {
         $tabPosts1 = ['name' => 'undeundeu'];
 
         $this->render('index.property_list', $tabPosts1);
+    }
+
+    public function property_createAction()
+    {
+        $tabPosts1 = ['name' => 'undeundeu'];
+
+        $this->render('index.property_create', $tabPosts1);
+    }
+
+    public function property_updateAction()
+    {
+        $tabPosts1 = ['name' => 'undeundeu'];
+
+        $this->render('index.property_update', $tabPosts1);
     }
 
     public function message_listAction()
