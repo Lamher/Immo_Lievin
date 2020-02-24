@@ -9,7 +9,7 @@
                 </div>
                 <div class="form-group">
                     <label for="surname">Prénom</label>
-                    <input type="email" class="form-control" id="surname" name="surname" placeholder="Prénom">
+                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Prénom">
                 </div>
 
                 <div class="form-group">
@@ -23,11 +23,11 @@
             </div>
             <div class="col-md-6">
                 <div class="d-flex">
-                    <div class="form-group col-2 pl-0 pr-1">
+                    <div class="form-group col-3 pl-0 pr-1">
                         <label for="street_number">N°</label>
                         <input type="text" class="form-control" id="street_number" name="street_number" placeholder="N°">
                     </div>
-                    <div class="form-group col-10 px-0">
+                    <div class="form-group col-9 px-0">
                         <label for="street_name">Nom de Rue</label>
                         <input type="text" class="form-control" id="street_name" name="street_name" placeholder="Nom de Rue">
                     </div>
@@ -47,6 +47,7 @@
             </div>
 
         </div>
+        
         <div class=" mx-2 d-flex justify-content-end">
             <button id="btn-add" name="add-user" type="submit" class="btn text-light font-weight-bold">Ajouter un utilisateur</button>
         </div>

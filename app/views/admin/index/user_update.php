@@ -5,16 +5,16 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">Nom</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Nom">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?= $name ?>">
                 </div>
                 <div class="form-group">
                     <label for="surname">Prénom</label>
-                    <input type="email" class="form-control" id="surname" name="surname" placeholder="Prénom">
+                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Prénom" value="<?= $surname ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="mail">Email</label>
-                    <input type="email" class="form-control" id="mail" name="mail" aria-describedby="emailHelp" placeholder="Email">
+                    <input type="email" class="form-control" id="mail" name="mail" aria-describedby="emailHelp" placeholder="Email" value="<?= $mail ?>">
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
@@ -25,24 +25,24 @@
                 <div class="d-flex">
                     <div class="form-group col-2 pl-0 pr-1">
                         <label for="street_number">N°</label>
-                        <input type="text" class="form-control" id="street_number" name="street_number" placeholder="N°">
+                        <input type="text" class="form-control" id="streetNumber" name="streetNumber" placeholder="N°" value="<?= $streetNumber ?>">
                     </div>
                     <div class="form-group col-10 px-0">
                         <label for="street_name">Nom de Rue</label>
-                        <input type="text" class="form-control" id="street_name" name="street_name" placeholder="Nom de Rue">
+                        <input type="text" class="form-control" id="streetName" name="streetName" placeholder="Nom de Rue" value="<?= $streetName ?>">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="postal_code">Code Postal</label>
-                    <input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="Code Postal">
+                    <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Code Postal" value="<?= $postalCode ?>">
                 </div>
                 <div class="form-group">
                     <label for="city">Ville</label>
-                    <input type="text" class="form-control" id="city" name="city" placeholder="Ville">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Ville" value="<?= $city ?>">
                 </div>
                 <div class="form-group">
                     <label for="country">Pays</label>
-                    <input type="text" class="form-control" id="country" name="country" placeholder="Pays">
+                    <input type="text" class="form-control" id="country" name="country" placeholder="Pays" value="<?= $country ?>">
                 </div>
             </div>
 

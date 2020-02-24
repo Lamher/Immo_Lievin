@@ -24,204 +24,22 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
+                <?php 
+                foreach($lists as $list){
+                    echo "<tr>
+                    <td>{$list['reference']}</td>
+                    <td>{$list['surname']} {$list['username']}</td>
                     <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <div class='form-check'>
+                            <input type='checkbox' class='form-check-input' id='indexTop' name='indexTop'>
                         </div>
                     </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>M0000001</td>
-                    <td>Jean Dupont</td>
-                    <td>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        </div>
-                    </td>
-                    <td><i class="icon-table fas fa-pen"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
+                    <td><i class='icon-table fas fa-pen'></i></td>
+                    <td><i class='icon-table fas fa-trash-alt'></i></td>
+                </tr>";
+                }
+            
+               ?>
             </tbody>
 
         </table>

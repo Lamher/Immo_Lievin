@@ -4,7 +4,7 @@
 }
 
 .bg-immo,
-#header-admin, #btn-add, #btn-update {
+#header-admin, #btn-add, #btn-update, #btn-delete, #btn-export {
     background-color: #778899;
 }
 

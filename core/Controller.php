@@ -27,7 +27,7 @@ class Controller
 
         extract($this->varsView);
         extract($tab);
-        
+
         ob_start();
 
         require_once $this->viewPath . '/' . str_replace('.', '/', $view) . '.php';

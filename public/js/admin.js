@@ -24,14 +24,16 @@ $(function () {
     $(window).resize(function () {
         /*If browser resized, check width again */
         if ($(window).width() < 980) {
-            $('#table-admin').addClass('table-responsive'); $('html').addClass('mobile');
+            $('#table-admin').addClass('table-responsive');
+            $('html').addClass('mobile');
         } else {
             $('#table-admin').removeClass('table-responsive');
         }
     });
 
-    // Bootstrap datepicker via Packagist ( doc = https://bootstrap-datepicker.readthedocs.io/en/stable/ )
-    $('#sandbox-container .input-daterange').datepicker({
-        language: "fr"
-    });
+    $( "#datepicker-start" ).datepicker();
+    $( "#datepicker-start" ).datepicker("option", "dateFormat", "yy-mm-dd");
+    $( "#datepicker-end" ).datepicker();
+    $( "#datepicker-end" ).datepicker("option", "dateFormat", "yy-mm-dd");
+
 })

@@ -16,9 +16,9 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `creation_date` datetime DEFAULT NOW(),
-  `update_date` datetime DEFAULT NOW(),
-  `delete_date` datetime DEFAULT NULL,
+  `creationDate` datetime DEFAULT NOW(),
+  `updateDate` datetime DEFAULT NOW(),
+  `deleteDate` datetime DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -26,14 +26,14 @@ CREATE TABLE IF NOT EXISTS `categories` (
 DROP TABLE IF EXISTS `addresses`;
 CREATE TABLE IF NOT EXISTS `addresses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `street_number` int(11) NOT NULL,
-  `street_name` varchar(255)  NOT NULL,
-  `postal_code` int(11) NOT NULL,
+  `streetNumber` int(11) NOT NULL,
+  `streetName` varchar(255)  NOT NULL,
+  `postalCode` int(11) NOT NULL,
   `city` varchar(255) NOT NULL,
   `country` varchar(255) NOT NULL,
-  `creation_date` datetime DEFAULT NOW(),
-  `update_date` datetime DEFAULT NOW(),
-  `delete_date` datetime DEFAULT NULL,
+  `creationDate` datetime DEFAULT NOW(),
+  `updateDate` datetime DEFAULT NOW(),
+  `deleteDate` datetime DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -46,13 +46,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `mail` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role`varchar(255) NOT NULL DEFAULT 'user',
-  `id_address` int(11) NOT NULL,
-  `creation_date` datetime DEFAULT NOW(),
-  `update_date` datetime DEFAULT NOW(),
-  `delete_date` datetime DEFAULT NULL,
+  `idAddress` int(11) NOT NULL,
+  `creationDate` datetime DEFAULT NOW(),
+  `updateDate` datetime DEFAULT NOW(),
+  `deleteDate` datetime DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_address`) REFERENCES addresses (`id`)
+  FOREIGN KEY (`idAddress`) REFERENCES addresses (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DROP TABLE IF EXISTS `messages`;
@@ -61,13 +61,13 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `object` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `seen` tinyint(1) DEFAULT 0,
-  `id_user` int(11) NOT NULL,
-  `creation_date` datetime DEFAULT NOW(),
-  `update_date` datetime DEFAULT NOW(),
-  `delete_date` datetime DEFAULT NULL,
+  `idUser` int(11) NOT NULL,
+  `creationDate` datetime DEFAULT NOW(),
+  `updateDate` datetime DEFAULT NOW(),
+  `deleteDate` datetime DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_user`) REFERENCES users (`id`)
+  FOREIGN KEY (`idUser`) REFERENCES users (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DROP TABLE IF EXISTS `properties`;
@@ -77,21 +77,24 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `reference` varchar(25) NOT NULL,
   `type` varchar(8) NOT NULL,
   `price` float NOT NULL,
-  `surface_area` int(11) NOT NULL,
+  `surfaceArea` int(11) NOT NULL,
   `rooms` int(11) DEFAULT NULL,
-  `bedromms` int(11) DEFAULT NULL,
-  `energy_class` varchar(3) DEFAULT NULL,
-  `index_top` tinyint(1) DEFAULT 0,
+  `bedrooms` int(11) DEFAULT NULL,
+  `energyClass` varchar(3) DEFAULT NULL,
+  `indexTop` tinyint(1) DEFAULT 0,
+  `description` text DEFAULT NULL,
   `visible` tinyint(1) DEFAULT 0,
-  `id_address` int(11) NOT NULL,
-  `id_category` int(11) NOT NULL,
-  `creation_date` datetime DEFAULT NOW(),
-  `update_date` datetime DEFAULT NOW(),
-  `delete_date` datetime DEFAULT NULL,
+  `idAddress` int(11) NOT NULL,
+  `idCategory` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `creationDate` datetime DEFAULT NOW(),
+  `updateDate` datetime DEFAULT NOW(),
+  `deleteDate` datetime DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_address`) REFERENCES addresses (`id`),
-  FOREIGN KEY (`id_category`) REFERENCES categories (`id`)
+  FOREIGN KEY (`idAddress`) REFERENCES addresses (`id`),
+  FOREIGN KEY (`idCategory`) REFERENCES categories (`id`),
+  FOREIGN KEY (`idUser`) REFERENCES users (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DROP TABLE IF EXISTS `images`;
@@ -99,24 +102,24 @@ CREATE TABLE IF NOT EXISTS `images` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `default` tinyint(1) NOT NULL,
-  `id_property` int(11) NOT NULL,
-  `creation_date` datetime DEFAULT NOW(),
-  `update_date` datetime DEFAULT NOW(),
-  `delete_date` datetime DEFAULT NULL,
+  `idProperty` int(11) NOT NULL,
+  `creationDate` datetime DEFAULT NOW(),
+  `updateDate` datetime DEFAULT NOW(),
+  `deleteDate` datetime DEFAULT NULL,
   `active` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_property`) REFERENCES properties (`id`)
+  FOREIGN KEY (`idProperty`) REFERENCES properties (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 DROP TABLE IF EXISTS `favorites`;
 CREATE TABLE IF NOT EXISTS `favorites` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_property` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `creation_date` datetime DEFAULT NOW(),
+  `idProperty` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `creationDate` datetime DEFAULT NOW(),
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id_property`) REFERENCES properties (`id`),
-  FOREIGN KEY (`id_user`) REFERENCES users (`id`)
+  FOREIGN KEY (`idProperty`) REFERENCES properties (`id`),
+  FOREIGN KEY (`idUser`) REFERENCES users (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 COMMIT;
