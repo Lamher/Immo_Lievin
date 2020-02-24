@@ -1,5 +1,4 @@
 #header{
-    background-color: #778899;
     height:200px;
 }
 .btnLg{
@@ -191,6 +190,12 @@ ul li{
     top: 21px;
     left: 8px;
 }
+#header, #footer, #btnInscription{
+    background-color: #778899;
+}
+#btnAddLg, #btnAddSm, #btnProposeLg, #btnProposeSm{
+    background-color: #f0f0f0;
+}
 
 
 /* TAILLE IPAD */
@@ -220,19 +225,26 @@ ul li{
     .menu-sm{
         display: none;
     }
-    a:hover{
+    li a:hover{
         background-color:  #778899;
     }
-    #footer{
-        display: flex;
-        justify-content: space-between;
-        height: 100px;
-        background-color:#778899;
-    }
     .carousel{
-        width: 800px;
-        margin-left: 400px;
+        width: 1200px;
+        margin-left: 200px;
+    }
+
+    .card-index{
+        width:400px;
+    }
+    ul li{
+display: inline-block;
+       margin-left: 50px;
+
     }
 
 
-}
+
+    }
+
+
+

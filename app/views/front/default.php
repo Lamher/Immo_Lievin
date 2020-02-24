@@ -15,7 +15,7 @@
 <?= $header ?>
 
 <?= $navigation  ?>
-
+<?= $content ?>
 
 <?= $footer ?>
 

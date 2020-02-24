@@ -1,12 +1,14 @@
 <?php
+
 namespace App\Controllers\Front;
 
 
 use App\Controllers\Front\AppController;
-use App\Models\Users;
 
-class IndexController extends AppController{
+//use App\Models\Users;
 
+class IndexController extends AppController
+{
 
 
     public function __construct()
@@ -29,12 +31,27 @@ class IndexController extends AppController{
         $this->render('index.index', $tableauPourLaVue);
 
     }
+
     /**
      * Juste une methode pour tester
      * d'afficher la liste des utilisateur sur l'accueil
      */
-    public function userlistAction()
+    public function connexionAction()
     {
-        echo 'test';
+        $this->render('index.connexion');
+    }
+    public function contactAction()
+    {
+        $this->render('index.contact');
+    }
+
+    public function listeAnnoncesAction()
+    {
+        $this->render('index.listeAnnonces');
+    }
+
+    public function detailAnnoncesAction()
+    {
+        $this->render('index.detailAnnonces');
     }
 }
