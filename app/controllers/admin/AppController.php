@@ -17,8 +17,10 @@ class AppController extends Controller
         $this->viewPath = PATH_VIEWS .   $this->appName;
         //Chacun de ses elements peut etre surchargé dans vos methodeAction
         $element['header'] = $this->buildHeader();
-        $element['navigation'] = $this->buildNavigation();
-        $element['title'] = 'test titre';
+        $element['navFullscreen'] = $this->buildNavFullscreen();
+        $element['navMobile'] = $this->buildNavMobile();
+        $element['title'] = "Panneau d'administration";
+        $element['description'] = 'test';
 
         $this->addContentToView($element);
 
@@ -30,9 +32,14 @@ class AppController extends Controller
         return $this->renderView('partial.header');
     }
 
-    public function buildNavigation()
+    public function buildNavFullscreen()
     {
-        return $this->renderView('partial.navigation');
+        return $this->renderView('partial.navFullscreen');
+    }
+
+    public function buildNavMobile()
+    {
+        return $this->renderView('partial.navMobile');
     }
 
 }
