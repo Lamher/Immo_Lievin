@@ -18,6 +18,27 @@ class Category extends Model
         $this->_table = 'categories';
     }
 
+    public function selectCategoryByPropertyId()
+    {
+        $result = $this->select('*', 'id = :id', ["id" => $this->id])->fetch();
+        $this->hydrate($result);
+    }
+
+    // recreate the setter method name for each element of the table, and define its value depending of said element in the table
+    public function hydrate($donnees)
+    {
+        foreach ($donnees as $attribut => $valeur) {
+            $methode = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $attribut)));
+            if (is_callable(array($this, $methode))) {
+                $this->$methode($valeur);
+            }
+        }
+    }
+
+    public function updateCategory(){
+        $data = ['name'=>$this->getName(), 'updateDate'=>date('Y-m-d H:i:s'), 'id'=>$this->getId()];
+        return $this->update($data, 'id = :id');
+    }
 
     /**
      * Get the value of name

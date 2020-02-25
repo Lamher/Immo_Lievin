@@ -25,6 +25,10 @@
     display: none;
 }
 
+.img-display{
+    height: 250px;
+    width: 100%;
+}
 
 .icon-admin {
     color: white;

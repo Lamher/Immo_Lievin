@@ -55,7 +55,9 @@ class App
             $this->params = $this->url ? array_values($this->url) : [];
 
             $dispatch = new $this->controller();
-
+            // Appel fonction sur controller, appel methode chez Controller.php
+            $dispatch->securePost();
+            $dispatch->secureGet();
             call_user_func_array([$dispatch, $this->action], $this->params);
         } else {
             $this->redirect404();
@@ -79,4 +81,6 @@ class App
             $this->namespace = 'App\Controllers\Public\\';
         }
     }
+
+    
 }

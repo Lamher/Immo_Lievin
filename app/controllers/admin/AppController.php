@@ -8,6 +8,7 @@ class AppController extends Controller
 {
 
     protected $appName = 'admin';
+   
 
     public function __construct()
     {
@@ -41,5 +42,7 @@ class AppController extends Controller
     {
         return $this->renderView('partial.navMobile');
     }
+
+    
 
 }

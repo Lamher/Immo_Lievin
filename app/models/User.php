@@ -41,22 +41,6 @@ class User extends Model
         return $this->update($data, 'id = :id');
     }
 
-
-    
-    // public function update(array $data, string $where): self
-    // {
-    //     $update = "UPDATE $this->_table SET ";
-    //     foreach ($data as $key => $val) {
-    //         if ($key != "id") {
-    //             $update .= "$key = :$key,";
-    //         }
-    //         $markers[":$key"] = $val;
-    //     }
-    //     $update = substr($update, 0, -1);
-    //     $update .= " WHERE $where;";
-    //     return $this->query($update, $markers);
-    // }
-
     /**
      * Get the value of name
      */ 

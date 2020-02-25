@@ -20,6 +20,14 @@ class Image extends Model
         $this->_table = 'images';
     }
 
+    public function selectImagesByPropertyId($idProperty)
+    {
+        return $this->select('images.*',  'properties.id = :id', ["id" => $idProperty], "INNER JOIN properties ON properties.id=images.idProperty")->fetchAll();
+    }
+    
+    public function createIfNotExists($name){
+        //TODO
+    }
 
     /**
      * Get the value of name
