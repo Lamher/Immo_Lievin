@@ -34,7 +34,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top img-fluid" src=<?= BASE_URI . 'images/img_galery/maison2.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison2.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -62,7 +62,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top" src=<?= BASE_URI . 'images/img_galery/maison3.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison3.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -90,7 +90,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top" src=<?= BASE_URI . 'images/img_galery/maison4.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison4.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -117,7 +117,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top" src=<?= BASE_URI . 'images/img_galery/maison5.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison5.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -150,7 +150,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top img-fluid" src=<?= BASE_URI . 'images/img_galery/maison2.jfif' ?>
+            <img class="card-img-top img-fluid card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison2.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -178,7 +178,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top" src=<?= BASE_URI . 'images/img_galery/maison3.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison3.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -206,7 +206,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top" src=<?= BASE_URI . 'images/img_galery/maison4.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison4.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -233,7 +233,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top" src=<?= BASE_URI . 'images/img_galery/maison5.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison5.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -266,7 +266,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top img-fluid" src=<?= BASE_URI . 'images/img_galery/maison2.jfif' ?>
+            <img class="card-img-top img-fluid card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison2.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -294,7 +294,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top" src=<?= BASE_URI . 'images/img_galery/maison3.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison3.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -322,7 +322,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top" src=<?= BASE_URI . 'images/img_galery/maison4.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison4.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>
@@ -349,7 +349,7 @@
 
         <!--Card image-->
         <div class="view overlay">
-            <img class="card-img-top" src=<?= BASE_URI . 'images/img_galery/maison5.jfif' ?>
+            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison5.jfif' ?>
                  alt="Card image cap">
             <a href="#">
                 <div class="mask rgba-white-slight"></div>

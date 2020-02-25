@@ -40,6 +40,10 @@ class IndexController extends AppController
     {
         $this->render('index.connexion');
     }
+    public function inscriptionAction()
+    {
+        $this->render('index.inscription');
+    }
     public function contactAction()
     {
         $this->render('index.contact');
@@ -53,5 +57,27 @@ class IndexController extends AppController
     public function detailAnnoncesAction()
     {
         $this->render('index.detailAnnonces');
+    }
+    public function cguAction()
+    {
+        $this->render('index.cgu');
+    }
+    public function mentionsLegalesAction()
+    {
+        $this->render('index.mentionsLegales');
+    }
+    public function proposerBienAction()
+    {
+        $this->render('index.proposerBien');
+    }
+
+
+    public function notreAgenceAction()
+    {
+        $this->render('index/notreAgence');
+    }
+    public function detailAnnonceAction()
+    {
+        $this->render('index/detailAnnonce');
     }
 }

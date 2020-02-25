@@ -1,9 +1,9 @@
 
 <!--navbar pour desktop-->
 <div class="menu-lg d-flex justify-content-center">
-    <div><a class="nav-link menu-lg text-dark" href="notre_agence.php">Notre agence</a></div>
-    <div><a class="nav-link menu-lg text-dark" href="location.php">Location</a></div>
-    <div><a class="nav-link menu-lg text-dark" href="ventes.php">Ventes</a></div>
+    <div><a class="nav-link menu-lg text-dark"  href="<?= BASE_URI . 'index/notreAgence' ?>">Notre agence</a></div>
+    <div><a class="nav-link menu-lg text-dark" href="<?= BASE_URI . 'index/listeAnnonces' ?>">Location</a></div>
+    <div><a class="nav-link menu-lg text-dark" href="<?= BASE_URI . 'index/listeAnnonces' ?>">Ventes</a></div>
 
 </div>
 <!--Navbar pour telehonne-->
@@ -20,13 +20,13 @@
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-center" href="notreagence.php">Notre agence</a>
+                <a class="nav-link text-center" href="<?= BASE_URI . 'index/notreAgence' ?>">Notre agence</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-center" href="location.php">Locations</a>
+                <a class="nav-link text-center" href="<?= BASE_URI . 'index/listeAnnonces' ?>">Locations</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-center" href="ventes.php">Ventes</a>
+                <a class="nav-link text-center" href="<?= BASE_URI . 'index/listeAnnonces' ?>">Ventes</a>
             </li>
         </ul>
 

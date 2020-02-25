@@ -6,7 +6,7 @@
             <ul class="pl-0 ">
                 <li><a href="<?= BASE_URI . 'index/cgu'  ?>" class="text-dark">CGU</a>
                 </li>
-                <li><a href="<?= BASE_URI . 'index/mentions'  ?>" class="text-dark">Mentions legales</a>
+                <li><a href="<?= BASE_URI . 'index/mentionsLegales'  ?>" class="text-dark">Mentions legales</a>
                 </li>
                 <li><a href="<?= BASE_URI . 'index/contact'  ?>" class="text-dark">Contact</a>
                 </li>

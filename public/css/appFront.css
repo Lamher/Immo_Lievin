@@ -1,26 +1,40 @@
-#header{
-    height:200px;
+#header {
+    height: 200px;
 }
-.btnLg{
-     display: none;
- }
-.menu-lg{
+
+.btnLg {
     display: none;
 }
-.menu-sm{
+
+.menu-lg {
+    display: none;
+}
+
+.menu-sm {
     background-color: #f0f0f0;
 }
-.footer{
+
+.footer {
     background-color: #778899;
     height: 200px;
 }
-i{
+
+i {
     font-size: 40px;
 
 }
-ul li{
+
+ul li {
     list-style-type: none;
 }
+.card-properties{
+    width: 300px;
+    height: 250px;
+}
+/*.overlay{*/
+/*    max-width: 300px;*/
+/*}*/
+
 /* Icon 1 */
 
 .animated-icon1, .animated-icon2, .animated-icon3 {
@@ -190,61 +204,83 @@ ul li{
     top: 21px;
     left: 8px;
 }
-#header, #footer, #btnInscription{
+
+#header, #footer, #btnInscription, #btnLogin {
     background-color: #778899;
 }
-#btnAddLg, #btnAddSm, #btnProposeLg, #btnProposeSm{
+
+#btnLg, #btnSm, #btnProposeLg, #btnSm {
     background-color: #f0f0f0;
 }
+
+/*#formListeLg {*/
+/*    display: none;*/
+/*}*/
 
 
 /* TAILLE IPAD */
 @media (min-width: 576px) and (max-width: 770px) {
 
 }
+
 /* TAILLE ECRAN GRAND */
 
 @media (min-width: 992px) {
-    #header{
+    #header {
         height: 100px;
     }
-    .btnSm{
+
+    .btnSm {
         display: none;
     }
-    .btnLg{
+
+    .btnLg {
         display: block;
     }
-    .btnInscription{
-        height: 61px;
-    }
-    .menu-lg{
+
+    /*.btnInscription{*/
+    /*    height: 40px;*/
+    /*}*/
+    .menu-lg {
         display: block;
         height: 40px;
         background-color: #f0f0f0;
     }
-    .menu-sm{
+
+    .menu-sm {
         display: none;
     }
-    li a:hover{
-        background-color:  #778899;
+
+    li a:hover {
+        background-color: #778899;
     }
-    .carousel{
+
+    .carousel {
         width: 1200px;
         margin-left: 200px;
     }
 
-    .card-index{
-        width:400px;
-    }
-    ul li{
-display: inline-block;
-       margin-left: 50px;
-
+    .card-index {
+        width: 300px;
+        margin-left: 20px;
     }
 
-
+    ul li {
+        display: inline-block;
+        margin-left: 50px;
 
     }
+
+    #formListeLg {
+        background-color: #f0f0f0;
+        border: 1px solid black;
+        height: 60px;
+        margin-top: 50px;
+        margin-left: 250px;
+        width: 70%;
+    }
+
+}
 
 
 
