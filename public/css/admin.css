@@ -71,6 +71,10 @@ a:hover {
     }
 }
 
+.bg-unseen{
+    background-color: #bebebe;
+}
+
 /* TAILLE IPAD */
 @media (min-width: 576px) and (max-width: 767px) {
     #content-admin {

@@ -1,14 +1,15 @@
-<?php 
+<?php
 
 namespace App\Controllers\Admin;
 
 use Core\Controller;
+use App\Models\Message;
 
 class AppController extends Controller
 {
 
     protected $appName = 'admin';
-   
+
 
     public function __construct()
     {
@@ -30,7 +31,11 @@ class AppController extends Controller
 
     public function buildHeader()
     {
-        return $this->renderView('partial.header');
+        $messages = new Message();
+        $messages->countUnseen();
+        $count =  $messages->getCount();
+        $tab = ['count' => $count];
+        return $this->renderView('partial.header', $tab);
     }
 
     public function buildNavFullscreen()
@@ -42,7 +47,4 @@ class AppController extends Controller
     {
         return $this->renderView('partial.navMobile');
     }
-
-    
-
 }

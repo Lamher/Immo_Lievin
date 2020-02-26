@@ -339,6 +339,13 @@ class IndexController extends AppController
 
     public function import_exportAction()
     {
+        $propertyTable = new Property();
+        if(isset($_POST['export'])){
+        
+            $result = $propertyTable->selectPropertiesByDate($this->post('start'), $this->post('end'));
+            var_dump($result);
+            // La date renvoyée par les datepicker n'est pas au bon format par rapport à la table, TODO
+        }
         $this->render('index.import_export');
     }
 }

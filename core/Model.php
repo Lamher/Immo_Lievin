@@ -11,6 +11,7 @@ class Model
   protected $id;
   protected $_PDOStatment;
   public $_LastInsertId;
+  public $_RowCount;
 
   public static function getDb()
   {
@@ -33,6 +34,7 @@ class Model
       $this->getPdo()->beginTransaction();
       $this->_PDOStatment->execute($markers);
       $this->_LastInsertId = $this->getPdo()->lastInsertId();
+      $this->_RowCount = $this->_PDOStatment->rowCount();
       $this->getPdo()->commit();
     } catch (\PDOException $error) {
       $this->getPdo()->rollBack();
