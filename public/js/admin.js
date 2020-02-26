@@ -32,8 +32,8 @@ $(function () {
     });
 
     $( "#datepicker-start" ).datepicker();
-    $( "#datepicker-start" ).datepicker("option", "dateFormat", "yy-mm-dd");
+    $( "#datepicker-start" ).datepicker("option", "dateFormat", "yy-mm-d");
     $( "#datepicker-end" ).datepicker();
-    $( "#datepicker-end" ).datepicker("option", "dateFormat", "yy-mm-dd");
+    $( "#datepicker-end" ).datepicker("option", "dateFormat", "yy-mm-d");
 
 })

@@ -38,7 +38,7 @@ class Property extends Model
 
     public function selectPropertiesByDate($dateStart, $dateEnd)
     {
-        return $this->select('properties.*,users.surname, users.name as username', "properties.dateCreate >= $dateStart AND properties.dateCreate <= $dateEnd", [], "INNER JOIN users ON users.id=properties.idUser INNER JOIN addresses ON addresses.id = properties.idAddress")->fetchAll();
+        return $this->select('properties.*,addresses.*, users.surname, users.name as username', "properties.creationDate >= :dateStart AND properties.creationDate <= :dateEnd ORDER BY properties.reference", ["dateStart"=>$dateStart."T00:00:00.000Z", "dateEnd"=>$dateEnd."T00:00:00.000Z"], "INNER JOIN users ON users.id=properties.idUser INNER JOIN addresses ON addresses.id = properties.idAddress")->fetchAll();
     }
 
     public function selectAll()

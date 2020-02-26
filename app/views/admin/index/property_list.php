@@ -25,20 +25,24 @@
             </thead>
             <tbody class="text-center">
                 <?php
-                foreach ($lists as $list) {
-                    echo "<tr>
+                
+
+
+                    foreach ($lists as $list) {
+                        echo "<tr>
                     <td>{$list['reference']}</td>
                     <td>{$list['surname']} {$list['username']}</td>
                     <td>
                         <div class='form-check'>
                             <form action='' method='POST'><input type='hidden' name ='id' value='{$list['id']}'><input type='checkbox' class='form-check-input' id='indexTop{$list['id']}' name='indexTop' onChange='submit()'";
-                    echo ($list["indexTop"] == 1) ? "checked":""; 
-                    echo "></form>
+                        echo ($list["indexTop"] == 1) ? "checked" : "";
+                        echo "></form>
                         </div>
                     </td>
                     <td><a href='" . BASE_URI_ADMIN . "index/property_update/{$list['id']}'><i class='icon-table fas fa-pen'></i></a></td>
                     <td><form action='' method='POST'><input type='hidden' name='id' value='{$list['id']}'><button type='submit' name='delete' class='btn-delete'><i class='icon-table fas fa-trash-alt'></i></button></form></td>
                 </tr>";
+                    
                 }
 
                 ?>
