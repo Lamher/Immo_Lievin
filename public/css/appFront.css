@@ -28,7 +28,7 @@ ul li {
     list-style-type: none;
 }
 .card-properties{
-    width: 300px;
+    width: 400px;
     height: 250px;
 }
 /*.overlay{*/
@@ -213,9 +213,9 @@ ul li {
     background-color: #f0f0f0;
 }
 
-/*#formListeLg {*/
-/*    display: none;*/
-/*}*/
+ .listeAnnonces{
+    display: none ;
+}
 
 
 /* TAILLE IPAD */
@@ -223,6 +223,9 @@ ul li {
 
 }
 
+/*taille telephone*/
+@media (max-width: 575.98px) {
+}
 /* TAILLE ECRAN GRAND */
 
 @media (min-width: 992px) {
@@ -238,9 +241,9 @@ ul li {
         display: block;
     }
 
-    /*.btnInscription{*/
-    /*    height: 40px;*/
-    /*}*/
+    .btnInscription{
+        height: 40px;
+    }
     .menu-lg {
         display: block;
         height: 40px;

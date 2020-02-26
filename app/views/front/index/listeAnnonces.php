@@ -1,6 +1,13 @@
+
+
+
+
+
+
+
 <div class="listeAnnonces">
     <div id="formListeLg" class=" d-flex align-center justify-content-center ml-200">
-        <form class="align-self-center">
+        <form class="align-self-center " >
             <div class="form-check form-check-inline ">
                 <select class="form-check-input" id="type" value="" placeholder="Type">
                     <option value="location">Location</option>
@@ -25,7 +32,8 @@
         </form>
     </div>
 
-    <div class="cardImages d-flex justify-content-center">
+
+    <div class="cardImages d-lg-flex justify-content-center">
         <!-- Card -->
         <div class="card card-index  mt-5">
 
@@ -33,8 +41,8 @@
             <div class="view overlay">
                 <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/test.png' ?>
                      alt="Card image cap">
-                <a href="#">
-                    <div class="mask rgba-white-slight"></div>
+                <a href="<?= BASE_URI . 'index/detailAnnonce' ?>">
+                    <div class="mask rgba-white-slight">detail</div>
                 </a>
             </div>
 
@@ -166,7 +174,7 @@
 </div>
 
 <!-- Card deck -->
-<div class="cardImages d-flex justify-content-center">
+<div class="cardImages d-lg-flex justify-content-center">
     <!-- Card -->
     <div class="card card-index mt-5">
 

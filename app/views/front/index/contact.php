@@ -24,10 +24,11 @@
                               placeholder="Ecrivez votre message !"></textarea>
                 </div>
             </div>
-            <div class=" mx-2 d-flex justify-content-end">
-                <button id="btnInscription" name="add-user" type="submit" class="btn text-light font-weight-bold mb-5">
+            <div class=" mx-2">
+                <button id="btnInscription" name="add-user" type="submit" class="btn text-dark font-weight-bold mb-5">
                     S' inscrire
                 </button>
             </div>
+        </div>
     </form>
 </div>

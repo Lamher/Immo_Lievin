@@ -20,8 +20,10 @@ $(document).ready(function () {
         $('.animated-icon3').toggleClass('open');
     });
 });
-    $('.carousel').carousel(){
+     $('.carousel').carousel({
 
-    }
+          })
+
+
 
 });
