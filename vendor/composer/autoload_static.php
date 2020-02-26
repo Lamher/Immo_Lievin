@@ -6,15 +6,7 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit07b974c38785df8e81ec8458764ccb65
 {
-    public static $files = array (
-        'ce89ac35a6c330c55f4710717db9ff78' => __DIR__ . '/..' . '/kriswallsmith/assetic/src/functions.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
-        'S' => 
-        array (
-            'Symfony\\Component\\Process\\' => 26,
-        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
@@ -34,10 +26,6 @@ class ComposerStaticInit07b974c38785df8e81ec8458764ccb65
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Component\\Process\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/process',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -56,29 +44,11 @@ class ComposerStaticInit07b974c38785df8e81ec8458764ccb65
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'C' => 
-        array (
-            'ComponentInstaller' => 
-            array (
-                0 => __DIR__ . '/..' . '/robloach/component-installer/src',
-            ),
-        ),
-        'A' => 
-        array (
-            'Assetic' => 
-            array (
-                0 => __DIR__ . '/..' . '/kriswallsmith/assetic/src',
-            ),
-        ),
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit07b974c38785df8e81ec8458764ccb65::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit07b974c38785df8e81ec8458764ccb65::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit07b974c38785df8e81ec8458764ccb65::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
