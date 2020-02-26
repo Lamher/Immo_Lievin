@@ -13,6 +13,7 @@ class Upload
     protected $maxSize;
     protected $filename;
     protected $useTable = false;
+    protected $success = false;
 
     public function setPath($path)
     {
@@ -98,7 +99,11 @@ class Upload
                 $this->setErrorMessage("Type invalide.");
             } else {
                 $this->resize_image($_FILES[$param]['tmp_name'], 1280, 960);
-                move_uploaded_file($_FILES[$param]['tmp_name'], $this->path . $this->filename);
+                $moved = move_uploaded_file($_FILES[$param]['tmp_name'], $this->path . $this->filename);
+                if($moved){
+                    
+                    $this->success = true;
+                }
             }
         }
         return $this;
@@ -134,5 +139,25 @@ class Upload
         /* cleanup memory */
         imagedestroy($image);
         imagedestroy($tmp);
+    }
+
+    /**
+     * Get the value of success
+     */ 
+    public function getSuccess()
+    {
+        return $this->success;
+    }
+
+    /**
+     * Set the value of success
+     *
+     * @return  self
+     */ 
+    public function setSuccess($success)
+    {
+        $this->success = $success;
+
+        return $this;
     }
 }

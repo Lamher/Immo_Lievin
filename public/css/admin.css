@@ -57,6 +57,11 @@ a:hover {
     padding: 0px;
 }
 
+.btn-delete, .btn-seen{
+    background-color: transparent; 
+    border-color: transparent; 
+}
+
 /* TAILLE TELEPHONE */
 @media (max-width: 575.98px) {
     #content-admin {

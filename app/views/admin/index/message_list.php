@@ -24,195 +24,20 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
-                <tr>
-                    <td>Dupont</td>
-                    <td>Jean</td>
-                    <td>
-                        Demande test pour achat bien test
-                    </td>
-                    <td><i class="icon-table fas fa-search"></i></td>
-                    <td><i class="icon-table fas fa-trash-alt"></i></td>
-                </tr>
+
+                <?php
+                foreach ($lists as $list) {
+                    echo"<tr>
+                    <td>{$list['username']}</td>
+                    <td>{$list['surname']}</td>
+                    <td>{$list['object']}</td>
+                    <td><a href='".BASE_URI_ADMIN . "index/message_detail/{$list['id']}'><i class='icon-table fas fa-search'></i></a></td>
+                    <td><form action='' method='POST'><input type='hidden' name='id' value='{$list['id']}'><button type='submit' name='delete' class='btn-delete'><i class='icon-table fas fa-trash-alt'></i></button></form></td>
+                    </tr>";
+                
+                }
+
+                ?>
                 
             </tbody>
 

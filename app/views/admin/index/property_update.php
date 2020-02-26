@@ -112,24 +112,26 @@
             for ($loop = 0; $loop < 3; $loop++) {
                 if ($loop < $count) {
                     echo "<div class='col-12 col-lg-4 my-2 align-self-center text-center'><img class=' img-display  img-fluid' src='" . BASE_IMG . $images[$loop]['name'] . "'></div>";
-                }else{
+                } else {
                     echo "<div class='col-12 col-lg-4 my-2 align-self-center text-center'><img class=' img-display  img-fluid' src=''></div>";
                 }
             }
-       ?>
+            ?>
         </div>
         <div class="d-flex">
-        <?php
+            <?php
             $count = count($images);
             for ($loop = 0; $loop < 3; $loop++) {
+                $id = (isset($images[$loop]['id']))?$images[$loop]['id']:"";
                 ?>
                 <div class="input-group col-12 col-lg-4 my-2">
                     <div class="custom-file d-lg-flex">
-                        <input name="image<?= $loop+1 ?>" type="file" class="custom-file-input" aria-describedby="input_image<?= $loop+1 ?>">
-                        <label class="custom-file-label" for="image<?= $loop+1 ?>">Image</label>
+                    <input type='hidden' name='img<?= $loop + 1 ?>' value="<?= $id ?>">
+                        <input name="image<?= $loop + 1 ?>" type="file" class="custom-file-input" aria-describedby="input_image<?= $loop + 1 ?>">
+                        <label class="custom-file-label" for="image<?= $loop + 1 ?>">Image</label>
                     </div>
                 </div>
-            <?php 
+            <?php
             } ?>
         </div>
 

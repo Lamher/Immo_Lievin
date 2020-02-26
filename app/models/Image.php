@@ -24,14 +24,20 @@ class Image extends Model
     {
         return $this->select('images.*',  'properties.id = :id', ["id" => $idProperty], "INNER JOIN properties ON properties.id=images.idProperty")->fetchAll();
     }
-    
-    public function createIfNotExists($name){
-        //TODO
+
+    public function updateImage($id)
+    {
+        $data = ['updateDate' => date('Y-m-d H:i:s'), 'id' => $id];
+        return $this->update($data, 'id= :id');
+    }
+
+    public function createImage($name, $default, $idProperty) {
+        return $this->insert(['name'=>$name,'default'=>$default, 'idProperty'=>$idProperty]);
     }
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -41,7 +47,7 @@ class Image extends Model
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -51,7 +57,7 @@ class Image extends Model
 
     /**
      * Get the value of default
-     */ 
+     */
     public function getDefault()
     {
         return $this->default;
@@ -61,7 +67,7 @@ class Image extends Model
      * Set the value of default
      *
      * @return  self
-     */ 
+     */
     public function setDefault($default)
     {
         $this->default = $default;
@@ -71,7 +77,7 @@ class Image extends Model
 
     /**
      * Get the value of idProperty
-     */ 
+     */
     public function getIdProperty()
     {
         return $this->idProperty;
@@ -81,7 +87,7 @@ class Image extends Model
      * Set the value of idProperty
      *
      * @return  self
-     */ 
+     */
     public function setIdProperty($idProperty)
     {
         $this->idProperty = $idProperty;
@@ -91,7 +97,7 @@ class Image extends Model
 
     /**
      * Get the value of creationDate
-     */ 
+     */
     public function getCreationDate()
     {
         return $this->creationDate;
@@ -101,7 +107,7 @@ class Image extends Model
      * Set the value of creationDate
      *
      * @return  self
-     */ 
+     */
     public function setCreationDate($creationDate)
     {
         $this->creationDate = $creationDate;
@@ -111,7 +117,7 @@ class Image extends Model
 
     /**
      * Get the value of updateDate
-     */ 
+     */
     public function getUpdateDate()
     {
         return $this->updateDate;
@@ -121,7 +127,7 @@ class Image extends Model
      * Set the value of updateDate
      *
      * @return  self
-     */ 
+     */
     public function setUpdateDate($updateDate)
     {
         $this->updateDate = $updateDate;
@@ -131,7 +137,7 @@ class Image extends Model
 
     /**
      * Get the value of deleteDate
-     */ 
+     */
     public function getDeleteDate()
     {
         return $this->deleteDate;
@@ -141,7 +147,7 @@ class Image extends Model
      * Set the value of deleteDate
      *
      * @return  self
-     */ 
+     */
     public function setDeleteDate($deleteDate)
     {
         $this->deleteDate = $deleteDate;
@@ -151,7 +157,7 @@ class Image extends Model
 
     /**
      * Get the value of active
-     */ 
+     */
     public function getActive()
     {
         return $this->active;
@@ -161,7 +167,7 @@ class Image extends Model
      * Set the value of active
      *
      * @return  self
-     */ 
+     */
     public function setActive($active)
     {
         $this->active = $active;

@@ -21,7 +21,23 @@ class Message extends Model
         $this->_table = 'messages';
     }
 
+    public function selectAll()
+    {
+        return $this->select('messages.*,users.surname, users.name as username', 'messages.active=1', [], "INNER JOIN users ON users.id=messages.idUser")->fetchAll();
+    }
 
+    public function selectMessageById()
+    {
+        $result = $this->select('*', 'id = :id', ["id" => $this->id])->fetch();
+        $this->hydrate($result);
+    }
+
+    public function deleteMessage($id) {
+        return $this->delete(["id"=>$id],'id = :id');
+    }
+    public function seenMessage($id) {
+        return $this->update(["id"=>$id, "seen"=>1],'id = :id');
+    }
 
     /**
      * Get the value of object

@@ -40,6 +40,7 @@ class Address extends Model
     }
 
 
+
     /**
      * Get the value of streetNumber
      */ 

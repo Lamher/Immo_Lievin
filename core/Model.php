@@ -10,6 +10,7 @@ class Model
   protected static $_db;
   protected $id;
   protected $_PDOStatment;
+  public $_LastInsertId;
 
   public static function getDb()
   {
@@ -26,11 +27,12 @@ class Model
   public function query(string $request, array $markers = []): self
   {
     $this->_PDOStatment = $this->getPdo()->prepare($request);
-// var_dump($request);
-// var_dump($markers);
+    // var_dump($request);
+    // var_dump($markers);
     try {
       $this->getPdo()->beginTransaction();
       $this->_PDOStatment->execute($markers);
+      $this->_LastInsertId = $this->getPdo()->lastInsertId();
       $this->getPdo()->commit();
     } catch (\PDOException $error) {
       $this->getPdo()->rollBack();
@@ -39,12 +41,12 @@ class Model
   }
 
   // Select all elements in the table and hydrate them via setters
-  public function select($target, $where=NULL, $markers=[], $nestedRequest=NULL)
+  public function select($target, $where = NULL, $markers = [], $nestedRequest = NULL)
   {
-    if(isset($where)){
-      return $this->query("SELECT $target FROM $this->_table $nestedRequest WHERE $where;",$markers);
-    }else{
-      return $this->query("SELECT $target FROM $this->_table $nestedRequest;",$markers);
+    if (isset($where)) {
+      return $this->query("SELECT $target FROM $this->_table $nestedRequest WHERE $where;", $markers);
+    } else {
+      return $this->query("SELECT $target FROM $this->_table $nestedRequest;", $markers);
     }
   }
 
@@ -60,37 +62,36 @@ class Model
   }
 
   public function insert(array $values): self
-    {
-        $markers = [];
-        $insert = "INSERT INTO $this->_table (`" . implode('`,`', array_keys($values)) . "`) VALUES (:" . implode(',:', array_keys($values)) . ");";
-        foreach ($values as $key => $val) {
-            $markers[":$key"] = $val;
-        }
-        return $this->query($insert, $markers);
+  {
+    $markers = [];
+    $insert = "INSERT INTO $this->_table (`" . implode('`,`', array_keys($values)) . "`) VALUES (:" . implode(',:', array_keys($values)) . ");";
+    foreach ($values as $key => $val) {
+      $markers[":$key"] = $val;
     }
+    return $this->query($insert, $markers);
+  }
 
 
-    public function update(array $data, string $where): self
-    {
-        $update = "UPDATE $this->_table SET ";
-        foreach ($data as $key => $val) {
-            if ($key != "id") {
-                $update .= "$key = :$key,";
-            }
-            $markers[":$key"] = $val;
-        }
-        $update = substr($update, 0, -1);
-        $update .= " WHERE $where;";
-        return $this->query($update, $markers);
-    }
-
-    public function delete(string $target ='', string $where, array $markers){
-      $delete = "DELETE $target FROM $this->_table ";
-      foreach($markers as $key=>$val){    
-          $namedMarkers[":$key"] = $val; 
+  public function update(array $data, string $where): self
+  {
+    $update = "UPDATE $this->_table SET ";
+    foreach ($data as $key => $val) {
+      if ($key != "id") {
+        $update .= "$key = :$key,";
       }
-      $delete .= " WHERE $where;";
-      return $this->query($delete, $namedMarkers);
+      $markers[":$key"] = $val;
+    }
+    $update = substr($update, 0, -1);
+    $update .= " WHERE $where;";
+    return $this->query($update, $markers);
+  }
+
+  public function delete(array $data,string $where)
+  {
+    $delete = "UPDATE $this->_table SET active=0 WHERE $where;";
+    // var_dump($delete);
+    // var_dump($data);
+    return $this->query($delete, $data);
   }
 
   /**

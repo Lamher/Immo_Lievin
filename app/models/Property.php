@@ -38,13 +38,17 @@ class Property extends Model
 
     public function selectAll()
     {
-        return $this->select('properties.*,users.surname, users.name as username', NULL, [], "INNER JOIN users ON users.id=properties.idUser")->fetchAll();
+        return $this->select('properties.*,users.surname, users.name as username', 'properties.active=1', [], "INNER JOIN users ON users.id=properties.idUser")->fetchAll();
     }
 
     public function updateProperty()
     {
         $data = ['name' => $this->getName(), 'reference' => $this->getReference(), 'type' => $this->getType(), 'price' => $this->getPrice(), 'surfaceArea' => $this->getSurfaceArea(), 'rooms' => $this->getRooms(), 'bedrooms' => $this->getBedrooms(), 'energyClass' => $this->getEnergyClass(), 'description' => $this->getDescription(), 'indexTop' => $this->getIndexTop(), 'idCategory' => $this->getIdCategory(), 'visible' => $this->getVisible(), 'updateDate' => date('Y-m-d H:i:s'), 'id' => $this->getId()];
         return $this->update($data, 'id = :id');
+    }
+
+    public function deleteProperty($id) {
+        return $this->delete(["id"=>$id],'id = :id');
     }
 
     /**

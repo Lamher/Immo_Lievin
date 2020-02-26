@@ -30,16 +30,33 @@ class User extends Model
         $this->hydrate($result);
     }
 
+    public function selectUserByMessageId()
+    {
+        $result = $this->select('*', 'id = :id', ["id" => $this->id])->fetch();
+        $this->hydrate($result);
+    }
 
     public function selectAll()
     {
-        return $this->select('*')->fetchAll();
+        return $this->select('*', 'active=1')->fetchAll();
     }
 
     public function updateUser(){
         $data = ['name'=>$this->getName(),'surname'=>$this->getSurname(),'mail'=>$this->getMail(),'password'=>$this->getPassword(),'updateDate'=>date('Y-m-d H:i:s'), 'id'=>$this->getId()];
         return $this->update($data, 'id = :id');
     }
+
+    public function deleteUser($id) {
+        return $this->delete(["id"=>$id],'id = :id');
+    }
+
+
+    // public function delete(string $where)
+    // {
+    //   $delete = "UPDATE $this->_table SET active=0 WHERE $where;";
+    //   $markers = [];
+    //   return $this->query($delete, $markers);
+    // }
 
     /**
      * Get the value of name
