@@ -25,7 +25,7 @@ class App
 
     public function parseUrl()
     {
-        $request_uri = str_ireplace(BASE_DIR, '', $_SERVER['REQUEST_URI']);
+        $request_uri = str_replace(BASE_DIR, '', $_SERVER['REQUEST_URI']);
 
         return $this->url = explode('/', filter_var(rtrim($request_uri), FILTER_SANITIZE_STRING));
     }
@@ -78,7 +78,7 @@ class App
             array_shift($this->url);
         } else {
             //Front car module par defaut
-            $this->namespace = 'App\Controllers\Front\\';
+            $this->namespace = 'App\Controllers\Public\\';
         }
     }
 

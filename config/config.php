@@ -2,7 +2,7 @@
 
 define('ROOT', __DIR__ . '/');
 
-define('BASE_DIR', '/Immo_Lievin/Public/');
+define('BASE_DIR', '/Immo_Lievin/public/');
 define('PATH_VIEWS', ROOT . '../app/views/');
 define('PATH_MODELS', ROOT . '../app/models/');
 
