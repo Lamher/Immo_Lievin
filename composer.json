@@ -1,0 +1,20 @@
+{
+    "name": "vendor/immo_lievin",
+    "description": "php components for immo_lievin",
+    "authors": [
+        {
+            "name": "Cleyam",
+            "email": "cleyam@gmail.com"
+        }
+    ],
+    "autoload" : {
+        "psr-4": {
+                "App\\" : "app/",
+                "Core\\" : "core/"
+            }
+    },
+    "require": {
+        "monolog/monolog": "^1.25",
+        "eternicode/bootstrap-datepicker": "^1.9"
+    }
+}
