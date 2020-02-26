@@ -25,7 +25,7 @@ class App
 
     public function parseUrl()
     {
-        $request_uri = str_ireplace(BASE_DIR, '', $_SERVER['REQUEST_URI']);
+        $request_uri = str_replace(BASE_DIR, '', $_SERVER['REQUEST_URI']);
 
         return $this->url = explode('/', filter_var(rtrim($request_uri), FILTER_SANITIZE_STRING));
     }
@@ -55,7 +55,9 @@ class App
             $this->params = $this->url ? array_values($this->url) : [];
 
             $dispatch = new $this->controller();
-
+            // Appel fonction sur controller, appel methode chez Controller.php
+            $dispatch->securePost();
+            $dispatch->secureGet();
             call_user_func_array([$dispatch, $this->action], $this->params);
         } else {
             $this->redirect404();
@@ -76,7 +78,9 @@ class App
             array_shift($this->url);
         } else {
             //Front car module par defaut
-            $this->namespace = 'App\Controllers\Front\\';
+            $this->namespace = 'App\Controllers\Public\\';
         }
     }
+
+    
 }
