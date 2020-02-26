@@ -131,7 +131,6 @@ class IndexController extends AppController
         $insertAddress = new Address();
         $insertProperty = new Property();
         $insertImage = new Image();
-        var_dump($_FILES);
         if (isset($_POST['add-property'])) {
             $dataAddress = [
                 "streetNumber" => $this->post('streetNumber'),
@@ -187,10 +186,10 @@ class IndexController extends AppController
 
 
 
-            // $properties = new Property();
-            // $lists = $properties->selectAll();
-            // $tab = ['lists' => $lists];
-            // $this->render('index.property_list', $tab);
+            $properties = new Property();
+            $lists = $properties->selectAll();
+            $tab = ['lists' => $lists];
+            $this->render('index.property_list', $tab);
         }
         $this->render('index.property_create');
     }
