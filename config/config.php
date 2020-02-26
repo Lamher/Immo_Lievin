@@ -1,6 +1,8 @@
 <?php
 
-define('BASE_DIR', '/Immo_Lievin/public/');
+define('ROOT', __DIR__ . '/');
+
+define('BASE_DIR', '/Immo_Lievin/Public/');
 define('PATH_VIEWS', ROOT . '../app/views/');
 define('PATH_MODELS', ROOT . '../app/models/');
 
@@ -14,4 +16,9 @@ define('DEFAULT_METHOD', 'index');
 
 //Liste des modules a preciser dans l'url
 define('TAB_MODULES', ['admin', 'account']);
+define('DEFAULT_MODULE', 'public');
+
 define('BASE_URI', 'http://localhost/Immo_Lievin/public/');
+define('BASE_IMG', 'http://localhost/Immo_Lievin/public/images/properties/');
+define('BASE_IMG_PROPERTIES','C:\wamp64\www\Immo_Lievin\public\images\properties\\');
+define('BASE_URI_ADMIN', BASE_URI . 'admin/');
