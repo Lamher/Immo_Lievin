@@ -28,21 +28,17 @@ class Address extends Model
         $this->hydrate($result);
     }
 
-    // recreate the setter method name for each element of the table, and define its value depending of said element in the table
-    public function hydrate($donnees)
+    public function selectAddressByPropertyId()
     {
-        foreach ($donnees as $attribut => $valeur) {
-            $methode = 'set' . str_replace(' ', '', ucwords(str_replace('_', ' ', $attribut)));
-            if (is_callable(array($this, $methode))) {
-                $this->$methode($valeur);
-            }
-        }
+        $result = $this->select('*', 'id = :id', ["id" => $this->id])->fetch();
+        $this->hydrate($result);
     }
 
     public function updateAddress(){
         $data = ['streetNumber'=>$this->getStreetNumber(),'streetName'=>$this->getStreetName(),'postalCode'=>$this->getPostalCode(),'city'=>$this->getCity(), 'country'=> $this->getCountry(),'updateDate'=>date('Y-m-d H:i:s'), 'id'=>$this->getId()];
         return $this->update($data, 'id = :id');
     }
+
 
 
     /**

@@ -10,6 +10,9 @@ class Controller
     protected $template = 'default';
 
     protected $varsView = [];
+    
+    protected $PostSecure = [];
+    protected $GetSecure = [];
 
     public function __construct()
     {
@@ -67,6 +70,30 @@ class Controller
     public function addContentToView($element)
     {
         $this->varsView = array_merge($this->varsView, $element);
+    }
+
+    public function securePost()
+    {
+        foreach ($_POST  as $key => $val) {
+            $this->PostSecure[$key] = htmlspecialchars($val);
+        }
+        return $this; 
+    }
+
+    public function post($key) {
+        return isset($this->PostSecure[$key]) ? $this->PostSecure[$key]: NULL;
+    }
+
+    public function secureGet()
+    {
+        foreach ($_GET  as $key => $val) {
+            $this->GetSecure[$key] = htmlspecialchars($val);
+        }
+        return $this; 
+    }
+
+    public function get($key) {
+        return isset($this->GetSecure[$key]) ? $this->GetSecure[$key]: NULL;
     }
 
 }

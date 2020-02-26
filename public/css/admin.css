@@ -25,6 +25,10 @@
     display: none;
 }
 
+.img-display{
+    height: 250px;
+    width: 100%;
+}
 
 .icon-admin {
     color: white;
@@ -51,6 +55,11 @@ a:hover {
 
 #bloc-content-admin {
     padding: 0px;
+}
+
+.btn-delete, .btn-seen{
+    background-color: transparent; 
+    border-color: transparent; 
 }
 
 /* TAILLE TELEPHONE */

@@ -1,6 +1,6 @@
 <div id="content-admin" class="mt-10">
     <h1 class="text-center">Ajouter un bien</h1>
-    <form id="add_user_form" action="" method="POST" class="mx-2">
+    <form id="add_user_form" action="" method="POST" enctype="multipart/form-data" class="mx-2">
         <div class="d-flex">
             <div class="form-group col-md-4">
                 <label for="type">Type de bien</label>
@@ -12,11 +12,11 @@
 
             <div class="flex-column col-md-4 align-self-center">
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="visible">
+                    <input type="checkbox" class="form-check-input" name="visible" id="visible">
                     <label class="form-check-label" for="visible">Visible</label>
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="indexTop">
+                    <input type="checkbox" class="form-check-input" name="indexTop" id="indexTop">
                     <label class="form-check-label" for="indexTop">Mis en avant</label>
                 </div>
             </div>
@@ -28,13 +28,13 @@
                 <div class="form-group">
                     <label for="category">Catégorie</label>
                     <select class="form-control" id="category" name="category">
-                        <option value="Maison">Maison</option>
-                        <option value="Appartement">Appartement</option>
-                        <option value="Terrain à bâtir">Terrain à bâtir</option>
-                        <option value="Jardin">Jardin</option>
-                        <option value="Garage">Garage</option>
-                        <option value="Parking">Parking</option>
-                        <option value="Immobilier professionnel">Immobilier professionnel</option>
+                        <option value="1">Maison</option>
+                        <option value="2">Appartement</option>
+                        <option value="3">Terrain à bâtir</option>
+                        <option value="4">Jardin</option>
+                        <option value="5">Garage</option>
+                        <option value="6">Parking</option>
+                        <option value="7">Immobilier professionnel</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -103,34 +103,34 @@
         </div>
         <div class="form-group col-12">
             <label for="description">Description du bien</label>
-            <textarea class="form-control" id="description" rows="3"></textarea>
+            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
         </div>
 
         <div class="d-lg-flex">
             <div class="input-group col-12 col-lg-4 my-2">
 
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="image1" aria-describedby="input_image1">
+                    <input type="file" class="custom-file-input" name="image1" id="image1" aria-describedby="input_image1">
                     <label class="custom-file-label" for="image1">Image 1 ( Par défaut )</label>
                 </div>
             </div>
             <div class="input-group col-12 col-lg-4 my-2">
 
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="image2" aria-describedby="input_image2">
+                    <input type="file" class="custom-file-input" name="image2" id="image2" aria-describedby="input_image2">
                     <label class="custom-file-label" for="image2">Image 2</label>
                 </div>
             </div>
             <div class="input-group col-12 col-lg-4 my-2">
 
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="image3" aria-describedby="input_image3">
+                    <input type="file" class="custom-file-input" name="image3" id="image3" aria-describedby="input_image3">
                     <label class="custom-file-label" for="image3">Image 3</label>
                 </div>
             </div>
         </div>
         <div class=" mx-2 d-flex justify-content-end">
-            <button id="btn-add" name="add-user" type="submit" class="btn text-light font-weight-bold">Ajouter le bien</button>
+            <button id="btn-add" name="add-property" type="submit" class="btn text-light font-weight-bold">Ajouter le bien</button>
         </div>
     </form>
 </div>

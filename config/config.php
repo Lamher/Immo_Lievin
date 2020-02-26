@@ -19,4 +19,6 @@ define('TAB_MODULES', ['admin', 'account']);
 define('DEFAULT_MODULE', 'public');
 
 define('BASE_URI', 'http://localhost/Immo_Lievin/public/');
+define('BASE_IMG', 'http://localhost/Immo_Lievin/public/images/properties/');
+define('BASE_IMG_PROPERTIES','C:\wamp64\www\Immo_Lievin\public\images\properties\\');
 define('BASE_URI_ADMIN', BASE_URI . 'admin/');

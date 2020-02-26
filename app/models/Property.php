@@ -15,8 +15,9 @@ class Property extends Model
     protected $bedrooms;
     protected $energyClass;
     protected $indexTop;
+    protected $description;
     protected $visible;
-    protected $idAdress;
+    protected $idAddress;
     protected $idCategory;
     protected $creationDate;
     protected $updateDate;
@@ -29,19 +30,30 @@ class Property extends Model
         $this->_table = 'properties';
     }
 
-    public function selectPropertyById() {
+    public function selectPropertyById()
+    {
         $result = $this->select('*', 'id = :id', ["id" => $this->id])->fetch();
         $this->hydrate($result);
     }
 
     public function selectAll()
     {
-        return $this->select('properties.*,users.surname, users.name as username', NULL, [], "INNER JOIN users ON users.id=properties.idUser")->fetchAll();
+        return $this->select('properties.*,users.surname, users.name as username', 'properties.active=1', [], "INNER JOIN users ON users.id=properties.idUser")->fetchAll();
+    }
+
+    public function updateProperty()
+    {
+        $data = ['name' => $this->getName(), 'reference' => $this->getReference(), 'type' => $this->getType(), 'price' => $this->getPrice(), 'surfaceArea' => $this->getSurfaceArea(), 'rooms' => $this->getRooms(), 'bedrooms' => $this->getBedrooms(), 'energyClass' => $this->getEnergyClass(), 'description' => $this->getDescription(), 'indexTop' => $this->getIndexTop(), 'idCategory' => $this->getIdCategory(), 'visible' => $this->getVisible(), 'updateDate' => date('Y-m-d H:i:s'), 'id' => $this->getId()];
+        return $this->update($data, 'id = :id');
+    }
+
+    public function deleteProperty($id) {
+        return $this->delete(["id"=>$id],'id = :id');
     }
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -51,7 +63,7 @@ class Property extends Model
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -61,7 +73,7 @@ class Property extends Model
 
     /**
      * Get the value of reference
-     */ 
+     */
     public function getReference()
     {
         return $this->reference;
@@ -71,7 +83,7 @@ class Property extends Model
      * Set the value of reference
      *
      * @return  self
-     */ 
+     */
     public function setReference($reference)
     {
         $this->reference = $reference;
@@ -81,7 +93,7 @@ class Property extends Model
 
     /**
      * Get the value of type
-     */ 
+     */
     public function getType()
     {
         return $this->type;
@@ -91,7 +103,7 @@ class Property extends Model
      * Set the value of type
      *
      * @return  self
-     */ 
+     */
     public function setType($type)
     {
         $this->type = $type;
@@ -101,7 +113,7 @@ class Property extends Model
 
     /**
      * Get the value of price
-     */ 
+     */
     public function getPrice()
     {
         return $this->price;
@@ -111,7 +123,7 @@ class Property extends Model
      * Set the value of price
      *
      * @return  self
-     */ 
+     */
     public function setPrice($price)
     {
         $this->price = $price;
@@ -121,7 +133,7 @@ class Property extends Model
 
     /**
      * Get the value of surfaceArea
-     */ 
+     */
     public function getSurfaceArea()
     {
         return $this->surfaceArea;
@@ -131,7 +143,7 @@ class Property extends Model
      * Set the value of surfaceArea
      *
      * @return  self
-     */ 
+     */
     public function setSurfaceArea($surfaceArea)
     {
         $this->surfaceArea = $surfaceArea;
@@ -141,7 +153,7 @@ class Property extends Model
 
     /**
      * Get the value of rooms
-     */ 
+     */
     public function getRooms()
     {
         return $this->rooms;
@@ -151,7 +163,7 @@ class Property extends Model
      * Set the value of rooms
      *
      * @return  self
-     */ 
+     */
     public function setRooms($rooms)
     {
         $this->rooms = $rooms;
@@ -161,7 +173,7 @@ class Property extends Model
 
     /**
      * Get the value of bedrooms
-     */ 
+     */
     public function getBedrooms()
     {
         return $this->bedrooms;
@@ -171,7 +183,7 @@ class Property extends Model
      * Set the value of bedrooms
      *
      * @return  self
-     */ 
+     */
     public function setBedrooms($bedrooms)
     {
         $this->bedrooms = $bedrooms;
@@ -181,7 +193,7 @@ class Property extends Model
 
     /**
      * Get the value of energyClass
-     */ 
+     */
     public function getEnergyClass()
     {
         return $this->energyClass;
@@ -191,7 +203,7 @@ class Property extends Model
      * Set the value of energyClass
      *
      * @return  self
-     */ 
+     */
     public function setEnergyClass($energyClass)
     {
         $this->energyClass = $energyClass;
@@ -201,7 +213,7 @@ class Property extends Model
 
     /**
      * Get the value of indexTop
-     */ 
+     */
     public function getIndexTop()
     {
         return $this->indexTop;
@@ -211,7 +223,7 @@ class Property extends Model
      * Set the value of indexTop
      *
      * @return  self
-     */ 
+     */
     public function setIndexTop($indexTop)
     {
         $this->indexTop = $indexTop;
@@ -221,7 +233,7 @@ class Property extends Model
 
     /**
      * Get the value of visible
-     */ 
+     */
     public function getVisible()
     {
         return $this->visible;
@@ -231,7 +243,7 @@ class Property extends Model
      * Set the value of visible
      *
      * @return  self
-     */ 
+     */
     public function setVisible($visible)
     {
         $this->visible = $visible;
@@ -241,8 +253,8 @@ class Property extends Model
 
     /**
      * Get the value of idAdress
-     */ 
-    public function getIdAdress()
+     */
+    public function getIdAddress()
     {
         return $this->idAdress;
     }
@@ -251,8 +263,8 @@ class Property extends Model
      * Set the value of idAdress
      *
      * @return  self
-     */ 
-    public function setIdAdress($idAdress)
+     */
+    public function setIdAddress($idAdress)
     {
         $this->idAdress = $idAdress;
 
@@ -261,7 +273,7 @@ class Property extends Model
 
     /**
      * Get the value of idCategory
-     */ 
+     */
     public function getIdCategory()
     {
         return $this->idCategory;
@@ -271,7 +283,7 @@ class Property extends Model
      * Set the value of idCategory
      *
      * @return  self
-     */ 
+     */
     public function setIdCategory($idCategory)
     {
         $this->idCategory = $idCategory;
@@ -281,7 +293,7 @@ class Property extends Model
 
     /**
      * Get the value of creationDate
-     */ 
+     */
     public function getCreationDate()
     {
         return $this->creationDate;
@@ -291,7 +303,7 @@ class Property extends Model
      * Set the value of creationDate
      *
      * @return  self
-     */ 
+     */
     public function setCreationDate($creationDate)
     {
         $this->creationDate = $creationDate;
@@ -301,7 +313,7 @@ class Property extends Model
 
     /**
      * Get the value of updateDate
-     */ 
+     */
     public function getUpdateDate()
     {
         return $this->updateDate;
@@ -311,7 +323,7 @@ class Property extends Model
      * Set the value of updateDate
      *
      * @return  self
-     */ 
+     */
     public function setUpdateDate($updateDate)
     {
         $this->updateDate = $updateDate;
@@ -321,7 +333,7 @@ class Property extends Model
 
     /**
      * Get the value of deleteDate
-     */ 
+     */
     public function getDeleteDate()
     {
         return $this->deleteDate;
@@ -331,7 +343,7 @@ class Property extends Model
      * Set the value of deleteDate
      *
      * @return  self
-     */ 
+     */
     public function setDeleteDate($deleteDate)
     {
         $this->deleteDate = $deleteDate;
@@ -341,7 +353,7 @@ class Property extends Model
 
     /**
      * Get the value of active
-     */ 
+     */
     public function getActive()
     {
         return $this->active;
@@ -351,10 +363,30 @@ class Property extends Model
      * Set the value of active
      *
      * @return  self
-     */ 
+     */
     public function setActive($active)
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
 
         return $this;
     }

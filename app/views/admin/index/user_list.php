@@ -27,7 +27,7 @@
                     <td>{$list['name']}</td>
                     <td>{$list['surname']}</td>
                     <td><a href='".BASE_URI_ADMIN . "index/user_update/{$list['id']}'><i class='icon-table fas fa-pen'></i></a></td>
-                    <td><i class='icon-table fas fa-trash-alt'></i></td>
+                    <td><form action='' method='POST'><input type='hidden' name='id' value='{$list['id']}'><button type='submit' name='delete' class='btn-delete'><i class='icon-table fas fa-trash-alt'></i></button></form></td>
                     </tr>";
                 
                 }

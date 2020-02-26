@@ -30,10 +30,15 @@ class User extends Model
         $this->hydrate($result);
     }
 
+    public function selectUserByMessageId()
+    {
+        $result = $this->select('*', 'id = :id', ["id" => $this->id])->fetch();
+        $this->hydrate($result);
+    }
 
     public function selectAll()
     {
-        return $this->select('*')->fetchAll();
+        return $this->select('*', 'active=1')->fetchAll();
     }
 
     public function updateUser(){
@@ -41,20 +46,16 @@ class User extends Model
         return $this->update($data, 'id = :id');
     }
 
+    public function deleteUser($id) {
+        return $this->delete(["id"=>$id],'id = :id');
+    }
 
-    
-    // public function update(array $data, string $where): self
+
+    // public function delete(string $where)
     // {
-    //     $update = "UPDATE $this->_table SET ";
-    //     foreach ($data as $key => $val) {
-    //         if ($key != "id") {
-    //             $update .= "$key = :$key,";
-    //         }
-    //         $markers[":$key"] = $val;
-    //     }
-    //     $update = substr($update, 0, -1);
-    //     $update .= " WHERE $where;";
-    //     return $this->query($update, $markers);
+    //   $delete = "UPDATE $this->_table SET active=0 WHERE $where;";
+    //   $markers = [];
+    //   return $this->query($delete, $markers);
     // }
 
     /**
