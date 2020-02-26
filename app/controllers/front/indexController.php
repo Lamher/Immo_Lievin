@@ -5,7 +5,8 @@ namespace App\Controllers\Front;
 
 use App\Controllers\Front\AppController;
 
-//use App\Models\Users;
+use App\Models\User;
+use App\models\Address;
 
 class IndexController extends AppController
 {
@@ -42,7 +43,28 @@ class IndexController extends AppController
     }
     public function inscriptionAction()
     {
+        $registrationAddress = new Address();
+        $registrationtUser = new User();
+        // Au submit
+        if (isset($_POST['registration'])) {
+            // Création du record address
+            $dataAddress = [
+                "streetNumber" => $this->post('streetNumber'),
+                "streetName" => $this->post('streetName'),
+                "postalCode" => $this->post('postalCode'),
+                "city" => $this->post('city'),
+                "country" => $this->post('country')
+            ];
+            $registrationAddress->insert($dataAddress);
+
+            // Création du record user
+            $dataUser = ["name" => $this->post('name'), "surname" => $this->post('surname'), "mail" => $this->post('mail'), "password" => password_hash($_POST['password'], PASSWORD_DEFAULT), "idAddress" => $registrationAddress->_LastInsertId];
+            $registrationtUser->insert($dataUser);
+
+
+        }
         $this->render('index.inscription');
+
     }
     public function contactAction()
     {
