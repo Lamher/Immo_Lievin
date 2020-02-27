@@ -4,6 +4,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\Admin\AppController;
+use Rap2hpoutre\FastExcel\FastExcel;
 use App\Models\User;
 use App\Models\Address;
 use App\Models\Property;
@@ -40,25 +41,33 @@ class IndexController extends AppController
         $insertUser = new User();
         // Au submit
         if (isset($_POST['add-user'])) {
-            // Création du record address
-            $dataAddress = [
-                "streetNumber" => $this->post('streetNumber'),
-                "streetName" => $this->post('streetName'),
-                "postalCode" => $this->post('postalCode'),
-                "city" => $this->post('city'),
-                "country" => $this->post('country')
-            ];
-            $insertAddress->insert($dataAddress);
+            // Validation des champs
+            $insertAddress->setStreetNumber($this->post('streetNumber'))
+                ->setStreetName($this->post('streetName'))
+                ->setPostalCode($this->post('postalCode'))
+                ->setCity($this->post('city'))
+                ->setCountry($this->post('country'));
+            $insertUser->setName($this->post('name'))
+                ->setSurname($this->post('surname'))
+                ->setMail($this->post('mail'))
+                ->setHashedPassword($_POST['password']); // le hash est fait par le validator en cas de succès
+            // Si tous les champs sont valides, insertion dans la table et redirection
+            if ($insertAddress->isValid() && $insertUser->isValid()) {
+                $insertAddress->insertAddress();
+                $insertUser->insertUser($insertAddress->_LastInsertId);
 
-            // Cration du record user
-            $dataUser = ["name" => $this->post('name'), "surname" => $this->post('surname'), "mail" => $this->post('mail'), "password" => password_hash($_POST['password'], PASSWORD_DEFAULT), "idAddress" => $insertAddress->_LastInsertId];
-            $insertUser->insert($dataUser);
-
-            // Retour à la liste
-            $users = new User();
-            $lists = $users->selectAll();
-            $tab = ['lists' => $lists];
-            $this->render('index.user_list', $tab);
+                $users = new User();
+                $lists = $users->selectAll();
+                $tab = ['lists' => $lists];
+                $this->render('index.user_list', $tab);
+            } else {
+                // récupération des messages d'erreur
+                $userErrors = $insertUser->getErrorMessage();
+                $addressErrors = $insertAddress->getErrorMessage();
+                $errorlist = array_merge($userErrors, $addressErrors);
+                $errors = ['errors' => $errorlist];
+                $this->render('index.user_create', $errors);
+            }
         }
         $this->render('index.user_create');
     }
@@ -69,30 +78,38 @@ class IndexController extends AppController
         $userUpdate = new User();
         $userUpdate->setId($params);
         $userUpdate->selectUserById();
+        echo $userUpdate->getPassword();
         $addressUpdate = new Address();
         $addressUpdate->setId($userUpdate->getIdAddress());
         $addressUpdate->selectAddressByUserId();
         if (isset($_POST['update-user'])) {
             $userUpdate->setName($this->post('name'))
                 ->setSurname($this->post('surname'))
-                ->setMail($this->post('mail'))
-                ->setPassword(password_hash($_POST['password'], PASSWORD_DEFAULT))->updateUser();
+                ->setMail($this->post('mail'));
+            if ($_POST['password'] != $userUpdate->getPassword()) {
+                $userUpdate->setHashedPassword($_POST['password']);
+            }
             $addressUpdate->setStreetNumber($this->post('streetNumber'))
                 ->setStreetName($this->post('streetName'))
                 ->setPostalCode($this->post('postalCode'))
                 ->setCity($this->post('city'))
-                ->setCountry($this->post('country'))
-                ->updateAddress();
-            //Redirecting to user_list
-            $users = new User();
-            $lists = $users->selectAll();
-            $tab = ['lists' => $lists];
-            $this->render('index.user_list', $tab);
+                ->setCountry($this->post('country'));
+            if ($userUpdate->isValid() && $addressUpdate->isValid()) {
+                $userUpdate->updateUser();
+                $addressUpdate->updateAddress();
+
+                //Redirecting to user_list
+                $users = new User();
+                $lists = $users->selectAll();
+                $tab = ['lists' => $lists];
+                $this->render('index.user_list', $tab);
+            }
         }
-
+        $userErrors = $userUpdate->getErrorMessage();
+        $addressErrors = $addressUpdate->getErrorMessage();
+        $errorlist = array_merge($userErrors, $addressErrors);
         // Select the values of each inputs depending of the user id set as parameter in the URI
-
-        $updateInfos = [
+        $updateInfos = ['infos' => [
             'id' => $params,
             'name' => $userUpdate->getName(),
             'surname' => $userUpdate->getSurname(),
@@ -103,14 +120,14 @@ class IndexController extends AppController
             'postalCode' => $addressUpdate->getPostalCode(),
             'city' => $addressUpdate->getCity(),
             'country' => $addressUpdate->getCountry()
-        ];
+        ], 'errors' => $errorlist];
         $this->render('index.user_update', $updateInfos);
     }
 
     public function property_listAction()
     {
         $propertyUpdate = new Property();
-        
+
         // CHange indexTop value on checkbox change
         if (isset($_POST['id'])) {
             $propertyUpdate->setId($this->post('id'));
@@ -340,13 +357,23 @@ class IndexController extends AppController
     public function import_exportAction()
     {
         $propertyTable = new Property();
-        if(isset($_POST['preview'])){
+
+        $propertyTable->setErrorMessage('export', 'message erreur export test');
+        $error = $propertyTable->getErrorMessage('export');
+        echo $error['export'];
+        if (isset($_POST['export'])) {
             $result = $propertyTable->selectPropertiesByDate($this->post('start'), $this->post('end'));
             $lists = ['lists' => $result];
+
+            // rap2hpoutre/fast-excel 
+            $collect = [];
+            for ($loop = 0; $loop < count($result); $loop++) {
+                array_push($collect, ['reference' => $result[$loop]['reference'], 'name' => $result[$loop]['name'], 'vendeur' => $result[$loop]['surname'] . " " . $result[$loop]['username'], 'type' => $result[$loop]['type'], 'categorie' => $result[$loop]['idCategory'], 'prix' => $result[$loop]['price'], 'surface' => $result[$loop]['surfaceArea'], 'pièces' => $result[$loop]['rooms'], 'chambres' => $result[$loop]['bedrooms'], 'classe énergétique' => $result[$loop]['energyClass'], 'addresse' => $result[$loop]['streetNumber'] . " " . $result[$loop]['streetName'] . " " . $result[$loop]['postalCode'] . " " . $result[$loop]['city'] . " - " . $result[$loop]['country']]);
+            }
+            $list = collect($collect);
+            date_default_timezone_set("Europe/Paris");
+            (new FastExcel($list))->export('listebiens' . date("y-m-d_g-i") . '.xlsx');
             $this->render('index.import_export', $lists);
-        }
-        if(isset($_POST['export'])){
-            // TODO export
         }
         $this->render('index.import_export');
     }

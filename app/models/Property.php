@@ -38,8 +38,13 @@ class Property extends Model
 
     public function selectPropertiesByDate($dateStart, $dateEnd)
     {
-        return $this->select('properties.*,addresses.*, users.surname, users.name as username', "properties.creationDate >= :dateStart AND properties.creationDate <= :dateEnd ORDER BY properties.reference", ["dateStart"=>$dateStart."T00:00:00.000Z", "dateEnd"=>$dateEnd."T00:00:00.000Z"], "INNER JOIN users ON users.id=properties.idUser INNER JOIN addresses ON addresses.id = properties.idAddress")->fetchAll();
+        return $this->select('properties.*,addresses.*, users.surname, users.name as username', "properties.creationDate >= :dateStart AND properties.creationDate <= :dateEnd ORDER BY properties.reference", ["dateStart" => $dateStart . "T00:00:00.000Z", "dateEnd" => $dateEnd . "T00:00:00.000Z"], "INNER JOIN users ON users.id=properties.idUser INNER JOIN addresses ON addresses.id = properties.idAddress")->fetchAll();
     }
+    public function exportProperties()
+    {
+        return $this->query("SELECT users.name INTO OUTFILE '". BASE_DIR . "customers.txt' FROM users;");
+    }
+
 
     public function selectAll()
     {
@@ -52,8 +57,9 @@ class Property extends Model
         return $this->update($data, 'id = :id');
     }
 
-    public function deleteProperty($id) {
-        return $this->delete(["id"=>$id],'id = :id');
+    public function deleteProperty($id)
+    {
+        return $this->delete(["id" => $id], 'id = :id');
     }
 
     /**
@@ -71,8 +77,11 @@ class Property extends Model
      */
     public function setName($name)
     {
+        if(filter_var($name, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => "/^[a-zA-Z]+$/")))) {
         $this->name = $name;
-
+        }else{
+            $this->errors['name'] = 'Format de nom invalide.';
+        }
         return $this;
     }
 

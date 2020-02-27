@@ -41,13 +41,21 @@ class User extends Model
         return $this->select('*', 'active=1')->fetchAll();
     }
 
-    public function updateUser(){
-        $data = ['name'=>$this->getName(),'surname'=>$this->getSurname(),'mail'=>$this->getMail(),'password'=>$this->getPassword(),'updateDate'=>date('Y-m-d H:i:s'), 'id'=>$this->getId()];
+    public function updateUser()
+    {
+        $data = ['name' => $this->getName(), 'surname' => $this->getSurname(), 'mail' => $this->getMail(), 'password' => $this->getPassword(), 'updateDate' => date('Y-m-d H:i:s'), 'id' => $this->getId()];
         return $this->update($data, 'id = :id');
     }
 
-    public function deleteUser($id) {
-        return $this->delete(["id"=>$id],'id = :id');
+    public function insertUser($idAddress)
+    {
+        $data = ['name' => $this->getName(), 'surname' => $this->getSurname(), 'mail' => $this->getMail(), 'password' => $this->getPassword(), "idAddress" => $idAddress];
+        return $this->insert($data);
+    }
+
+    public function deleteUser($id)
+    {
+        return $this->delete(["id" => $id], 'id = :id');
     }
 
 
@@ -60,7 +68,7 @@ class User extends Model
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -70,17 +78,20 @@ class User extends Model
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
-        $this->name = $name;
-
+        if (empty($name) || !preg_match("/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/", $name)) {
+            $this->setErrorMessage('name', 'Le format du nom de l\'utilisateur est invalide, ou le champ n\'a pas été rempli.');
+        } else {
+            $this->name = $name;
+        }
         return $this;
     }
 
     /**
      * Get the value of surname
-     */ 
+     */
     public function getSurname()
     {
         return $this->surname;
@@ -90,17 +101,20 @@ class User extends Model
      * Set the value of surname
      *
      * @return  self
-     */ 
+     */
     public function setSurname($surname)
     {
-        $this->surname = $surname;
-
+        if (empty($surname) || !preg_match("/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/", $surname)) {
+            $this->setErrorMessage('surname', 'Le format du prénom de l\'utilisateur est invalide, ou le champ n\'a pas été rempli.');
+        } else {
+            $this->surname = $surname;
+        }
         return $this;
     }
 
     /**
      * Get the value of mail
-     */ 
+     */
     public function getMail()
     {
         return $this->mail;
@@ -110,17 +124,20 @@ class User extends Model
      * Set the value of mail
      *
      * @return  self
-     */ 
+     */
     public function setMail($mail)
     {
-        $this->mail = $mail;
-
+        if (empty($mail) || !preg_match("/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/", $mail)) {
+            $this->setErrorMessage('mail', 'Le format de l\'addresse mail est invalide, ou le champ n\'a pas été rempli.');
+        } else {
+            $this->mail = $mail;
+        }
         return $this;
     }
 
     /**
      * Get the value of password
-     */ 
+     */
     public function getPassword()
     {
         return $this->password;
@@ -130,17 +147,29 @@ class User extends Model
      * Set the value of password
      *
      * @return  self
-     */ 
+     */
     public function setPassword($password)
     {
         $this->password = $password;
-
         return $this;
     }
 
+    public function setHashedPassword($password)
+    {
+        
+            if (empty($password) || !preg_match("/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/", $password)) {
+                $this->setErrorMessage('password', 'Au moins une lettre et un chiffre, plus de 6 caractères.');
+            } else {
+                $this->password = password_hash($password, PASSWORD_DEFAULT);
+            }
+        
+        return $this;
+    }
+
+
     /**
      * Get the value of role
-     */ 
+     */
     public function getRole()
     {
         return $this->role;
@@ -150,7 +179,7 @@ class User extends Model
      * Set the value of role
      *
      * @return  self
-     */ 
+     */
     public function setRole($role)
     {
         $this->role = $role;
@@ -160,7 +189,7 @@ class User extends Model
 
     /**
      * Get the value of idAddress
-     */ 
+     */
     public function getIdAddress()
     {
         return $this->idAddress;
@@ -170,7 +199,7 @@ class User extends Model
      * Set the value of idAddress
      *
      * @return  self
-     */ 
+     */
     public function setIdAddress($idAddress)
     {
         $this->idAddress = $idAddress;
@@ -180,7 +209,7 @@ class User extends Model
 
     /**
      * Get the value of creationDate
-     */ 
+     */
     public function getCreationDate()
     {
         return $this->creationDate;
@@ -190,7 +219,7 @@ class User extends Model
      * Set the value of creationDate
      *
      * @return  self
-     */ 
+     */
     public function setCreationDate($creationDate)
     {
         $this->creationDate = $creationDate;
@@ -200,7 +229,7 @@ class User extends Model
 
     /**
      * Get the value of updateDate
-     */ 
+     */
     public function getUpdateDate()
     {
         return $this->updateDate;
@@ -210,7 +239,7 @@ class User extends Model
      * Set the value of updateDate
      *
      * @return  self
-     */ 
+     */
     public function setUpdateDate($updateDate)
     {
         $this->updateDate = $updateDate;
@@ -220,7 +249,7 @@ class User extends Model
 
     /**
      * Get the value of deleteDate
-     */ 
+     */
     public function getDeleteDate()
     {
         return $this->deleteDate;
@@ -230,7 +259,7 @@ class User extends Model
      * Set the value of deleteDate
      *
      * @return  self
-     */ 
+     */
     public function setDeleteDate($deleteDate)
     {
         $this->deleteDate = $deleteDate;
@@ -240,7 +269,7 @@ class User extends Model
 
     /**
      * Get the value of active
-     */ 
+     */
     public function getActive()
     {
         return $this->active;
@@ -250,7 +279,7 @@ class User extends Model
      * Set the value of active
      *
      * @return  self
-     */ 
+     */
     public function setActive($active)
     {
         $this->active = $active;
