@@ -6,7 +6,12 @@ namespace App\Controllers\Front;
 use App\Controllers\Front\AppController;
 
 use App\Models\User;
-use App\models\Address;
+use App\Models\Address;
+use App\Models\Favorite;
+use App\Models\Image;
+use App\Models\Message;
+use App\Models\Property;
+
 
 class IndexController extends AppController
 {
@@ -41,6 +46,7 @@ class IndexController extends AppController
     {
         $this->render('index.connexion');
     }
+
     public function inscriptionAction()
     {
         $registrationAddress = new Address();
@@ -60,12 +66,38 @@ class IndexController extends AppController
             // Création du record user
             $dataUser = ["name" => $this->post('name'), "surname" => $this->post('surname'), "mail" => $this->post('mail'), "password" => password_hash($_POST['password'], PASSWORD_DEFAULT), "idAddress" => $registrationAddress->_LastInsertId];
             $registrationtUser->insert($dataUser);
-
-
         }
         $this->render('index.inscription');
 
     }
+
+    public function loginAction()
+    {
+        //fonction login user
+        if (isset($_POST['login'])) {
+            $mail = $this->post('mail');
+            $pwd = $this->post('password');
+            $loginUser = (new User())->select('users', 'mail', ['mail' => $mail])->fetch();
+            $hash = $loginUser['password'];
+            if (!password_verify($pwd, $hash)) {
+                //Login incorrect -> message+redirection Login
+                echo 'erreur de mot de passe ou d\' email';
+            } else {
+                // Login Correct
+                session_start();
+                $_SESSION['login_user']= $mail;
+            }
+
+
+
+            }
+
+
+        $this->render('index.connexion');
+
+    }
+
+
     public function contactAction()
     {
         $this->render('index.contact');
@@ -80,14 +112,17 @@ class IndexController extends AppController
     {
         $this->render('index.detailAnnonces');
     }
+
     public function cguAction()
     {
         $this->render('index.cgu');
     }
+
     public function mentionsLegalesAction()
     {
         $this->render('index.mentionsLegales');
     }
+
     public function proposerBienAction()
     {
         $this->render('index.proposerBien');
@@ -98,6 +133,7 @@ class IndexController extends AppController
     {
         $this->render('index/notreAgence');
     }
+
     public function detailAnnonceAction()
     {
         $this->render('index/detailAnnonce');
