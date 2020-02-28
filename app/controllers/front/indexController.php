@@ -5,10 +5,17 @@ namespace App\Controllers\Front;
 
 use App\Controllers\Front\AppController;
 
-//use App\Models\Users;
+use App\Models\User;
+use App\Models\Address;
+use App\Models\Favorite;
+use App\Models\Image;
+use App\Models\Message;
+use App\Models\Property;
+
 
 class IndexController extends AppController
 {
+
 
 
     public function __construct()
@@ -38,12 +45,60 @@ class IndexController extends AppController
      */
     public function connexionAction()
     {
+
+        if (isset($_POST['login'])) {
+            $User = new User();
+            $User->setMail($this->post('mail'))->selectUserByMail();
+            if (!password_verify($this->post('password'), $User->getPassword())) {
+                //Login incorrect -> message+redirection Login
+                echo  'erreur de mot de passe ou d\' email';
+            } else {
+                $this->connect($User->getId());
+            }
+        }
         $this->render('index.connexion');
     }
+
+    // Methode pour connecter l'utilisateur
+    private function connect($id)
+    {
+        $user = new User();
+        $user->setId($id);
+        $user->selectUserById();
+        if ($user->getMail() !== '') {
+            $_SESSION['userName'] = $user->getName();
+            $_SESSION['userMail'] = $user->getMail();
+            $_SESSION['userRole'] = $user->getRole();
+            $_SESSION['userId'] = $user->getId();
+
+            header('Location:' . BASE_URI . 'index/index');
+        }
+    }
+
     public function inscriptionAction()
     {
+        $registrationAddress = new Address();
+        $registrationtUser = new User();
+        // Au submit
+        if (isset($_POST['registration'])) {
+            // Création du record address
+            $dataAddress = [
+                "streetNumber" => $this->post('streetNumber'),
+                "streetName" => $this->post('streetName'),
+                "postalCode" => $this->post('postalCode'),
+                "city" => $this->post('city'),
+                "country" => $this->post('country')
+            ];
+            $registrationAddress->insert($dataAddress);
+
+            // Création du record user
+            $dataUser = ["name" => $this->post('name'), "surname" => $this->post('surname'), "mail" => $this->post('mail'), "password" => password_hash($_POST['password'], PASSWORD_DEFAULT), "idAddress" => $registrationAddress->_LastInsertId];
+            $registrationtUser->insert($dataUser);
+        }
         $this->render('index.inscription');
+
     }
+
     public function contactAction()
     {
         $this->render('index.contact');
@@ -58,14 +113,17 @@ class IndexController extends AppController
     {
         $this->render('index.detailAnnonces');
     }
+
     public function cguAction()
     {
         $this->render('index.cgu');
     }
+
     public function mentionsLegalesAction()
     {
         $this->render('index.mentionsLegales');
     }
+
     public function proposerBienAction()
     {
         $this->render('index.proposerBien');
@@ -76,6 +134,7 @@ class IndexController extends AppController
     {
         $this->render('index/notreAgence');
     }
+
     public function detailAnnonceAction()
     {
         $this->render('index/detailAnnonce');

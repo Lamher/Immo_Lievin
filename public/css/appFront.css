@@ -27,10 +27,12 @@ i {
 ul li {
     list-style-type: none;
 }
-.card-properties{
+
+.card-properties {
     width: 400px;
     height: 250px;
 }
+
 /*.overlay{*/
 /*    max-width: 300px;*/
 /*}*/
@@ -213,9 +215,20 @@ ul li {
     background-color: #f0f0f0;
 }
 
- .listeAnnonces{
-    display: none ;
+/*.listeAnnonces {*/
+/*    display: none;*/
+/*}*/
+.partenaire{
+    justify-content: center;
 }
+#partner {
+
+    width: 50px;
+    height: 50px;
+}
+/*.imgDetailLg{*/
+/*    display: none!important;*/
+/*}*/
 
 
 /* TAILLE IPAD */
@@ -226,9 +239,11 @@ ul li {
 /*taille telephone*/
 @media (max-width: 575.98px) {
 }
+
 /* TAILLE ECRAN GRAND */
 
 @media (min-width: 992px) {
+
     #header {
         height: 100px;
     }
@@ -241,9 +256,10 @@ ul li {
         display: block;
     }
 
-    .btnInscription{
+    .btnInscription {
         height: 40px;
     }
+
     .menu-lg {
         display: block;
         height: 40px;
@@ -282,6 +298,29 @@ ul li {
         margin-left: 250px;
         width: 70%;
     }
+    .partenaire{
+        justify-content: space-between;
+    }
+    #partner {
+        width: 100px;
+        height: 100px;
+    }
+    .carousel{
+        display: none;
+    }
+      #product-preview1{
+        width: 100%;
+    }
+      #product-preview2, #product-preview3{
+          width: 100%;
+      }
+      #infosDetail{
+          margin-bottom: 40px;
+      }
+      i{
+          height: 10px;
+          width: 10px;
+      }
 
 }
 

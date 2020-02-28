@@ -29,6 +29,12 @@ class User extends Model
         $result = $this->select('*', 'id = :id', ["id" => $this->id])->fetch();
         $this->hydrate($result);
     }
+    public function selectUserByMail()
+    {
+        $result = $this->select('*', 'mail = :mail', ["mail" => $this->mail])->fetch();
+        $this->hydrate($result);
+    }
+
 
     public function selectUserByMessageId()
     {
