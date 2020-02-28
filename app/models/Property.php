@@ -19,6 +19,7 @@ class Property extends Model
     protected $visible;
     protected $idAddress;
     protected $idCategory;
+    protected $idUser;
     protected $creationDate;
     protected $updateDate;
     protected $deleteDate;
@@ -36,6 +37,16 @@ class Property extends Model
         $this->hydrate($result);
     }
 
+    public function selectPropertiesByDate($dateStart, $dateEnd)
+    {
+        return $this->select('properties.*,addresses.*, users.surname, users.name as username', "properties.creationDate >= :dateStart AND properties.creationDate <= :dateEnd ORDER BY properties.reference", ["dateStart" => $dateStart . "T00:00:00.000Z", "dateEnd" => $dateEnd . "T00:00:00.000Z"], "INNER JOIN users ON users.id=properties.idUser INNER JOIN addresses ON addresses.id = properties.idAddress")->fetchAll();
+    }
+    public function exportProperties()
+    {
+        return $this->query("SELECT users.name INTO OUTFILE '" . BASE_DIR . "customers.txt' FROM users;");
+    }
+
+
     public function selectAll()
     {
         return $this->select('properties.*,users.surname, users.name as username', 'properties.active=1', [], "INNER JOIN users ON users.id=properties.idUser")->fetchAll();
@@ -47,8 +58,14 @@ class Property extends Model
         return $this->update($data, 'id = :id');
     }
 
-    public function deleteProperty($id) {
-        return $this->delete(["id"=>$id],'id = :id');
+    public function insertProperty(){
+        $data = ['name' => $this->getName(), 'reference' => $this->getReference(), 'type' => $this->getType(), 'price' => $this->getPrice(), 'surfaceArea' => $this->getSurfaceArea(), 'rooms' => $this->getRooms(), 'bedrooms' => $this->getBedrooms(), 'energyClass' => $this->getEnergyClass(), 'description' => $this->getDescription(), 'indexTop' => $this->getIndexTop(), 'idCategory' => $this->getIdCategory(), 'visible' => $this->getVisible()];
+        return $this->insert($data);
+    }
+
+    public function deleteProperty($id)
+    {
+        return $this->delete(["id" => $id], 'id = :id');
     }
 
     /**
@@ -66,8 +83,11 @@ class Property extends Model
      */
     public function setName($name)
     {
-        $this->name = $name;
-
+        if (filter_var($name, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => "/^[a-zA-Z]+$/")))) {
+            $this->name = $name;
+        } else {
+            $this->errors['name'] = 'Format de nom invalide.';
+        }
         return $this;
     }
 
@@ -86,8 +106,11 @@ class Property extends Model
      */
     public function setReference($reference)
     {
-        $this->reference = $reference;
-
+        if (empty($reference) || !preg_match("/^[A-Z]\d{7}$/", $reference)) {
+            $this->setErrorMessage('reference', 'La référence doit être au format M0000001, soit une lettre qui définit la catégorie du bien, puis 7 chiffres.');
+        } else {
+            $this->reference = $reference;
+        }
         return $this;
     }
 
@@ -126,8 +149,11 @@ class Property extends Model
      */
     public function setPrice($price)
     {
-        $this->price = $price;
-
+        if (empty($price) || !filter_var($price, FILTER_VALIDATE_FLOAT)) {
+            $this->setErrorMessage('price', 'Le format de prix est invalide.');
+        } else {
+            $this->price = $price;
+        }
         return $this;
     }
 
@@ -146,8 +172,11 @@ class Property extends Model
      */
     public function setSurfaceArea($surfaceArea)
     {
-        $this->surfaceArea = $surfaceArea;
-
+        if (empty($surfaceArea) || !filter_var($surfaceArea, FILTER_VALIDATE_FLOAT)) {
+            $this->setErrorMessage('surfaceArea', 'Le format de surface est invalide.');
+        } else {
+            $this->surfaceArea = $surfaceArea;
+        }
         return $this;
     }
 
@@ -166,8 +195,11 @@ class Property extends Model
      */
     public function setRooms($rooms)
     {
-        $this->rooms = $rooms;
-
+        if (empty($rooms) || !filter_var($rooms, FILTER_VALIDATE_INT)) {
+            $this->setErrorMessage('rooms', 'Le nombre de pièces doit être un nombre entier.');
+        } else {
+            $this->rooms = $rooms;
+        }
         return $this;
     }
 
@@ -186,8 +218,11 @@ class Property extends Model
      */
     public function setBedrooms($bedrooms)
     {
-        $this->bedrooms = $bedrooms;
-
+        if (empty($bedrooms) || !filter_var($bedrooms, FILTER_VALIDATE_INT)) {
+            $this->setErrorMessage('bedrooms', 'Le nombre de chambres doit être un nombre entier.');
+        } else {
+            $this->bedrooms = $bedrooms;
+        }
         return $this;
     }
 
@@ -206,8 +241,34 @@ class Property extends Model
      */
     public function setEnergyClass($energyClass)
     {
-        $this->energyClass = $energyClass;
+        if (empty($energyClass) || !preg_match("/^[ABCDEF]$/", $energyClass)) {
+            $this->setErrorMessage('energyClass', 'La classe énergie doit être renseignée ( A, B, C, D, E ou F ).');
+        } else {
+            $this->energyClass = $energyClass;
+        }
+        return $this;
+    }
 
+    /**
+     * Get the value of description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */
+    public function setDescription($description)
+    {
+        if (empty($description)) {
+            $this->setErrorMessage('description', 'La description doit être renseignée.');
+        } else {
+            $this->description = $description;
+        }
         return $this;
     }
 
@@ -372,21 +433,21 @@ class Property extends Model
     }
 
     /**
-     * Get the value of description
-     */
-    public function getDescription()
+     * Get the value of idUser
+     */ 
+    public function getIdUser()
     {
-        return $this->description;
+        return $this->idUser;
     }
 
     /**
-     * Set the value of description
+     * Set the value of idUser
      *
      * @return  self
-     */
-    public function setDescription($description)
+     */ 
+    public function setIdUser($idUser)
     {
-        $this->description = $description;
+        $this->idUser = $idUser;
 
         return $this;
     }

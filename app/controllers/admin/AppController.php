@@ -1,17 +1,22 @@
-<?php 
+<?php
 
 namespace App\Controllers\Admin;
 
 use Core\Controller;
+use App\Models\Message;
 
 class AppController extends Controller
 {
 
     protected $appName = 'admin';
-   
+
 
     public function __construct()
     {
+        // if (!isset($_SESSION['userID']) || empty($_SESSION['userID']) || !isset($_SESSION['userRole']) || $_SESSION['userRole'] != 'Admin') {
+        //     header('Location:' . BASE_URI . 'index/connexion');
+        // }
+
         /**
          * Dans le constructeur on push des elements specifique à notre module
          */
@@ -30,7 +35,11 @@ class AppController extends Controller
 
     public function buildHeader()
     {
-        return $this->renderView('partial.header');
+        $messages = new Message();
+        $messages->countUnseen();
+        $count =  $messages->getCount();
+        $tab = ['count' => $count];
+        return $this->renderView('partial.header', $tab);
     }
 
     public function buildNavFullscreen()
@@ -42,7 +51,4 @@ class AppController extends Controller
     {
         return $this->renderView('partial.navMobile');
     }
-
-    
-
 }

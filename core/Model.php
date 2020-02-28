@@ -11,6 +11,8 @@ class Model
   protected $id;
   protected $_PDOStatment;
   public $_LastInsertId;
+  public $_RowCount;
+  public $errors = [];
 
   public static function getDb()
   {
@@ -24,6 +26,14 @@ class Model
     return self::getDb()->_pdo;
   }
 
+  public function isValid(){
+    if(empty($this->errors)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   public function query(string $request, array $markers = []): self
   {
     $this->_PDOStatment = $this->getPdo()->prepare($request);
@@ -33,6 +43,7 @@ class Model
       $this->getPdo()->beginTransaction();
       $this->_PDOStatment->execute($markers);
       $this->_LastInsertId = $this->getPdo()->lastInsertId();
+      $this->_RowCount = $this->_PDOStatment->rowCount();
       $this->getPdo()->commit();
     } catch (\PDOException $error) {
       $this->getPdo()->rollBack();
@@ -129,5 +140,25 @@ class Model
   public function fetch()
   {
     return $this->_PDOStatment->fetch();
+  }
+
+  /**
+   * Get the value of errors
+   */ 
+  public function getErrorMessage()
+  {
+    return $this->errors;
+  }
+
+  /**
+   * Set the value of errors
+   *
+   * @return  self
+   */ 
+  public function setErrorMessage($key, $message)
+  {
+    $this->errors[$key] = "<p class='error'>$message</p>";
+
+    return $this;
   }
 }

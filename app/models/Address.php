@@ -39,6 +39,11 @@ class Address extends Model
         return $this->update($data, 'id = :id');
     }
 
+    public function insertAddress(){
+        $data = ['streetNumber'=>$this->getStreetNumber(),'streetName'=>$this->getStreetName(),'postalCode'=>$this->getPostalCode(),'city'=>$this->getCity(), 'country'=> $this->getCountry()];
+        return $this->insert($data);
+    }
+
 
 
     /**
@@ -56,7 +61,11 @@ class Address extends Model
      */ 
     public function setStreetNumber($streetNumber)
     {
-        $this->streetNumber = $streetNumber;
+        if (empty($streetNumber) || !filter_var($streetNumber, FILTER_VALIDATE_FLOAT)) {
+            $this->setErrorMessage('streetNumber', 'Le format du numéro de rue est invalide, ou le champ n\'a pas été rempli.');
+        }else{
+            $this->streetNumber = $streetNumber;
+        }
 
         return $this;
     }
@@ -76,8 +85,11 @@ class Address extends Model
      */ 
     public function setStreetName($streetName)
     {
-        $this->streetName = $streetName;
-
+        if (empty($streetName) || !is_string($streetName)) {
+            $this->setErrorMessage('streetName', 'Le format du nom de rue est invalide, ou le champ n\'a pas été rempli.');
+        }else{
+            $this->streetName = $streetName;
+        }
         return $this;
     }
 
@@ -96,8 +108,11 @@ class Address extends Model
      */ 
     public function setPostalCode($postalCode)
     {
+        if (empty($postalCode) || !preg_match("/^\d{5}(?:[-\s]\d{4})?$/", $postalCode)) {
+            $this->setErrorMessage('postalCode', 'Le format du code postal est invalide, ou le champ n\'a pas été rempli.');
+        }else{
         $this->postalCode = $postalCode;
-
+        }
         return $this;
     }
 
@@ -116,8 +131,11 @@ class Address extends Model
      */ 
     public function setCity($city)
     {
+        if (empty($city) || !preg_match("/[a-zA-Z]+(?:[ '-][a-zA-Z]+)*/", $city)) {
+            $this->setErrorMessage('city', 'Le nom de ville est invalide, ou le champ n\'a pas été rempli.');
+        }else{
         $this->city = $city;
-
+        }
         return $this;
     }
 
@@ -136,8 +154,11 @@ class Address extends Model
      */ 
     public function setCountry($country)
     {
+        if (empty($country) || !preg_match("/[a-zA-Z]+(?:[ '-][a-zA-Z]+)*/", $country)) {
+            $this->setErrorMessage('country', 'Le nom de pays est invalide, ou le champ n\'a pas été rempli.');
+        }else{
         $this->country = $country;
-
+        }
         return $this;
     }
 
