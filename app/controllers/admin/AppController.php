@@ -13,6 +13,10 @@ class AppController extends Controller
 
     public function __construct()
     {
+        // if (!isset($_SESSION['userID']) || empty($_SESSION['userID']) || !isset($_SESSION['userRole']) || $_SESSION['userRole'] != 'Admin') {
+        //     header('Location:' . BASE_URI . 'index/connexion');
+        // }
+
         /**
          * Dans le constructeur on push des elements specifique à notre module
          */

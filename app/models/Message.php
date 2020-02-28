@@ -64,8 +64,11 @@ class Message extends Model
      */
     public function setObject($object)
     {
+        if (empty($object)) {
+            $this->setErrorMessage('object', 'L\'objet du message doit être renseigné.');
+        } else {
         $this->object = $object;
-
+        }
         return $this;
     }
 
@@ -84,8 +87,11 @@ class Message extends Model
      */
     public function setContent($content)
     {
+        if (empty($content)) {
+            $this->setErrorMessage('content', 'Le message n\'a pas de contenu.');
+        } else {
         $this->content = $content;
-
+        }
         return $this;
     }
 

@@ -50,8 +50,11 @@ class Image extends Model
      */
     public function setName($name)
     {
+        if (empty($name) || !preg_match("/^[A-Z]\d{7}.png$/", $name)) {
+            $this->setErrorMessage('img-name', 'Le nom de l\'image doit être au format M0000001.png, soit une lettre qui définit la catégorie du bien, puis 7 chiffres suivis de .png.');
+        } else {
         $this->name = $name;
-
+        }
         return $this;
     }
 

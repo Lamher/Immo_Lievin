@@ -66,6 +66,7 @@ class Controller
         }
         header("Location: " . $url);
     }
+    
 
     public function addContentToView($element)
     {

@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" value="">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe" value="<?= $infos['password'] ?>">
                     <?= isset($errors['password']) ? $errors['password'] : '' ?>
                 </div>
             </div>

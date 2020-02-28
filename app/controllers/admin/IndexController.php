@@ -78,7 +78,6 @@ class IndexController extends AppController
         $userUpdate = new User();
         $userUpdate->setId($params);
         $userUpdate->selectUserById();
-        echo $userUpdate->getPassword();
         $addressUpdate = new Address();
         $addressUpdate->setId($userUpdate->getIdAddress());
         $addressUpdate->selectAddressByUserId();
@@ -145,68 +144,80 @@ class IndexController extends AppController
 
     public function property_createAction()
     {
+        // Instanciation des classes
         $insertAddress = new Address();
         $insertProperty = new Property();
         $insertImage = new Image();
+        $upload = new Upload();
+        $upload->setPath(BASE_IMG_PROPERTIES)
+            ->setMaxSize(25)
+            ->setValidFile(['jpg' => 'image/jpeg', 'png' => 'image/png', 'jfif' => 'image/jfif']);
+            $imageErrors ='';
+        // Au clic sur le submit
         if (isset($_POST['add-property'])) {
-            $dataAddress = [
-                "streetNumber" => $this->post('streetNumber'),
-                "streetName" => $this->post('streetName'),
-                "postalCode" => $this->post('postalCode'),
-                "city" => $this->post('city'),
-                "country" => $this->post('country')
-            ];
-            $insertAddress->insert($dataAddress);
-
-            // Création du record address
-            $dataProperty = [
-                "name" => $this->post('name'),
-                "reference" => $this->post('reference'),
-                "type" => $this->post('type'),
-                "price" => $this->post('price'),
-                "surfaceArea" => $this->post('surfaceArea'),
-                "rooms" => $this->post('rooms'),
-                "bedrooms" => $this->post('bedrooms'),
-                "energyClass" => $this->post('energyClass'),
-                "indexTop" => is_null($this->post('indexTop')) ? 0 : 1,
-                "description" => $this->post('description'),
-                "visible" => is_null($this->post('visible')) ? 0 : 1,
-                "idAddress" => $insertAddress->_LastInsertId,
-                "idCategory" => $this->post('category'),
-                "idUser" => 1
-            ];
-            $insertProperty->insert($dataProperty);
-
-
-            $upload = new Upload();
-            $upload->setPath(BASE_IMG_PROPERTIES)
-                ->setMaxSize(25)
-                ->setValidFile(['jpg' => 'image/jpeg', 'png' => 'image/png', 'jfif' => 'image/jfif']);
-            if (isset($_FILES['image1'])) {
-                $upload->setFileName($this->post('reference') . "_1.png")
-                    ->upload("image1");
-                $insertImage->createImage($this->post('reference') . "_1.png", 1, $insertProperty->_LastInsertId);
+            // Validation des inputs addresse
+            $insertAddress->setStreetNumber($this->post('streetNumber'))
+                ->setStreetName($this->post('streetName'))
+                ->setPostalCode($this->post('postalCode'))
+                ->setCity($this->post('city'))
+                ->setCountry($this->post('country'));
+            // Validation des inputs bien
+            $insertProperty->setName($this->post('name'))
+                ->setReference($this->post('reference'))
+                ->setType($this->post('type'))
+                ->setPrice($this->post('price'))
+                ->setSurfaceArea($this->post('surfaceArea'))
+                ->setRooms($this->post('rooms'))
+                ->setBedrooms($this->post('bedrooms'))
+                ->setEnergyClass($this->post('energyClass'))
+                ->setIndexTop(is_null($this->post('indexTop')) ? 0 : 1)
+                ->setDescription($this->post('description'))
+                ->setVisible(is_null($this->post('visible')) ? 0 : 1)
+                ->setIdAddress($insertAddress->_LastInsertId)
+                ->setIdCategory($this->post('category'))
+                ->setIdUser(1);
+            // Si validation pour addresse + bien, insert
+            if ($insertAddress->isValid() && $insertProperty->isValid()) {
+                $insertAddress->insertAddress();
+                $insertProperty->insertProperty();
+                // Puis upload des images si présentes, avec insert dans la table seulement si succès de l'upload
+                if (isset($_FILES['image1'])) {
+                    $upload->setFileName($this->post('reference') . "_1.png")
+                        ->upload("image1");
+                    if ($upload->getSuccess()) {
+                        $insertImage->createImage($this->post('reference') . "_1.png", 1, $insertProperty->_LastInsertId);
+                    }
+                }
+                if (isset($_FILES['image2'])) {
+                    $upload->setFileName($this->post('reference') . "_2.png")
+                        ->upload("image2");
+                    if ($upload->getSuccess()) {
+                        $insertImage->createImage($this->post('reference') . "_2.png", 1, $insertProperty->_LastInsertId);
+                    }
+                }
+                if (isset($_FILES['image3'])) {
+                    $upload->setFileName($this->post('reference') . "_3.png")
+                        ->upload("image3");
+                    if ($upload->getSuccess()) {
+                        $insertImage->createImage($this->post('reference') . "_3.png", 1, $insertProperty->_LastInsertId);
+                    }
+                }
+                if(!$upload->isValid()){
+                    $imageErrors = $upload->getErrorMessage();
+                }
+                // Puis redirection
+                $properties = new Property();
+                $lists = $properties->selectAll();
+                $tab = ['lists' => $lists, 'errors'=> $imageErrors];
+                $this->render('index.property_list', $tab);
+            } else {
+                // Si erreurs dans la validation
+                $propertyErrors = $insertProperty->getErrorMessage();
+                $addressErrors = $insertAddress->getErrorMessage();
+                $errorlist = array_merge($propertyErrors, $addressErrors);
+                $errors = ['errors' => $errorlist];
+                $this->render('index.property_create', $errors);
             }
-            if (isset($_FILES['image2'])) {
-                $upload->setFileName($this->post('reference') . "_2.png")
-                    ->upload("image2");
-                $insertImage->createImage($this->post('reference') . "_2.png", 1, $insertProperty->_LastInsertId);
-            }
-            if (isset($_FILES['image3'])) {
-                $upload->setFileName($this->post('reference') . "_3.png")
-                    ->upload("image3");
-                $insertImage->createImage($this->post('reference') . "_3.png", 1, $insertProperty->_LastInsertId);
-            }
-
-
-
-
-
-
-            $properties = new Property();
-            $lists = $properties->selectAll();
-            $tab = ['lists' => $lists];
-            $this->render('index.property_list', $tab);
         }
         $this->render('index.property_create');
     }
@@ -360,7 +371,6 @@ class IndexController extends AppController
 
         $propertyTable->setErrorMessage('export', 'message erreur export test');
         $error = $propertyTable->getErrorMessage('export');
-        echo $error['export'];
         if (isset($_POST['export'])) {
             $result = $propertyTable->selectPropertiesByDate($this->post('start'), $this->post('end'));
             $lists = ['lists' => $result];
@@ -371,7 +381,6 @@ class IndexController extends AppController
                 array_push($collect, ['reference' => $result[$loop]['reference'], 'name' => $result[$loop]['name'], 'vendeur' => $result[$loop]['surname'] . " " . $result[$loop]['username'], 'type' => $result[$loop]['type'], 'categorie' => $result[$loop]['idCategory'], 'prix' => $result[$loop]['price'], 'surface' => $result[$loop]['surfaceArea'], 'pièces' => $result[$loop]['rooms'], 'chambres' => $result[$loop]['bedrooms'], 'classe énergétique' => $result[$loop]['energyClass'], 'addresse' => $result[$loop]['streetNumber'] . " " . $result[$loop]['streetName'] . " " . $result[$loop]['postalCode'] . " " . $result[$loop]['city'] . " - " . $result[$loop]['country']]);
             }
             $list = collect($collect);
-            date_default_timezone_set("Europe/Paris");
             (new FastExcel($list))->export('listebiens' . date("y-m-d_g-i") . '.xlsx');
             $this->render('index.import_export', $lists);
         }

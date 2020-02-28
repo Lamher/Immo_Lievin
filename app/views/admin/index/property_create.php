@@ -40,15 +40,18 @@
                 <div class="form-group">
                     <label for="name">Nom</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Nom">
+                    <?= isset($errors['name'])?"{$errors['name']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="reference">Référence</label>
                     <input type="text" class="form-control" id="reference" name="reference" placeholder="Référence">
+                    <?= isset($errors['reference'])?"{$errors['reference']}":"" ?>
                 </div>
 
                 <div class="form-group">
                     <label for="price">Prix</label>
                     <input type="text" class="form-control" id="price" name="price" aria-describedby="emailHelp" placeholder="Prix">
+                    <?= isset($errors['price'])?"{$errors['price']}":"" ?>
                 </div>
 
             </div>
@@ -58,19 +61,23 @@
                 <div class="form-group">
                     <label for="surfaceArea">Surface</label>
                     <input type="text" class="form-control" id="surfaceArea" name="surfaceArea" placeholder="Surface ( en m² )">
+                    <?= isset($errors['surface'])?"{$errors['surface']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="rooms">Pièces</label>
                     <input type="text" class="form-control" id="rooms" name="rooms" placeholder="Nombre">
+                    <?= isset($errors['rooms'])?"{$errors['rooms']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="bedrooms">Chambres</label>
                     <input type="text" class="form-control" id="bedrooms" name="bedrooms" placeholder="Nombre">
+                    <?= isset($errors['bedrooms'])?"{$errors['bedrooms']}":"" ?>
                 </div>
 
                 <div class="form-group">
                     <label for="energyClass">Classe énergétique</label>
                     <input type="text" class="form-control" id="energyClass" name="energyClass" placeholder="De A à G">
+                    <?= isset($errors['energyClass'])?"{$errors['energyClass']}":"" ?>
                 </div>
             </div>
             <div class="col-md-4">
@@ -80,23 +87,28 @@
                     <div class="form-group col-lg-3 pl-0 pr-1">
                         <label for="streetNumber">N°</label>
                         <input type="text" class="form-control" id="streetNumber" name="streetNumber" placeholder="N°">
+                        <?= isset($errors['streetNumber'])?"{$errors['streetNumber']}":"" ?>
                     </div>
                     <div class="form-group col-lg-9 px-0">
                         <label for="streetName">Nom de Rue</label>
                         <input type="text" class="form-control" id="streetName" name="streetName" placeholder="Nom de Rue">
+                        <?= isset($errors['streetName'])?"{$errors['streetName']}":"" ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="postalCode">Code Postal</label>
                     <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Code Postal">
+                    <?= isset($errors['postalCode'])?"{$errors['postalCode']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="city">Ville</label>
                     <input type="text" class="form-control" id="city" name="city" placeholder="Ville">
+                    <?= isset($errors['city'])?"{$errors['city']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="country">Pays</label>
                     <input type="text" class="form-control" id="country" name="country" placeholder="Pays">
+                    <?= isset($errors['country'])?"{$errors['country']}":"" ?>
                 </div>
             </div>
 
@@ -104,6 +116,7 @@
         <div class="form-group col-12">
             <label for="description">Description du bien</label>
             <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            <?= isset($errors['description'])?"{$errors['description']}":"" ?>
         </div>
 
         <div class="d-lg-flex">

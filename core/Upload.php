@@ -15,6 +15,15 @@ class Upload
     protected $useTable = false;
     protected $success = false;
 
+
+    public function isValid()
+    {
+        if (empty($this->error)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function setPath($path)
     {
         $this->path = $path;
@@ -100,9 +109,11 @@ class Upload
             } else {
                 $this->resize_image($_FILES[$param]['tmp_name'], 1280, 960);
                 $moved = move_uploaded_file($_FILES[$param]['tmp_name'], $this->path . $this->filename);
-                if($moved){
-                    
+                if ($moved) {
+
                     $this->success = true;
+                } else {
+                    $this->setErrorMessage('Echec de l\'upload.');
                 }
             }
         }
@@ -143,7 +154,7 @@ class Upload
 
     /**
      * Get the value of success
-     */ 
+     */
     public function getSuccess()
     {
         return $this->success;
@@ -153,7 +164,7 @@ class Upload
      * Set the value of success
      *
      * @return  self
-     */ 
+     */
     public function setSuccess($success)
     {
         $this->success = $success;
