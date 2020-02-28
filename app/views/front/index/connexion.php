@@ -6,6 +6,7 @@
                 <label for="mail">Email</label>
                 <input type="email" class="form-control" id="mail" name="mail" aria-describedby="emailHelp"
                        placeholder="Email">
+                       <?= isset($errors['connexion'])?"{$errors['connexion']}":"" ?>
             </div>
 
             <div class="form-group">

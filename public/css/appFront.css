@@ -2,6 +2,12 @@
     height: 200px;
 }
 
+.error{
+    font-size: 12px;
+    font-weight: bold;
+    color: red;
+}
+
 .btnLg {
     display: none;
 }

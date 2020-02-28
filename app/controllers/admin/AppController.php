@@ -13,24 +13,25 @@ class AppController extends Controller
 
     public function __construct()
     {
-        // if (!isset($_SESSION['userID']) || empty($_SESSION['userID']) || !isset($_SESSION['userRole']) || $_SESSION['userRole'] != 'Admin') {
-        //     header('Location:' . BASE_URI . 'index/connexion');
-        // }
+        if (!isset($_SESSION['userId']) || empty($_SESSION['userId']) || !isset($_SESSION['userRole']) || $_SESSION['userRole'] != 'admin') {
+            header('Location:' . BASE_URI . 'index/connexion');
+        } else {
 
-        /**
-         * Dans le constructeur on push des elements specifique à notre module
-         */
-        $this->viewPath = PATH_VIEWS .   $this->appName;
-        //Chacun de ses elements peut etre surchargé dans vos methodeAction
-        $element['header'] = $this->buildHeader();
-        $element['navFullscreen'] = $this->buildNavFullscreen();
-        $element['navMobile'] = $this->buildNavMobile();
-        $element['title'] = "Panneau d'administration";
-        $element['description'] = 'test';
+            /**
+             * Dans le constructeur on push des elements specifique à notre module
+             */
+            $this->viewPath = PATH_VIEWS .   $this->appName;
+            //Chacun de ses elements peut etre surchargé dans vos methodeAction
+            $element['header'] = $this->buildHeader();
+            $element['navFullscreen'] = $this->buildNavFullscreen();
+            $element['navMobile'] = $this->buildNavMobile();
+            $element['title'] = "Panneau d'administration";
+            $element['description'] = 'test';
 
-        $this->addContentToView($element);
+            $this->addContentToView($element);
 
-        parent::__construct();
+            parent::__construct();
+        }
     }
 
     public function buildHeader()

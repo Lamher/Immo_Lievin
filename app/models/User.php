@@ -29,6 +29,7 @@ class User extends Model
         $result = $this->select('*', 'id = :id', ["id" => $this->id])->fetch();
         $this->hydrate($result);
     }
+
     public function selectUserByMail()
     {
         $result = $this->select('*', 'mail = :mail', ["mail" => $this->mail])->fetch();
@@ -133,8 +134,24 @@ class User extends Model
      */
     public function setMail($mail)
     {
-        if (empty($mail) || !preg_match("/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/", $mail)) {
+        $this->select('*', 'mail = :mail', ["mail" => $mail])->fetchAll();
+
+
+        if ($this->_RowCount != 0) {
+            $this->setErrorMessage('mail', 'Cette adresse mail est déjà utilisée.');
+        } else if (empty($mail) || !preg_match("/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/", $mail)) {
             $this->setErrorMessage('mail', 'Le format de l\'addresse mail est invalide, ou le champ n\'a pas été rempli.');
+        } else {
+            $this->mail = $mail;
+        }
+        return $this;
+    }
+
+    public function setMailConnexion($mail)
+    {
+        $this->select('*', 'mail = :mail', ["mail" => $mail])->fetch();
+        if ($this->_RowCount != 1) {
+            $this->setErrorMessage('connexion', 'Adresse mail ou mot de passe invalide.');
         } else {
             $this->mail = $mail;
         }
@@ -162,13 +179,13 @@ class User extends Model
 
     public function setHashedPassword($password)
     {
-        
-            if (empty($password) || !preg_match("/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/", $password)) {
-                $this->setErrorMessage('password', 'Au moins une lettre et un chiffre, plus de 6 caractères.');
-            } else {
-                $this->password = password_hash($password, PASSWORD_DEFAULT);
-            }
-        
+
+        if (empty($password) || !preg_match("/^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/", $password)) {
+            $this->setErrorMessage('password', 'Au moins une lettre et un chiffre, plus de 6 caractères.');
+        } else {
+            $this->password = password_hash($password, PASSWORD_DEFAULT);
+        }
+
         return $this;
     }
 

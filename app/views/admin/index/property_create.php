@@ -61,7 +61,7 @@
                 <div class="form-group">
                     <label for="surfaceArea">Surface</label>
                     <input type="text" class="form-control" id="surfaceArea" name="surfaceArea" placeholder="Surface ( en m² )">
-                    <?= isset($errors['surface'])?"{$errors['surface']}":"" ?>
+                    <?= isset($errors['surfaceArea'])?"{$errors['surfaceArea']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="rooms">Pièces</label>

@@ -36,7 +36,6 @@ class IndexController extends AppController
         $tableauPourLaVue = ['name' => 'undeundeu'];
 
         $this->render('index.index', $tableauPourLaVue);
-
     }
 
     /**
@@ -48,12 +47,21 @@ class IndexController extends AppController
 
         if (isset($_POST['login'])) {
             $User = new User();
-            $User->setMail($this->post('mail'))->selectUserByMail();
-            if (!password_verify($this->post('password'), $User->getPassword())) {
-                //Login incorrect -> message+redirection Login
-                echo  'erreur de mot de passe ou d\' email';
+            $User->setMailConnexion($this->post('mail'));
+            if (!empty($this->post('mail')) && $User->isValid()) {
+                $User->selectUserByMail();
+                if (!password_verify($this->post('password'), $User->getPassword())) {
+                    //Login incorrect -> message+redirection Login
+                    $connexionErrors = $User->getErrorMessage();
+                    $errors = ['errors' => $connexionErrors];
+                    $this->render('index.connexion', $errors);
+                } else {
+                    $this->connect($User->getId());
+                }
             } else {
-                $this->connect($User->getId());
+                $connexionErrors = $User->getErrorMessage();
+                $errors = ['errors' => $connexionErrors];
+                $this->render('index.connexion', $errors);
             }
         }
         $this->render('index.connexion');
@@ -96,7 +104,6 @@ class IndexController extends AppController
             $registrationtUser->insert($dataUser);
         }
         $this->render('index.inscription');
-
     }
 
     public function contactAction()

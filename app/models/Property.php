@@ -83,10 +83,10 @@ class Property extends Model
      */
     public function setName($name)
     {
-        if (filter_var($name, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => "/^[a-zA-Z]+$/")))) {
+        if (filter_var($name, FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => "/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/")))) {
             $this->name = $name;
         } else {
-            $this->errors['name'] = 'Format de nom invalide.';
+            $this->setErrorMessage('name', 'Format de nom invalide.');
         }
         return $this;
     }
