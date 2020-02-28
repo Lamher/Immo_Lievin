@@ -17,6 +17,7 @@ class IndexController extends AppController
 {
 
 
+
     public function __construct()
     {
         parent::__construct();
@@ -44,7 +45,34 @@ class IndexController extends AppController
      */
     public function connexionAction()
     {
+
+        if (isset($_POST['login'])) {
+            $User = new User();
+            $User->setMail($this->post('mail'))->selectUserByMail();
+            if (!password_verify($this->post('password'), $User->getPassword())) {
+                //Login incorrect -> message+redirection Login
+                echo  'erreur de mot de passe ou d\' email';
+            } else {
+                $this->connect($User->getId());
+            }
+        }
         $this->render('index.connexion');
+    }
+
+    // Methode pour connecter l'utilisateur
+    private function connect($id)
+    {
+        $user = new User();
+        $user->setId($id);
+        $user->selectUserById();
+        if ($user->getMail() !== '') {
+            $_SESSION['userName'] = $user->getName();
+            $_SESSION['userMail'] = $user->getMail();
+            $_SESSION['userRole'] = $user->getRole();
+            $_SESSION['userId'] = $user->getId();
+
+            header('Location:' . BASE_URI . 'index/index');
+        }
     }
 
     public function inscriptionAction()
@@ -70,33 +98,6 @@ class IndexController extends AppController
         $this->render('index.inscription');
 
     }
-
-    public function loginAction()
-    {
-        //fonction login user
-        if (isset($_POST['login'])) {
-            $mail = $this->post('mail');
-            $pwd = $this->post('password');
-            $loginUser = (new User())->select('users', 'mail', ['mail' => $mail])->fetch();
-            $hash = $loginUser['password'];
-            if (!password_verify($pwd, $hash)) {
-                //Login incorrect -> message+redirection Login
-                echo 'erreur de mot de passe ou d\' email';
-            } else {
-                // Login Correct
-                session_start();
-                $_SESSION['login_user']= $mail;
-            }
-
-
-
-            }
-
-
-        $this->render('index.connexion');
-
-    }
-
 
     public function contactAction()
     {
