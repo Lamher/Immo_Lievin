@@ -9,7 +9,7 @@
     <div id="formListeLg" class=" d-flex align-center justify-content-center ml-200">
         <form class="align-self-center " >
             <div class="form-check form-check-inline ">
-                <select class="form-check-input" id="type" value="" placeholder="Type">
+                <select class="form-check-input" name="venteLocation" id="venteLocation" value="" placeholder="Type">
                     <option value="location">Location</option>
                     <option value="Vente">Vente</option>
                 </select>
@@ -20,14 +20,16 @@
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="text" id="categorie" value="" placeholder="Catégorie">
             </div>
-            <div class="form-check form-check-inline">
+            <div class="form-check form-check-inline">>
                 <input class="form-check-input" type="text" id="reference" value="" placeholder="Référence">
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="number" id="mini" value="" placeholder="Budget mini">
+                <input type="hidden" id="mini_price" value="0">
+                <input class="form-check-input" name="budgetMini" type="number" id="mini" value="" placeholder="Budget mini">
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="number" id="maxi" value="" placeholder="Budget maxi">
+                <input type="hidden" id="maxi_price" value="600000">
+                <input class="form-check-input" name="budgetMax" type="number" id="maxi" value="" placeholder="Budget maxi">
             </div>
         </form>
     </div>
@@ -66,252 +68,6 @@
             </div>
 
         </div>
-        <!-- Card -->
-        <!-- Card -->
-        <div class="card card-index mt-5">
 
-            <!--Card image-->
-            <div class="view overlay">
-                <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison3.jfif' ?>
-                     alt="Card image cap">
-                <a href="#">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
 
-            <!--Card content-->
-            <div class="card-body">
-
-                <!--Title-->
-                <h4 class="card-title text-center">Card title</h4>
-                <!--Text-->
-                <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk
-                    of the
-                    card's
-                    content.</p>
-                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <div class="d-flex justify-content-between">
-
-                    <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                       href="<?= BASE_URI . 'index' ?>">Favoris</a>
-                    <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                       href="<?= BASE_URI . 'index' ?>">Messages</a>
-                </div>
-            </div>
-
-        </div>
-        <!-- Card -->
-
-        <!-- Card -->
-        <div class="card card-index mt-5">
-
-            <!--Card image-->
-            <div class="view overlay">
-                <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison4.jfif' ?>
-                     alt="Card image cap">
-                <a href="#">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-
-            <!--Card content-->
-            <div class="card-body">
-
-                <!--Title-->
-                <h4 class="card-title text-center">Card title</h4>
-                <!--Text-->
-                <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk
-                    of the
-                    card's
-                    content.</p>
-                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <div class="d-flex justify-content-between">
-
-                    <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                       href="<?= BASE_URI . 'index' ?>">Favoris</a>
-                    <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                       href="<?= BASE_URI . 'index' ?>">Messages</a>
-                </div>
-            </div>
-
-        </div>
-        <!-- Card -->
-        <!-- Card -->
-        <div class="card card-index  mt-5">
-
-            <!--Card image-->
-            <div class="view overlay">
-                <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison5.jfif' ?>
-                     alt="Card image cap">
-                <a href="#">
-                    <div class="mask rgba-white-slight"></div>
-                </a>
-            </div>
-
-            <!--Card content-->
-            <div class="card-body">
-
-                <!--Title-->
-                <h4 class="card-title text-center">Card title</h4>
-                <!--Text-->
-                <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk
-                    of the
-                    card's
-                    content.</p>
-                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <div class="d-flex justify-content-between">
-
-                    <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                       href="<?= BASE_URI . 'index' ?>">Favoris</a>
-                    <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                       href="<?= BASE_URI . 'index' ?>">Messages</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- Card -->
-</div>
-
-<!-- Card deck -->
-<div class="cardImages d-lg-flex justify-content-center">
-    <!-- Card -->
-    <div class="card card-index mt-5">
-
-        <!--Card image-->
-        <div class="view overlay">
-            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison4.jfif' ?>
-                 alt="Card image cap">
-            <a href="#">
-                <div class="mask rgba-white-slight"></div>
-            </a>
-        </div>
-
-        <!--Card content-->
-        <div class="card-body">
-
-            <!--Title-->
-            <h4 class="card-title text-center">Card title</h4>
-            <!--Text-->
-            <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk
-                of the
-                card's
-                content.</p>
-            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-            <div class="d-flex justify-content-between">
-                <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                   href="<?= BASE_URI . 'index' ?>">Favoris</a>
-                <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                   href="<?= BASE_URI . 'index' ?>">Messages</a>
-            </div>
-        </div>
-
-    </div>
-    <!-- Card -->
-    <!-- Card -->
-    <div class="card card-index mt-5">
-
-        <!--Card image-->
-        <div class="view overlay">
-            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison3.jfif' ?>
-                 alt="Card image cap">
-            <a href="#">
-                <div class="mask rgba-white-slight"></div>
-            </a>
-        </div>
-
-        <!--Card content-->
-        <div class="card-body">
-
-            <!--Title-->
-            <h4 class="card-title text-center">Card title</h4>
-            <!--Text-->
-            <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk
-                of the
-                card's
-                content.</p>
-            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-            <div class="d-flex justify-content-between">
-
-                <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                   href="<?= BASE_URI . 'index' ?>">Favoris</a>
-                <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                   href="<?= BASE_URI . 'index' ?>">Messages</a>
-            </div>
-        </div>
-
-    </div>
-    <!-- Card -->
-
-    <!-- Card -->
-    <div class="card card-index mt-5">
-
-        <!--Card image-->
-        <div class="view overlay">
-            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison4.jfif' ?>
-                 alt="Card image cap">
-            <a href="#">
-                <div class="mask rgba-white-slight"></div>
-            </a>
-        </div>
-
-        <!--Card content-->
-        <div class="card-body">
-
-            <!--Title-->
-            <h4 class="card-title text-center">Card title</h4>
-            <!--Text-->
-            <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk
-                of the
-                card's
-                content.</p>
-            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-            <div class="d-flex justify-content-between">
-
-                <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                   href="<?= BASE_URI . 'index' ?>">Favoris</a>
-                <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                   href="<?= BASE_URI . 'index' ?>">Messages</a>
-            </div>
-        </div>
-
-    </div>
-    <!-- Card -->
-    <!-- Card -->
-    <div class="card card-index mt-5">
-
-        <!--Card image-->
-        <div class="view overlay">
-            <img class="card-img-top card-properties img-fluid" src=<?= BASE_URI . 'images/img_galery/maison5.jfif' ?>
-                 alt="Card image cap">
-            <a href="#">
-                <div class="mask rgba-white-slight"></div>
-            </a>
-        </div>
-
-        <!--Card content-->
-        <div class="card-body">
-
-            <!--Title-->
-            <h4 class="card-title text-center">Card title</h4>
-            <!--Text-->
-            <p class="card-text text-center">Some quick example text to build on the card title and make up the bulk
-                of the
-                card's
-                content.</p>
-            <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-            <div class="d-flex justify-content-between">
-
-                <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                   href="<?= BASE_URI . 'index' ?>">Favoris</a>
-                <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold"
-                   href="<?= BASE_URI . 'index' ?>">Messages</a>
-            </div>
-        </div>
-
-    </div>
-    <!-- Card -->
-
-</div>
-<!-- Card deck -->
 </div>

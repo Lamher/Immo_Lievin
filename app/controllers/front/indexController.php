@@ -106,13 +106,18 @@ class IndexController extends AppController
         $this->render('index.inscription');
     }
 
+
+
     public function contactAction()
     {
         $this->render('index.contact');
     }
 
-    public function listeAnnoncesAction()
+    public function listeAnnoncesAction($type)
     {
+        $type = new property();
+        $type->selectPropertiesByType();
+//        if ()
         $this->render('index.listeAnnonces');
     }
 

@@ -67,6 +67,10 @@ class Property extends Model
     {
         return $this->delete(["id" => $id], 'id = :id');
     }
+    public function selectProprtiesByType($type){
+        $result = $this->select('*', 'type = :type', ["type" => $this->type])->fetch();
+        $this->hydrate($result);
+    }
 
     /**
      * Get the value of name
