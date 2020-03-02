@@ -34,6 +34,10 @@ class Image extends Model
     public function createImage($name, $default, $idProperty) {
         return $this->insert(['name'=>$name,'default'=>$default, 'idProperty'=>$idProperty]);
     }
+//    public function selectImageByIdProperty($propertiesId)
+//    {
+//        return $this->select('images.*', 'idProperty= :id',["id" => $propertiesId], "INNER JOIN properties on images.idProperty = properties.id")->fetchAll();
+//    }
 
     /**
      * Get the value of name

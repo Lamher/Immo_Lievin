@@ -17,7 +17,6 @@ class IndexController extends AppController
 {
 
 
-
     public function __construct()
     {
         parent::__construct();
@@ -107,18 +106,23 @@ class IndexController extends AppController
     }
 
 
-
     public function contactAction()
     {
         $this->render('index.contact');
     }
 
-    public function listeAnnoncesAction($type)
+    public function listeAnnoncesAction($param)
     {
-        $type = new property();
-        $type->selectPropertiesByType();
-//        if ()
-        $this->render('index.listeAnnonces');
+        $propertyList = new Property();
+        $imageList = new Image();
+        $imageList->setName($param);
+        $propertyList->setType($param);
+        $result = $propertyList->selectPropertiesByType();
+        $img = $imageList->selectImagesByPropertyId();
+        var_dump($img);
+        $tab = ['infos' => $result];
+        $card = ['infos' => $img];
+        $this->render('index.listeAnnonces', $tab, $card);
     }
 
     public function detailAnnoncesAction()
