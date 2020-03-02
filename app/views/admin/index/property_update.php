@@ -5,18 +5,18 @@
             <div class="form-group col-md-4">
                 <label for="type">Type de bien</label>
                 <select class="form-control" id="type" name="type">
-                    <option value="Vente" <?= ($type == "Vente") ? "selected" : ""; ?>>Vente</option>
-                    <option value="Location" <?= ($type == "Location") ? "selected" : ""; ?>>Location</option>
+                    <option value="Vente" <?= ($infos['type'] == "Vente") ? "selected" : ""; ?>>Vente</option>
+                    <option value="Location" <?= ($infos['type'] == "Location") ? "selected" : ""; ?>>Location</option>
                 </select>
             </div>
 
             <div class="flex-column col-md-4 align-self-center">
                 <div class="form-check">
-                    <input name="visible" type="checkbox" class="form-check-input" id="visible" <?= ($visible == 1) ? "checked" : ""; ?>>
+                    <input name="visible" type="checkbox" class="form-check-input" id="visible" <?= ($infos['visible'] == 1) ? "checked" : ""; ?>>
                     <label class="form-check-label" for="visible">Visible</label>
                 </div>
                 <div class="form-check">
-                    <input name="indexTop" type="checkbox" class="form-check-input" id="indexTop" <?= ($indexTop == 1) ? "checked" : ""; ?>>
+                    <input name="indexTop" type="checkbox" class="form-check-input" id="indexTop" <?= ($infos['indexTop'] == 1) ? "checked" : ""; ?>>
                     <label class="form-check-label" for="indexTop">Mis en avant</label>
                 </div>
             </div>
@@ -28,27 +28,30 @@
                 <div class="form-group">
                     <label for="category">Catégorie</label>
                     <select class="form-control" id="category" name="category">
-                        <option value="1" <?= ($category == 1) ? "selected" : ""; ?>>Maison</option>
-                        <option value="2" <?= ($category == 2) ? "selected" : ""; ?>>Appartement</option>
-                        <option value="3" <?= ($category == 3) ? "selected" : ""; ?>>Terrain à bâtir</option>
-                        <option value="4" <?= ($category == 4) ? "selected" : ""; ?>>Jardin</option>
-                        <option value="5" <?= ($category == 5) ? "selected" : ""; ?>>Garage</option>
-                        <option value="6" <?= ($category == 6) ? "selected" : ""; ?>>Parking</option>
-                        <option value="7" <?= ($category == 7) ? "selected" : ""; ?>>Immobilier professionnel</option>
+                        <option value="1" <?= ($infos['category'] == 1) ? "selected" : ""; ?>>Maison</option>
+                        <option value="2" <?= ($infos['category'] == 2) ? "selected" : ""; ?>>Appartement</option>
+                        <option value="3" <?= ($infos['category'] == 3) ? "selected" : ""; ?>>Terrain à bâtir</option>
+                        <option value="4" <?= ($infos['category'] == 4) ? "selected" : ""; ?>>Jardin</option>
+                        <option value="5" <?= ($infos['category'] == 5) ? "selected" : ""; ?>>Garage</option>
+                        <option value="6" <?= ($infos['category'] == 6) ? "selected" : ""; ?>>Parking</option>
+                        <option value="7" <?= ($infos['category'] == 7) ? "selected" : ""; ?>>Immobilier professionnel</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="name">Nom</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?= $name ?>">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Nom" value="<?= $infos['name'] ?>">
+                    <?= isset($errors['name'])?"{$errors['name']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="reference">Référence</label>
-                    <input type="text" class="form-control" id="reference" name="reference" placeholder="Référence" value="<?= $reference ?>">
+                    <input type="text" class="form-control" id="reference" name="reference" placeholder="Référence" value="<?= $infos['reference'] ?>">
+                    <?= isset($errors['reference'])?"{$errors['reference']}":"" ?>
                 </div>
 
                 <div class="form-group">
                     <label for="price">Prix</label>
-                    <input type="text" class="form-control" id="price" name="price" aria-describedby="emailHelp" placeholder="Prix" value="<?= $price ?>">
+                    <input type="text" class="form-control" id="price" name="price" aria-describedby="emailHelp" placeholder="Prix" value="<?= $infos['price'] ?>">
+                    <?= isset($errors['price'])?"{$errors['price']}":"" ?>
                 </div>
 
             </div>
@@ -57,20 +60,24 @@
 
                 <div class="form-group">
                     <label for="surfaceArea">Surface</label>
-                    <input type="text" class="form-control" id="surfaceArea" name="surfaceArea" placeholder="Surface ( en m² )" value="<?= $surfaceArea ?>">
+                    <input type="text" class="form-control" id="surfaceArea" name="surfaceArea" placeholder="Surface ( en m² )" value="<?= $infos['surfaceArea'] ?>">
+                    <?= isset($errors['surfaceArea'])?"{$errors['surfaceArea']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="rooms">Pièces</label>
-                    <input type="text" class="form-control" id="rooms" name="rooms" placeholder="Nombre" value="<?= $rooms ?>">
+                    <input type="text" class="form-control" id="rooms" name="rooms" placeholder="Nombre" value="<?= $infos['rooms'] ?>">
+                    <?= isset($errors['rooms'])?"{$errors['rooms']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="bedrooms">Chambres</label>
-                    <input type="text" class="form-control" id="bedrooms" name="bedrooms" placeholder="Nombre" value="<?= $bedrooms ?>">
+                    <input type="text" class="form-control" id="bedrooms" name="bedrooms" placeholder="Nombre" value="<?= $infos['bedrooms'] ?>">
+                    <?= isset($errors['bedrooms'])?"{$errors['bedrooms']}":"" ?>
                 </div>
 
                 <div class="form-group">
                     <label for="energyClass">Classe énergétique</label>
-                    <input type="text" class="form-control" id="energyClass" name="energyClass" placeholder="De A à G" value="<?= $energyClass ?>">
+                    <input type="text" class="form-control" id="energyClass" name="energyClass" placeholder="De A à G" value="<?= $infos['energyClass'] ?>">
+                    <?= isset($errors['energyClass'])?"{$errors['energyClass']}":"" ?>
                 </div>
             </div>
             <div class="col-md-4">
@@ -79,39 +86,46 @@
 
                     <div class="form-group col-lg-3 pl-0 pr-1">
                         <label for="streetNumber">N°</label>
-                        <input type="text" class="form-control" id="streetNumber" name="streetNumber" placeholder="N°" value="<?= $streetNumber ?>">
+                        <input type="text" class="form-control" id="streetNumber" name="streetNumber" placeholder="N°" value="<?= $infos['streetNumber'] ?>">
+                        <?= isset($errors['streetNumber'])?"{$errors['streetNumber']}":"" ?>
+
                     </div>
                     <div class="form-group col-lg-9 px-0">
                         <label for="streetName">Nom de Rue</label>
-                        <input type="text" class="form-control" id="streetName" name="streetName" placeholder="Nom de Rue" value="<?= $streetName ?>">
+                        <input type="text" class="form-control" id="streetName" name="streetName" placeholder="Nom de Rue" value="<?= $infos['streetName'] ?>">
+                        <?= isset($errors['streetName'])?"{$errors['streetName']}":"" ?>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="postalCode">Code Postal</label>
-                    <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Code Postal" value="<?= $postalCode ?>">
+                    <input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Code Postal" value="<?= $infos['postalCode'] ?>">
+                    <?= isset($errors['postalCode'])?"{$errors['postalCode']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="city">Ville</label>
-                    <input type="text" class="form-control" id="city" name="city" placeholder="Ville" value="<?= $city ?>">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Ville" value="<?= $infos['city'] ?>">
+                    <?= isset($errors['city'])?"{$errors['city']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="country">Pays</label>
-                    <input type="text" class="form-control" id="country" name="country" placeholder="Pays" value="<?= $country ?>">
+                    <input type="text" class="form-control" id="country" name="country" placeholder="Pays" value="<?= $infos['country'] ?>">
+                    <?= isset($errors['country'])?"{$errors['country']}":"" ?>
                 </div>
             </div>
 
         </div>
         <div class="form-group col-12">
             <label for="description">Description du bien</label>
-            <textarea class="form-control" name="description" id="description" rows="3"><?= $description ?></textarea>
+            <textarea class="form-control" name="description" id="description" rows="3"><?= $infos['description'] ?></textarea>
+            <?= isset($errors['description'])?"{$errors['description']}":"" ?>
         </div>
 
         <div class="d-flex">
             <?php
-            $count = count($images);
+            $count = count($infos['images']);
             for ($loop = 0; $loop < 3; $loop++) {
                 if ($loop < $count) {
-                    echo "<div class='col-12 col-lg-4 my-2 align-self-center text-center'><img class=' img-display  img-fluid' src='" . BASE_IMG . $images[$loop]['name'] . "'></div>";
+                    echo "<div class='col-12 col-lg-4 my-2 align-self-center text-center'><img class=' img-display  img-fluid' src='" . BASE_IMG . $infos['images'][$loop]['name'] . "'></div>";
                 } else {
                     echo "<div class='col-12 col-lg-4 my-2 align-self-center text-center'><img class=' img-display  img-fluid' src=''></div>";
                 }
@@ -120,7 +134,7 @@
         </div>
         <div class="d-flex">
             <?php
-            $count = count($images);
+            $count = count($infos['images']);
             for ($loop = 0; $loop < 3; $loop++) {
                 $id = (isset($images[$loop]['id']))?$images[$loop]['id']:"";
                 ?>

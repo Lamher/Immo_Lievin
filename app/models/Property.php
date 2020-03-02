@@ -58,8 +58,9 @@ class Property extends Model
         return $this->update($data, 'id = :id');
     }
 
-    public function insertProperty(){
-        $data = ['name' => $this->getName(), 'reference' => $this->getReference(), 'type' => $this->getType(), 'price' => $this->getPrice(), 'surfaceArea' => $this->getSurfaceArea(), 'rooms' => $this->getRooms(), 'bedrooms' => $this->getBedrooms(), 'energyClass' => $this->getEnergyClass(), 'description' => $this->getDescription(), 'indexTop' => $this->getIndexTop(), 'idCategory' => $this->getIdCategory(), 'visible' => $this->getVisible()];
+    public function insertProperty($idAddress)
+    {
+        $data = ['name' => $this->getName(), 'reference' => $this->getReference(), 'type' => $this->getType(), 'price' => $this->getPrice(), 'surfaceArea' => $this->getSurfaceArea(), 'rooms' => $this->getRooms(), 'bedrooms' => $this->getBedrooms(), 'energyClass' => $this->getEnergyClass(), 'description' => $this->getDescription(), 'indexTop' => $this->getIndexTop(), 'idCategory' => $this->getIdCategory(), 'idAddress' => $idAddress,'idUser' => $this->getIdUser(),'visible' => $this->getVisible()];
         return $this->insert($data);
     }
 
@@ -195,11 +196,15 @@ class Property extends Model
      */
     public function setRooms($rooms)
     {
-        if (empty($rooms) || !filter_var($rooms, FILTER_VALIDATE_INT)) {
-            $this->setErrorMessage('rooms', 'Le nombre de pièces doit être un nombre entier.');
-        } else {
-            $this->rooms = $rooms;
+        if (!empty($rooms)) {
+            if (!preg_match("/[0-9]+/", $rooms)) {
+                $this->setErrorMessage('rooms', 'Le nombre de pièces doit être un nombre entier.');
+                echo 'coucouy';
+            } else {
+                $this->rooms = $rooms;
+            }
         }
+
         return $this;
     }
 
@@ -218,10 +223,12 @@ class Property extends Model
      */
     public function setBedrooms($bedrooms)
     {
-        if (empty($bedrooms) || !filter_var($bedrooms, FILTER_VALIDATE_INT)) {
-            $this->setErrorMessage('bedrooms', 'Le nombre de chambres doit être un nombre entier.');
-        } else {
-            $this->bedrooms = $bedrooms;
+        if (!empty($bedrooms)) {
+            if (!preg_match("/[0-9]+/", $bedrooms)) {
+                $this->setErrorMessage('bedrooms', 'Le nombre de chambres doit être un nombre entier.');
+            } else {
+                $this->bedrooms = $bedrooms;
+            }
         }
         return $this;
     }
@@ -241,7 +248,7 @@ class Property extends Model
      */
     public function setEnergyClass($energyClass)
     {
-        if (empty($energyClass) || !preg_match("/^[ABCDEF]$/", $energyClass)) {
+        if (empty($energyClass) || !preg_match("/^[ABCDEF]$|\/\//", $energyClass)) {
             $this->setErrorMessage('energyClass', 'La classe énergie doit être renseignée ( A, B, C, D, E ou F ).');
         } else {
             $this->energyClass = $energyClass;
@@ -434,7 +441,7 @@ class Property extends Model
 
     /**
      * Get the value of idUser
-     */ 
+     */
     public function getIdUser()
     {
         return $this->idUser;
@@ -444,7 +451,7 @@ class Property extends Model
      * Set the value of idUser
      *
      * @return  self
-     */ 
+     */
     public function setIdUser($idUser)
     {
         $this->idUser = $idUser;
