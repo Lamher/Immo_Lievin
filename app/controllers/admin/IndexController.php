@@ -152,7 +152,7 @@ class IndexController extends AppController
         $upload->setPath(BASE_IMG_PROPERTIES)
             ->setMaxSize(25)
             ->setValidFile(['jpg' => 'image/jpeg', 'png' => 'image/png', 'jfif' => 'image/jfif']);
-            $imageErrors ='';
+        $imageErrors = '';
         // Au clic sur le submit
         if (isset($_POST['add-property'])) {
             // Validation des inputs addresse
@@ -173,13 +173,12 @@ class IndexController extends AppController
                 ->setIndexTop(is_null($this->post('indexTop')) ? 0 : 1)
                 ->setDescription($this->post('description'))
                 ->setVisible(is_null($this->post('visible')) ? 0 : 1)
-                ->setIdAddress($insertAddress->_LastInsertId)
                 ->setIdCategory($this->post('category'))
                 ->setIdUser(1);
             // Si validation pour addresse + bien, insert
             if ($insertAddress->isValid() && $insertProperty->isValid()) {
                 $insertAddress->insertAddress();
-                $insertProperty->insertProperty();
+                $insertProperty->insertProperty($insertAddress->_LastInsertId);
                 // Puis upload des images si présentes, avec insert dans la table seulement si succès de l'upload
                 if (isset($_FILES['image1'])) {
                     $upload->setFileName($this->post('reference') . "_1.png")
@@ -202,13 +201,13 @@ class IndexController extends AppController
                         $insertImage->createImage($this->post('reference') . "_3.png", 1, $insertProperty->_LastInsertId);
                     }
                 }
-                if(!$upload->isValid()){
+                if (!$upload->isValid()) {
                     $imageErrors = $upload->getErrorMessage();
                 }
                 // Puis redirection
                 $properties = new Property();
                 $lists = $properties->selectAll();
-                $tab = ['lists' => $lists, 'errors'=> $imageErrors];
+                $tab = ['lists' => $lists, 'errors' => $imageErrors];
                 $this->render('index.property_list', $tab);
             } else {
                 // Si erreurs dans la validation
@@ -225,16 +224,24 @@ class IndexController extends AppController
     public function property_updateAction($params)
     {
         $propertyUpdate = new Property();
+        $addressUpdate = new Address();
+        $imagesUpdate = new Image();
+        $upload = new Upload();
+        $upload->setPath(BASE_IMG_PROPERTIES)
+            ->setMaxSize(25)
+            ->setValidFile(['jpg' => 'image/jpeg', 'png' => 'image/png', 'jfif' => 'image/jfif']);
         $propertyUpdate->setId($params);
         $propertyUpdate->selectPropertyById();
-        $addressUpdate = new Address();
         $addressUpdate->setId($propertyUpdate->getIdAddress());
         $addressUpdate->selectAddressByPropertyId();
-        $imagesUpdate = new Image();
         $images = $imagesUpdate->selectImagesByPropertyId($params);
-        // var_dump($images);
 
         if (isset($_POST['update-property'])) {
+            $addressUpdate->setStreetNumber($this->post('streetNumber'))
+                ->setStreetName($this->post('streetName'))
+                ->setPostalCode($this->post('postalCode'))
+                ->setCity($this->post('city'))
+                ->setCountry($this->post('country'));
             $propertyUpdate->setName($this->post('name'))
                 ->setReference($this->post('reference'))
                 ->setType($this->post('type'))
@@ -246,58 +253,86 @@ class IndexController extends AppController
                 ->setIndexTop(is_null($this->post('indexTop')) ? 0 : 1)
                 ->setDescription($this->post('description'))
                 ->setVisible(is_null($this->post('visible')) ? 0 : 1)
-                ->setIdCategory($this->post('category'))
-                ->updateProperty();
+                ->setIdCategory($this->post('category'));
+            if ($addressUpdate->isValid() && $propertyUpdate->isValid()) {
+                $addressUpdate->updateAddress();
+                $propertyUpdate->updateProperty();
 
-            $upload = new Upload();
-            $upload->setPath(BASE_IMG_PROPERTIES)
-                ->setMaxSize(25)
-                ->setValidFile(['jpg' => 'image/jpeg', 'png' => 'image/png', 'jfif' => 'image/jfif']);
-            if (isset($_FILES['image1'])) {
-                $upload->setFileName($propertyUpdate->getReference() . "_1.png")
-                    ->upload("image1");
-                if (isset($_POST['img1']) && !empty($_POST['img1'])) {
+                if (isset($_FILES['image1'])) {
+                    $upload->setFileName($propertyUpdate->getReference() . "_1.png")
+                        ->upload("image1");
+                    if (isset($_POST['img1']) && !empty($_POST['img1'])) {
 
-                    $imagesUpdate->updateImage($_POST['img1']);
-                } else {
-                    $imagesUpdate->createImage($upload->getFilename(), 1, $propertyUpdate->getId());
+                        $imagesUpdate->updateImage($_POST['img1']);
+                    } else {
+                        if ($upload->getSuccess()) {
+                            $imagesUpdate->createImage($upload->getFilename(), 1, $propertyUpdate->getId());
+                        }
+                    }
                 }
-            }
 
-            if (isset($_FILES['image2'])) {
-                $upload->setFileName($propertyUpdate->getReference() . "_2.png")
-                    ->upload("image2");
-                if (isset($_POST['img2']) && !empty($_POST['img2'])) {
-                    $imagesUpdate->updateImage($_POST['img2']);
-                } else {
-                    $imagesUpdate->createImage($upload->getFilename(), 0, $propertyUpdate->getId());
+                if (isset($_FILES['image2'])) {
+                    $upload->setFileName($propertyUpdate->getReference() . "_2.png")
+                        ->upload("image2");
+                    if (isset($_POST['img2']) && !empty($_POST['img2'])) {
+                        $imagesUpdate->updateImage($_POST['img2']);
+                    } else {
+                        if ($upload->getSuccess()) {
+                            $imagesUpdate->createImage($upload->getFilename(), 0, $propertyUpdate->getId());
+                        }
+                    }
                 }
-            }
-            if (isset($_FILES['image3'])) {
-                $upload->setFileName($propertyUpdate->getReference() . "_3.png")
-                    ->upload("image3");
-                if (isset($_POST['img3']) && !empty($_POST['img3'])) {
-                    $imagesUpdate->updateImage($_POST['img3']);
-                } else {
-                    $imagesUpdate->createImage($upload->getFilename(), 0, $propertyUpdate->getId());
+                if (isset($_FILES['image3'])) {
+                    $upload->setFileName($propertyUpdate->getReference() . "_3.png")
+                        ->upload("image3");
+                    if (isset($_POST['img3']) && !empty($_POST['img3'])) {
+                        $imagesUpdate->updateImage($_POST['img3']);
+                    } else {
+                        if ($upload->getSuccess()) {
+                            $imagesUpdate->createImage($upload->getFilename(), 0, $propertyUpdate->getId());
+                        }
+                    }
                 }
+                if (!$upload->isValid()) {
+                    $imageErrors = $upload->getErrorMessage();
+                }
+                $properties = new Property();
+                $lists = $properties->selectAll();
+                $tab = ['lists' => $lists, 'errors' => $imageErrors];
+                $this->render('index.property_list', $tab);
+            } else {
+                // Si erreurs dans la validation
+                $propertyErrors = $propertyUpdate->getErrorMessage();
+                $addressErrors = $addressUpdate->getErrorMessage();
+                $errorlist = array_merge($propertyErrors, $addressErrors);
+                $infos = [
+                    'id' => $params,
+                    'name' => $propertyUpdate->getName(),
+                    'reference' => $propertyUpdate->getReference(),
+                    'type' => $propertyUpdate->getType(),
+                    'price' => $propertyUpdate->getPrice(),
+                    'surfaceArea' => $propertyUpdate->getSurfaceArea(),
+                    'rooms' => $propertyUpdate->getRooms(),
+                    'bedrooms' => $propertyUpdate->getBedrooms(),
+                    'energyClass' => $propertyUpdate->getEnergyClass(),
+                    'indexTop' => $propertyUpdate->getIndexTop(),
+                    'description' => $propertyUpdate->getDescription(),
+                    'visible' => $propertyUpdate->getVisible(),
+                    'category' => $propertyUpdate->getIdCategory(),
+                    'streetNumber' => $addressUpdate->getStreetNumber(),
+                    'streetName' => $addressUpdate->getStreetName(),
+                    'postalCode' => $addressUpdate->getPostalCode(),
+                    'city' => $addressUpdate->getCity(),
+                    'country' => $addressUpdate->getCountry(),
+                    'category' => $propertyUpdate->getIdCategory(),
+                    'images' => $images
+                ];
+                $tab = ['errors' => $errorlist, 'infos'=> $infos];
+                $this->render('index.property_update', $tab);
             }
-
-
-            $addressUpdate->setStreetNumber($this->post('streetNumber'))
-                ->setStreetName($this->post('streetName'))
-                ->setPostalCode($this->post('postalCode'))
-                ->setCity($this->post('city'))
-                ->setCountry($this->post('country'))
-                ->updateAddress();
-
-            $properties = new Property();
-            $lists = $properties->selectAll();
-            $tab = ['lists' => $lists];
-            $this->render('index.property_list', $tab);
         }
 
-        $updateInfos = [
+        $infos = [
             'id' => $params,
             'name' => $propertyUpdate->getName(),
             'reference' => $propertyUpdate->getReference(),
@@ -319,7 +354,8 @@ class IndexController extends AppController
             'category' => $propertyUpdate->getIdCategory(),
             'images' => $images
         ];
-        $this->render('index.property_update', $updateInfos);
+        $tab = ['infos'=> $infos];
+        $this->render('index.property_update', $tab);
     }
 
     public function message_listAction()

@@ -65,12 +65,12 @@
                 </div>
                 <div class="form-group">
                     <label for="rooms">Pièces</label>
-                    <input type="text" class="form-control" id="rooms" name="rooms" placeholder="Nombre">
+                    <input type="number" class="form-control" id="rooms" name="rooms" placeholder="Nombre" value=0>
                     <?= isset($errors['rooms'])?"{$errors['rooms']}":"" ?>
                 </div>
                 <div class="form-group">
                     <label for="bedrooms">Chambres</label>
-                    <input type="text" class="form-control" id="bedrooms" name="bedrooms" placeholder="Nombre">
+                    <input type="number" class="form-control" id="bedrooms" name="bedrooms" placeholder="Nombre" value=0>
                     <?= isset($errors['bedrooms'])?"{$errors['bedrooms']}":"" ?>
                 </div>
 
