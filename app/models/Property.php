@@ -37,6 +37,11 @@ class Property extends Model
         $this->hydrate($result);
     }
 
+    public function selectPropertyByIndexTop()
+    {
+        return $this->select('properties.*, images.name as imageName', 'properties.indexTop = 1 AND images.default=1', [], 'INNER JOIN images ON properties.id=images.idProperty')->fetchAll();
+    }
+
     public function selectPropertiesByDate($dateStart, $dateEnd)
     {
         return $this->select('properties.*,addresses.*, users.surname, users.name as username', "properties.creationDate >= :dateStart AND properties.creationDate <= :dateEnd ORDER BY properties.reference", ["dateStart" => $dateStart . "T00:00:00.000Z", "dateEnd" => $dateEnd . "T00:00:00.000Z"], "INNER JOIN users ON users.id=properties.idUser INNER JOIN addresses ON addresses.id = properties.idAddress")->fetchAll();
@@ -60,7 +65,7 @@ class Property extends Model
 
     public function insertProperty($idAddress)
     {
-        $data = ['name' => $this->getName(), 'reference' => $this->getReference(), 'type' => $this->getType(), 'price' => $this->getPrice(), 'surfaceArea' => $this->getSurfaceArea(), 'rooms' => $this->getRooms(), 'bedrooms' => $this->getBedrooms(), 'energyClass' => $this->getEnergyClass(), 'description' => $this->getDescription(), 'indexTop' => $this->getIndexTop(), 'idCategory' => $this->getIdCategory(), 'idAddress' => $idAddress,'idUser' => $this->getIdUser(),'visible' => $this->getVisible()];
+        $data = ['name' => $this->getName(), 'reference' => $this->getReference(), 'type' => $this->getType(), 'price' => $this->getPrice(), 'surfaceArea' => $this->getSurfaceArea(), 'rooms' => $this->getRooms(), 'bedrooms' => $this->getBedrooms(), 'energyClass' => $this->getEnergyClass(), 'description' => $this->getDescription(), 'indexTop' => $this->getIndexTop(), 'idCategory' => $this->getIdCategory(), 'idAddress' => $idAddress, 'idUser' => $this->getIdUser(), 'visible' => $this->getVisible()];
         return $this->insert($data);
     }
 
@@ -68,8 +73,9 @@ class Property extends Model
     {
         return $this->delete(["id" => $id], 'id = :id');
     }
-    public function selectPropertiesByType(){
-        return $this->select('*', 'type=:type', ['type'=>$this->type] )->fetchAll();
+    public function selectPropertiesByType()
+    {
+        return $this->select('*', 'type=:type', ['type' => $this->type])->fetchAll();
     }
 
 

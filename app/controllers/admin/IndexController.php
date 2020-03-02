@@ -100,7 +100,7 @@ class IndexController extends AppController
             if ($this->checkCSRF()) {
                 $userUpdate->setName($this->post('name'))
                     ->setSurname($this->post('surname'))
-                    ->setMailUpdate($this->post('mail'));
+                    ->setMail($this->post('mail'));
                 if ($_POST['password'] != $userUpdate->getPassword()) {
                     $userUpdate->setHashedPassword($_POST['password']);
                 }

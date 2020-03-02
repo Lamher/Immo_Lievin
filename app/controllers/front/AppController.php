@@ -28,7 +28,7 @@ class AppController extends Controller
         $element['header'] = $this->buildHeader();
         $element['footer'] = $this->buildFooter();
         $element['navigation'] = $this->buildNavigation();
-        $element['title'] = 'test titre';
+        $element['title'] = 'Immo Lievin';
 
         $this->addContentToView($element);
 
