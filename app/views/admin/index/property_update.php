@@ -1,6 +1,7 @@
 <div id="content-admin" class="mt-10">
     <h1 class="text-center">Modifier un bien</h1>
     <form id="update_user_form" action="" method="POST" enctype="multipart/form-data" class="mx-2">
+    <input type="hidden" name="token" value="<?= (isset($_SESSION['token']))?$_SESSION['token']:'' ?>">
         <div class="d-flex">
             <div class="form-group col-md-4">
                 <label for="type">Type de bien</label>

@@ -1,9 +1,9 @@
 
 <!--navbar pour desktop-->
 <div class="menu-lg d-flex justify-content-center">
-    <div><a class="nav-link menu-lg text-dark"  href="<?= BASE_URI . 'index/notreAgence' ?>">Notre agence</a></div>
-    <div><a class="nav-link menu-lg text-dark" href="<?= BASE_URI . 'index/listeAnnonces' ?>">Location</a></div>
-    <div><a class="nav-link menu-lg text-dark" href="<?= BASE_URI . 'index/listeAnnonces' ?>">Ventes</a></div>
+    <div><a class="nav-link menu-lg text-dark font-weight-bold"  href="<?= BASE_URI . 'index/notreAgence' ?>">Notre agence</a></div>
+    <div><a class="nav-link menu-lg text-dark font-weight-bold" href="<?= BASE_URI . 'index/listeAnnonces' ?>">Location</a></div>
+    <div><a class="nav-link menu-lg text-dark font-weight-bold" href="<?= BASE_URI . 'index/listeAnnonces' ?>">Ventes</a></div>
 
 </div>
 <!--Navbar pour telehonne-->

@@ -9,10 +9,21 @@ class AppController extends Controller
 {
 
     protected $appName = 'admin';
+    protected $token;
+    protected $token_time;
 
 
     public function __construct()
     {
+        if (empty($_SESSION['token']) || empty($_SESSION['token_time'])) {
+            $_SESSION['token'] = bin2hex(random_bytes(32));
+            $_SESSION['token_time'] = time();
+        }
+        $this->token = $_SESSION['token'];
+        $this->token_time = $_SESSION['token_time'];
+
+
+
         if (!isset($_SESSION['userId']) || empty($_SESSION['userId']) || !isset($_SESSION['userRole']) || $_SESSION['userRole'] != 'admin') {
             header('Location:' . BASE_URI . 'index/connexion');
         } else {
@@ -26,11 +37,24 @@ class AppController extends Controller
             $element['navFullscreen'] = $this->buildNavFullscreen();
             $element['navMobile'] = $this->buildNavMobile();
             $element['title'] = "Panneau d'administration";
-            $element['description'] = 'test';
+            $element['description'] = 'Panneau d\'administration';
 
             $this->addContentToView($element);
 
             parent::__construct();
+        }
+    }
+
+    public function checkCSRF()
+    {
+        if (!empty($_POST['token'])) {
+            if (!hash_equals($this->token, $_POST['token']) ||  strtotime($this->token_time) > strtotime("-15 minutes")) {
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
         }
     }
 

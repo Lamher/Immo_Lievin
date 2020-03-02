@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div id="content" class="px-2 py-2">
     <h1 class="text-center">Mentions légales</h1>
     <p>Le présent site est édité par  Lievin-immo France, SAS au capital de 1 838 601 €, dont le siège social est situé Rue Léon Blum
         62800 Lievin

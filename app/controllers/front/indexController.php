@@ -11,6 +11,7 @@ use App\Models\Favorite;
 use App\Models\Image;
 use App\Models\Message;
 use App\Models\Property;
+use Core\Upload;
 
 
 class IndexController extends AppController
@@ -110,14 +111,35 @@ class IndexController extends AppController
 
     public function contactAction()
     {
-        $this->render('index.contact');
+        $message = new Message();
+        if (!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
+            header('Location:' . BASE_URI . 'index/connexion');
+        } else {
+            if (isset($_POST['send'])) {
+                if ($this->checkCSRF()) {
+                    $message->setObject($this->post('object'))
+                        ->setContent($this->post('content'));
+                    if ($message->isValid()) {
+                        $message->insertMessage($_SESSION['userId']);
+                        $this->render('index.index');
+                    } else {
+                        $Errors = $message->getErrorMessage();
+                        $errorlist = ['errors' => $Errors];
+                        $this->render('index.contact', $errorlist);
+                    }
+                } else {
+                    echo 'Expiration du formulaire.';
+                }
+            }
+            $this->render('index.contact');
+        }
     }
 
     public function listeAnnoncesAction($type)
     {
         $type = new property();
         $type->selectPropertiesByType();
-//        if ()
+        //        if ()
         $this->render('index.listeAnnonces');
     }
 
@@ -138,7 +160,84 @@ class IndexController extends AppController
 
     public function proposerBienAction()
     {
-        $this->render('index.proposerBien');
+        $insertAddress = new Address();
+        $insertProperty = new Property();
+        $insertImage = new Image();
+        $upload = new Upload();
+        $upload->setPath(BASE_IMG_PROPERTIES)
+            ->setMaxSize(25)
+            ->setValidFile(['jpg' => 'image/jpeg', 'png' => 'image/png', 'jfif' => 'image/jfif']);
+        // Au clic sur le submit
+        if (!isset($_SESSION['userId']) || empty($_SESSION['userId'])) {
+            header('Location:' . BASE_URI . 'index/connexion');
+        } else {
+            if (isset($_POST['add-property'])) {
+                if ($this->checkCSRF()) {
+                    // Validation des inputs addresse
+                    $insertAddress->setStreetNumber($this->post('streetNumber'))
+                        ->setStreetName($this->post('streetName'))
+                        ->setPostalCode($this->post('postalCode'))
+                        ->setCity($this->post('city'))
+                        ->setCountry($this->post('country'));
+                    // Validation des inputs bien
+                    $insertProperty->setName($this->post('name'))
+                        ->setReference($this->post('reference'))
+                        ->setType($this->post('type'))
+                        ->setPrice($this->post('price'))
+                        ->setSurfaceArea($this->post('surfaceArea'))
+                        ->setRooms($this->post('rooms'))
+                        ->setBedrooms($this->post('bedrooms'))
+                        ->setEnergyClass($this->post('energyClass'))
+                        ->setIndexTop(0)
+                        ->setDescription($this->post('description'))
+                        ->setVisible(0)
+                        ->setIdCategory($this->post('category'))
+                        ->setIdUser($_SESSION['userId']);
+                    // Si validation pour addresse + bien, insert
+                    if ($insertAddress->isValid() && $insertProperty->isValid()) {
+                        $insertAddress->insertAddress();
+                        $insertProperty->insertProperty($insertAddress->_LastInsertId);
+                        // Puis upload des images si présentes, avec insert dans la table seulement si succès de l'upload
+                        if (isset($_FILES['image1'])) {
+                            $upload->setFileName($this->post('reference') . "_1.png")
+                                ->upload("image1");
+                            if ($upload->getSuccess()) {
+                                $insertImage->createImage($this->post('reference') . "_1.png", 1, $insertProperty->_LastInsertId);
+                            }
+                        }
+                        if (isset($_FILES['image2'])) {
+                            $upload->setFileName($this->post('reference') . "_2.png")
+                                ->upload("image2");
+                            if ($upload->getSuccess()) {
+                                $insertImage->createImage($this->post('reference') . "_2.png", 1, $insertProperty->_LastInsertId);
+                            }
+                        }
+                        if (isset($_FILES['image3'])) {
+                            $upload->setFileName($this->post('reference') . "_3.png")
+                                ->upload("image3");
+                            if ($upload->getSuccess()) {
+                                $insertImage->createImage($this->post('reference') . "_3.png", 1, $insertProperty->_LastInsertId);
+                            }
+                        }
+                        if (!$upload->isValid()) {
+                            $imageErrors = $upload->getErrorMessage();
+                        }
+                        // Puis redirection
+                        $this->render('index.index');
+                    } else {
+                        // Si erreurs dans la validation
+                        $propertyErrors = $insertProperty->getErrorMessage();
+                        $addressErrors = $insertAddress->getErrorMessage();
+                        $errorlist = array_merge($propertyErrors, $addressErrors);
+                        $errors = ['errors' => $errorlist];
+                        $this->render('index.proposerBien', $errors);
+                    }
+                } else {
+                    echo 'Expiration du formulaire.';
+                }
+            }
+            $this->render('index.proposerBien');
+        }
     }
 
 
