@@ -134,13 +134,12 @@ class User extends Model
      */
     public function setMail($mail)
     {
-        $this->select('*', 'mail = :mail', ["mail" => $mail])->fetchAll();
-
-
-        if ($this->_RowCount != 0) {
-            $this->setErrorMessage('mail', 'Cette adresse mail est déjà utilisée.');
-        } else if (empty($mail) || !preg_match("/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/", $mail)) {
+        if (empty($mail) || !preg_match("/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/", $mail)) {
             $this->setErrorMessage('mail', 'Le format de l\'addresse mail est invalide, ou le champ n\'a pas été rempli.');
+            $this->select('*', 'mail = :mail', ["mail" => $mail])->fetchAll();
+            if ($this->_RowCount != 0) {
+                $this->setErrorMessage('mail', 'Cette adresse mail est déjà utilisée.');
+            }
         } else {
             $this->mail = $mail;
         }

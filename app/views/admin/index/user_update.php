@@ -1,6 +1,7 @@
 <div id="content-admin" class="mt-10">
     <h1 class="text-center">Modifier un utilisateur</h1>
     <form id="update_user_form" action="" method="POST" class="mx-2">
+    <input type="hidden" name="token" value="<?= (isset($_SESSION['token']))?$_SESSION['token']:'' ?>">
         <div class="d-md-flex">
             <div class="col-md-6">
                 <div class="form-group">

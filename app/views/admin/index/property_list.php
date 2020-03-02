@@ -1,6 +1,8 @@
 <div id="content-admin" class="mt-10">
     <h1 class="text-center">Liste des biens</h1>
+    <?= isset($imageErrors)?'Erreur':''; ?>
     <div class="d-flex align-content-center justify-content-center flex-column mx-3">
+    <?= isset($errors['name'])?"{$errors['name']}":"" ?>
         <a id="btn-add" type="button" class="btn text-light font-weight-bold" href="<?= BASE_URI_ADMIN . 'index/property_create' ?>">Ajouter un bien</a>
         <table id="table-admin" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead class="text-center ">
