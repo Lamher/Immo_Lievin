@@ -49,6 +49,12 @@ class Message extends Model
         return $this->update(["id" => $id, "seen" => 1], 'id = :id');
     }
 
+    public function insertMessage($idUser)
+    {
+        $data = ['object' => $this->getObject(), 'content' => $this->getContent(), "idUser" => $idUser];
+        return $this->insert($data);
+    }
+
     /**
      * Get the value of object
      */

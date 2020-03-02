@@ -2,7 +2,7 @@
 
     <div class="infos d-md-flex flex-nowrap .flex-lg-nowrap
  justify-content-between justify-content-lg-end order-lg-3  ">
-        <div class="order-lg-2 col-5 align-self-lg-center justify-content-between">
+        <div class="order-lg-2 col-5 col-lg-4 align-self-lg-center justify-content-between text-center font-weight-bold">
             <ul class="pl-0 ">
                 <li><a href="<?= BASE_URI . 'index/cgu' ?>" class="text-white">CGU</a>
                 </li>
@@ -12,14 +12,13 @@
                 </li>
             </ul>
         </div>
-        <div class="adresse text-center col-lg-3 order-lg-3 text-white">
-            <div class=""><p>Rue Léon Blum<br>62800 Lievin<br>06/88/23/14/00<br>immolievin@gmail.com</p></div>
-
+        <div class="adresse col-lg-4 order-lg-2 text-white text-right font-weight-bold">
+            <p>Rue Léon Blum<br>62800 Lievin<br>06/88/23/14/00<br>immolievin@gmail.com</p>
         </div>
-        <div class="partenaire d-flex justify-content-arround  sm-ml-85 col-12 col-lg-4 order-lg-1 align-self-center">
-            <img id="partner" src="<?= BASE_URI . 'images/img_partenaire/partenaire1.png' ?>">
-            <img id="partner" src="<?= BASE_URI . 'images/img_partenaire/partenaire2.png' ?>">
-            <img id="partner" src="<?= BASE_URI . 'images/img_partenaire/partenaire3.png' ?>">
+        <div class="partenaire d-flex col-12 col-lg-4 order-lg-1 align-self-center">
+            <img class="partner col-4" src="<?= BASE_URI . 'images/img_partenaire/partenaire1.png' ?>">
+            <img class="partner col-4" src="<?= BASE_URI . 'images/img_partenaire/partenaire2.png' ?>">
+            <img class="partner col-4" src="<?= BASE_URI . 'images/img_partenaire/partenaire3.png' ?>">
 
         </div>
 
