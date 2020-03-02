@@ -1,5 +1,5 @@
 $(function () {
-
+    $(".description").text($(".description").text().substring(0,300) + ' ...');
 
     // PREVIEW IMAGE PRODUIT
     $("#product-preview2").on("click", function () {

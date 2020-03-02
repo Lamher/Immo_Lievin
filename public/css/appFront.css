@@ -21,7 +21,8 @@ body,
 #footer,
 #btnInscription,
 #btnLogin,
-#btn-add {
+#btn-add,
+.btn-index {
     background-color: #778899;
 }
 
@@ -44,11 +45,16 @@ body,
     display: none;
 }
 
+#nav-mobile{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
 .filter{
     border: 2px solid black;
 }
 
-.menu-sm, .filter {
+.menu-sm, .filter, .card, #nav-mobile {
     background-color: #f0f0f0;
 }
 
@@ -66,7 +72,7 @@ ul li {
 }
 
 .card-properties {
-    width: 400px;
+    width: 100%;
     height: 250px;
 }
 
@@ -137,10 +143,7 @@ ul li {
 
   
 
-    .card-index {
-        width: 300px;
-        margin-left: 20px;
-    }
+    
 
     ul li {
         display: inline-block;

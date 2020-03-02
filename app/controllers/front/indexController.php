@@ -26,23 +26,16 @@ class IndexController extends AppController
 
     public function indexAction()
     {
-
-        //Ici pour vous montrer je surcharge le title qui se trouve dans
-        // le constructeur parent
-        $element['title'] = 'changement';
-        $this->addContentToView($element);
-
-        //Dans un tableau la variable "name" qui se trouve
-        // dans la vue index de mon module "front"
-        $tableauPourLaVue = ['name' => 'undeundeu'];
-
-        $this->render('index.index', $tableauPourLaVue);
+        $indexProperties = new Property();
+        if (isset($_POST['favorite']) && isset($_SESSION['userId'])) {
+            $newFav = new Favorite();
+            $newFav->setAsFavorite($this->post('id'), $_SESSION['userId']);
+        }
+        $cards = $indexProperties->selectPropertyByIndexTop();
+        $tab = ['lists' => $cards];
+        $this->render('index.index', $tab);
     }
 
-    /**
-     * Juste une methode pour tester
-     * d'afficher la liste des utilisateur sur l'accueil
-     */
     public function connexionAction()
     {
 
@@ -143,15 +136,48 @@ class IndexController extends AppController
         $propertyList->setType($param);
         $result = $propertyList->selectPropertiesByType();
         // $img = $imageList->selectImagesByPropertyId();
-        var_dump($img);
+        // var_dump($img);
         $tab = ['infos' => $result];
-        $card = ['infos' => $img];
-        $this->render('index.listeAnnonces', $tab, $card);
+        // $card = ['infos' => $img];
+        // $this->render('index.listeAnnonces', $tab, $card);
     }
 
-    public function detailAnnoncesAction()
+    public function detailAnnonceAction($params)
     {
-        $this->render('index.detailAnnonces');
+        $propertyDetail = new Property();
+        $addressDetail = new Address();
+        $imagesDetail = new Image();
+        $propertyDetail->setId($params);
+        $propertyDetail->selectPropertyById();
+        $addressDetail->setId($propertyDetail->getIdAddress());
+        $addressDetail->selectAddressByPropertyId();
+        $images = $imagesDetail->selectImagesByPropertyId($params);
+
+
+        $infoDetails = [
+            'id' => $params,
+            'name' => $propertyDetail->getName(),
+            'reference' => $propertyDetail->getReference(),
+            'type' => $propertyDetail->getType(),
+            'price' => $propertyDetail->getPrice(),
+            'surfaceArea' => $propertyDetail->getSurfaceArea(),
+            'rooms' => $propertyDetail->getRooms(),
+            'bedrooms' => $propertyDetail->getBedrooms(),
+            'energyClass' => $propertyDetail->getEnergyClass(),
+            'indexTop' => $propertyDetail->getIndexTop(),
+            'description' => $propertyDetail->getDescription(),
+            'visible' => $propertyDetail->getVisible(),
+            'category' => $propertyDetail->getIdCategory(),
+            'streetNumber' => $addressDetail->getStreetNumber(),
+            'streetName' => $addressDetail->getStreetName(),
+            'postalCode' => $addressDetail->getPostalCode(),
+            'city' => $addressDetail->getCity(),
+            'country' => $addressDetail->getCountry(),
+            'category' => $propertyDetail->getIdCategory(),
+            'images' => $images
+        ];
+        $tab = ['infos' => $infoDetails];
+        $this->render('index.detailAnnonce', $tab);
     }
 
     public function cguAction()
@@ -250,10 +276,5 @@ class IndexController extends AppController
     public function notreAgenceAction()
     {
         $this->render('index/notreAgence');
-    }
-
-    public function detailAnnonceAction()
-    {
-        $this->render('index/detailAnnonce');
     }
 }

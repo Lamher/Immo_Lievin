@@ -37,8 +37,8 @@ class Model
   public function query(string $request, array $markers = []): self
   {
     $this->_PDOStatment = $this->getPdo()->prepare($request);
-//     var_dump($request);
-//     var_dump($markers);
+    // var_dump($request);
+    // var_dump($markers);
     try {
       $this->getPdo()->beginTransaction();
       $this->_PDOStatment->execute($markers);

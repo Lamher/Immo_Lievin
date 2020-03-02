@@ -8,15 +8,13 @@
 </div>
 <!--Navbar pour telehonne-->
 
-<nav class="menu-sm navbar-light dark lighten-4 mb-4">
+<nav id="nav-mobile" class="navbar navbar-expand-lg navbar-light">
     <!-- Collapse button -->
-    <button class="navbar-toggler first-button" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent20"
-            aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation">
-        <div class="animated-icon1"><span></span><span></span><span></span></div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile" aria-controls="mobile" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
     <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent20">
+    <div class="collapse navbar-collapse" id="mobile">
 
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">

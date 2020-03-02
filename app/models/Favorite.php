@@ -16,6 +16,10 @@ class Favorite extends Model
         $this->_table = 'favorites';
     }
 
+    public function setAsFavorite($idProperty, $idUser){
+        $data = ['idProperty' => $idProperty, 'idUser' => $idUser];
+        return $this->insert($data);
+    }
 
     /**
      * Get the value of idProperty
