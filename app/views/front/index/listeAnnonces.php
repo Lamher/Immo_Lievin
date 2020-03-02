@@ -1,40 +1,45 @@
-<div class="listeAnnonces">
-    <div id="formListeLg" class=" d-flex align-center justify-content-center ml-200">
-        <form class="align-self-center ">
-            <div class="form-check form-check-inline ">
-                <select class="form-check-input" name="venteLocation" id="venteLocation" value="" placeholder="Type">
-                    <option value="location">Location</option>
+<div id="content" class="listeAnnonces">
+    <form action="" method="POST" class="mx-2  col-8 offest-2 ">
+        <div class="d-md-flex filter">
+            <div class="form-group col-2">
+                <select class="form-control" id="type" name="type">
                     <option value="Vente">Vente</option>
+                    <option value="Location">Location</option>
                 </select>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="text" id="ville" value="" placeholder="Ville">
+            <div class="form-group col-2">
+                <input type="text" class="form-control" id="city" name="city" placeholder="Ville">
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="text" id="categorie" value="" placeholder="Catégorie">
+            <div class="form-group col-2">
+                <select class="form-control" id="category" name="category">
+                    <option value="1">Maison</option>
+                    <option value="2">Appartement</option>
+                    <option value="3">Terrain à bâtir</option>
+                    <option value="4">Jardin</option>
+                    <option value="5">Garage</option>
+                    <option value="6">Parking</option>
+                    <option value="7">Immobilier professionnel</option>
+                </select>
             </div>
-            <div class="form-check form-check-inline">>
-                <input class="form-check-input" type="text" id="reference" value="" placeholder="Référence">
+            <div class="form-group col-2">
+                <input type="text" class="form-control" id="reference" name="reference" placeholder="Référence">
             </div>
-            <div class="form-check form-check-inline">
-                <input type="hidden" id="mini_price" value="0">
-                <input class="form-check-input" name="budgetMini" type="number" id="mini" value=""
-                       placeholder="Budget mini">
+            <div class="form-group col-2">
+                <input type="number" class="form-control" id="minPrice" name="minPrice" placeholder="Prix Min">
             </div>
-            <div class="form-check form-check-inline">
-                <input type="hidden" id="maxi_price" value="600000">
-                <input class="form-check-input" name="budgetMax" type="number" id="maxi" value=""
-                       placeholder="Budget maxi">
+            <div class="form-group col-2">
+                <input type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="Prix Min">
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+
     <?php
     foreach ($infos as $info) {
 
         echo " <div class='cardImages d-lg-flex justify-content-center'>
         <div class='card card-index mt-5'>
             <div class='view overlay'>
-                <img class='card-img-top card-properties img-fluid' src='".BASE_IMG_PROPERTIES .$info['name']."'
+                <img class='card-img-top card-properties img-fluid' src='" . BASE_IMG_PROPERTIES . $info['name'] . "'
                      alt='Card image cap'>
                 </a>
             </div>
@@ -53,8 +58,6 @@
             </div>
         </div>
     </div>";
-
-
     }
     ?>
 </div>

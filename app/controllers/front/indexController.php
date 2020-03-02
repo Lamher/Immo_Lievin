@@ -142,7 +142,7 @@ class IndexController extends AppController
         $imageList->setName($param);
         $propertyList->setType($param);
         $result = $propertyList->selectPropertiesByType();
-        $img = $imageList->selectImagesByPropertyId();
+        // $img = $imageList->selectImagesByPropertyId();
         var_dump($img);
         $tab = ['infos' => $result];
         $card = ['infos' => $img];
