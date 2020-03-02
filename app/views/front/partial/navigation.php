@@ -1,10 +1,11 @@
 
 <!--navbar pour desktop-->
-<div class="menu-lg d-flex justify-content-center">
-    <div><a class="nav-link menu-lg text-dark font-weight-bold"  href="<?= BASE_URI . 'index/notreAgence' ?>">Notre agence</a></div>
-    <div><a class="nav-link menu-lg text-dark font-weight-bold" href="<?= BASE_URI . 'index/listeAnnonces/Location' ?>">Location</a></div>
-    <div><a class="nav-link menu-lg text-dark font-weight-bold" href="<?= BASE_URI . 'index/listeAnnonces/Vente' ?>">Ventes</a></div>
-
+<div id="nav-desktop">
+    <div class="d-flex justify-content-center">
+    <div><a class="nav-link text-dark font-weight-bold"  href="<?= BASE_URI . 'index/notreAgence' ?>">Notre agence</a></div>
+    <div><a class="nav-link text-dark font-weight-bold" href="<?= BASE_URI . 'index/listeAnnonces/Location' ?>">Location</a></div>
+    <div><a class="nav-link text-dark font-weight-bold" href="<?= BASE_URI . 'index/listeAnnonces/Vente' ?>">Ventes</a></div>
+    </div>
 </div>
 <!--Navbar pour telehonne-->
 
