@@ -39,7 +39,7 @@ class Property extends Model
 
     public function selectPropertyByIndexTop()
     {
-        return $this->select('properties.*, images.name as imageName', 'properties.indexTop = 1 AND images.default=1', [], 'INNER JOIN images ON properties.id=images.idProperty')->fetchAll();
+        return $this->select('properties.*, images.name as imageName', 'properties.indexTop = 1 AND properties.visible=1 AND images.default=1', [], 'INNER JOIN images ON properties.id=images.idProperty')->fetchAll();
     }
 
     public function selectPropertiesByDate($dateStart, $dateEnd)
