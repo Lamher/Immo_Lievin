@@ -147,6 +147,10 @@ class IndexController extends AppController
         $propertyDetail = new Property();
         $addressDetail = new Address();
         $imagesDetail = new Image();
+        if (isset($_POST['favorite']) && isset($_SESSION['userId'])) {
+            $newFav = new Favorite();
+            $newFav->setAsFavorite($params, $_SESSION['userId']);
+        }
         $propertyDetail->setId($params);
         $propertyDetail->selectPropertyById();
         $addressDetail->setId($propertyDetail->getIdAddress());
@@ -255,7 +259,7 @@ class IndexController extends AppController
                             $imageErrors = $upload->getErrorMessage();
                         }
                         // Puis redirection
-                        $this->render('index.index');
+                        header('Location:'.BASE_URI.'index/index');
                     } else {
                         // Si erreurs dans la validation
                         $propertyErrors = $insertProperty->getErrorMessage();
