@@ -2,13 +2,16 @@
     <div id='carousel' class='carousel slide' data-ride='carousel'>
         <div class='carousel-inner'>
             <div class='carousel-item active'>
-                <img class='img-fluid img-carousel' src='<?= BASE_URI . 'images/img_carousel/maison1.png' ?>' alt='First slide'>
+                <img class='img-fluid img-carousel' src='<?= BASE_URI . 'images/img_carousel/maison1.png' ?>'
+                     alt='First slide'>
             </div>
             <div class='carousel-item'>
-                <img class='img-fluid img-carousel' src='<?= BASE_URI . 'images/img_carousel/maison2.png' ?>' alt='Second slide'>
+                <img class='img-fluid img-carousel' src='<?= BASE_URI . 'images/img_carousel/maison2.png' ?>'
+                     alt='Second slide'>
             </div>
             <div class='carousel-item'>
-                <img class='img-fluid img-carousel' src='<?= BASE_URI . 'images/img_carousel/maison3.png' ?>' alt='Third slide'>
+                <img class='img-fluid img-carousel' src='<?= BASE_URI . 'images/img_carousel/maison3.png' ?>'
+                     alt='Third slide'>
             </div>
         </div>
         <a class='carousel-control-prev' href='#carousel' role='button' data-slide='prev'>
@@ -20,10 +23,10 @@
             <span class='sr-only'>Next</span>
         </a>
     </div>
-<div class="container-fluid">
-<div class="row px-0">
-    <?php foreach ($lists as $list) {
-        echo "<div class='col-md-6 col-lg-4 col-xl-3 px-2 py-2'><div class='card shadow'>
+    <div class="container-fluid">
+        <div class="row px-0">
+            <?php foreach ($lists as $list) {
+                echo "<div class='col-md-6 col-lg-4 col-xl-3 px-2 py-2'><div class='card shadow'>
             <div class='view overlay'>
                 <img class='card-img-top card-properties img-fluid' src='" . BASE_IMG . $list['imageName'] . "' alt='Image pour {$list['name']}'>
                 <a href='#'>
@@ -43,8 +46,8 @@
                 </div></form>
             </div>
         </div></div>";
-    }
-    ?>
-</div>
-</div>
+            }
+            ?>
+        </div>
+    </div>
 </div>
