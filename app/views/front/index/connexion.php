@@ -15,13 +15,13 @@
                 </div>
             </div>
             <div class=" mx-2 d-flex justify-content-end">
-                <button id="btnLogin" name="login" type="submit" class="btn text-light font-weight-bold mb-5">Connexion</button>
+                <button id="btnLogin" name="login" type="submit" class="btn text-light font-weight-bold mb-5 shadow-sm">Connexion</button>
             </div>
         </div>
     </form>
     <div class=" mx-2 text-center">
 
-        <a id="btnInscription" type="button" class="btn text-light font-weight-bold mb-2" href="<?= BASE_URI . 'index/inscription' ?>">Inscription</a>
+        <a id="btnInscription" type="button" class="btn text-light font-weight-bold mb-2 shadow-sm" href="<?= BASE_URI . 'index/inscription' ?>">Inscription</a>
 
 
     </div>

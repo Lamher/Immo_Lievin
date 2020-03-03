@@ -133,7 +133,7 @@
             </div>
         </div>
         <div class=" mx-2 d-flex justify-content-end">
-            <button id="btn-add" name="add-property" type="submit" class="btn text-light font-weight-bold">Ajouter le bien</button>
+            <button id="btn-add" name="add-property" type="submit" class="btn text-light font-weight-bold shadow-sm">Ajouter le bien</button>
         </div>
     </form>
 </div>

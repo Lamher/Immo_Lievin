@@ -16,16 +16,16 @@
             <h3 class="col-12 col-md-3 text-right font-weight-bold"><?= $infos['price'] . ' €' ?></h3>
         </div>
         <div class="col-12 d-flex justify-content-end my-2">
-                <form action='' method='POST'><input type='hidden' name='id' value='<?= $infos['id'] ?>'><button type='submit' name='favorite' class='btn btn-index text-light font-weight-bold mx-2'>Favoris</button>
+                <form action='' method='POST'><input type='hidden' name='id' value='<?= $infos['id'] ?>'><button type='submit' name='favorite' class='btn btn-index text-light font-weight-bold mx-2 shadow-sm'>Favoris</button>
                 </form>
-                <a href='<?= BASE_URI . 'index/contact' ?>'><button type='button' class='btn btn-index text-light font-weight-bold mx-2'>Message</button></a>
+                <a href='<?= BASE_URI . 'index/contact' ?>'><button type='button' class='btn btn-index text-light font-weight-bold mx-2 shadow-sm'>Message</button></a>
             </div>
 
         <div class="d-md-flex">
             <div class="col-md-4">
-                <p class="mt-4 ">Ref : <?= $infos['reference'] ?></p>
-                <p class="mt-4 ">Lieu : <?= $infos['city'] ?></p>
-                <p class="mt-4 ">Surface : <?= $infos['surfaceArea'] . ' m²' ?></p>
+                <p class="mt-4 "><span class="font-weight-bold">Ref : </span><?= $infos['reference'] ?></p>
+                <p class="mt-4 "><span class="font-weight-bold">Lieu : </span><?= $infos['city'] ?></p>
+                <p class="mt-4 "><span class="font-weight-bold">Surface : </span><?= $infos['surfaceArea'] . ' m²' ?></p>
                 <?= isset($infos['rooms']) ?"<p class='mt-4 '>Nbre de pièces : {$infos['rooms']}</p>":""; ?>
                 <?= isset($infos['bedrooms']) ?"<p class='mt-4 '>Nbre de pièces : {$infos['bedrooms']}</p>":""; ?>
             </div>

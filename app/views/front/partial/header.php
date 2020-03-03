@@ -17,11 +17,11 @@
     </div>
     <div class="d-flex btnLg col-lg-4 ">
         <div class="btnInscription btnLg align-self-center text-center col-6">
-            <a id="btnLg" type="button" class="btn btnInscription text-dark pt font-weight-bold" href="<?= BASE_URI . 'index/connexion' ?>">Connexion</a>
+            <a id="btnLg" type="button" class="btn btnInscription text-dark pt font-weight-bold shadow" href="<?= BASE_URI . 'index/connexion' ?>">Connexion</a>
 
         </div>
         <div class="btnProposer btnLg align-self-center col-6">
-            <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold" href="<?= BASE_URI . 'index/proposerBien' ?>">Proposer un bien</a>
+            <a id="btnProposeLg" type="button" class="btn text-dark  font-weight-bold shadow" href="<?= BASE_URI . 'index/proposerBien' ?>">Proposer un bien</a>
         </div>
     </div>
 </div>

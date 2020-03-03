@@ -20,10 +20,12 @@
             <span class='sr-only'>Next</span>
         </a>
     </div>
+
+    <h2 class="text-center">Biens du moment</h3>
     <div class="container-fluid">
         <div class="row px-0">
             <?php foreach ($lists as $list) {
-                echo "<div class='col-md-6 col-lg-4 col-xl-3 px-2 py-2'><div class='card shadow'>
+                echo "<div class='col-md-6 col-lg-4 col-xl-3 px-2 py-2'><div class='card shadow-sm'>
             <div class='view overlay'>
                 <img class='card-img-top card-properties img-fluid' src='" . BASE_IMG . $list['imageName'] . "' alt='Image pour {$list['name']}'>
                 <a href='#'>
@@ -38,8 +40,8 @@
                 </div>
                 <p class='description'>{$list['description']}</p>
                 <div class='d-flex justify-content-around'>
-                <a href='" . BASE_URI . "index/detailAnnonce/{$list['id']}'><button type='button' class='btn btn-index text-light font-weight-bold'>Details</button></a>
-                <form action='' method='POST'><input type='hidden' name='id' value='{$list['id']}'><button type='submit' name='favorite' class='btn btn-index text-light font-weight-bold'>Favoris</button>
+                <a href='" . BASE_URI . "index/detailAnnonce/{$list['id']}'><button type='button' class='btn btn-index text-light font-weight-bold shadow'>Details</button></a>
+                <form action='' method='POST'><input type='hidden' name='id' value='{$list['id']}'><button type='submit' name='favorite' class='btn btn-index text-light font-weight-bold shadow'>Favoris</button>
                 </div></form>
             </div>
         </div></div>";

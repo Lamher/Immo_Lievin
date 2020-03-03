@@ -46,7 +46,7 @@
             </div>
         </div>
         <div class=" mx-2 d-flex justify-content-end">
-            <button id="btnInscription" name="registration" type="submit" class="btn text-light font-weight-bold mb-5">S' inscrire</button>
+            <button id="btnInscription" name="registration" type="submit" class="btn text-light font-weight-bold mb-5 shadow-sm">S'inscrire</button>
         </div>
     </form>
 </div>

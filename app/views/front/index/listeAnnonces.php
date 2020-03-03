@@ -17,8 +17,8 @@
                 </div>
                 <p class='description'>{$list['description']}</p>
                 <div class='d-flex justify-content-around'>
-                <a href='" . BASE_URI . "index/detailAnnonce/{$list['id']}'><button type='button' class='btn btn-index text-light font-weight-bold'>Details</button></a>
-                <form action='' method='POST'><input type='hidden' name='id' value='{$list['id']}'><button type='submit' name='favorite' class='btn btn-index text-light font-weight-bold'>Favoris</button>
+                <a href='" . BASE_URI . "index/detailAnnonce/{$list['id']}'><button type='button' class='btn btn-index text-light font-weight-bold shadow'>Details</button></a>
+                <form action='' method='POST'><input type='hidden' name='id' value='{$list['id']}'><button type='submit' name='favorite' class='btn btn-index text-light font-weight-bold shadow'>Favoris</button>
                 </div></form>
             </div>
         </div></div>";

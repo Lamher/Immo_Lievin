@@ -15,7 +15,7 @@
                 <?= isset($errors['content'])?"{$errors['content']}":"" ?>
             </div>
             <div class=" mx-2 d-flex justify-content-end">
-                <button id="btn-contact" name="send" type="submit" class="btn text-light font-weight-bold">Envoyer</button>
+                <button id="btn-contact" name="send" type="submit" class="btn text-light font-weight-bold shadow-sm">Envoyer</button>
             </div>
 
         </div>

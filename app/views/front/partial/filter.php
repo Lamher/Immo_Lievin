@@ -1,6 +1,6 @@
 <div class="bg-filter py-2">
 
-    <form action="" method="POST" id="filter" class="d-md-flex justify-content-around mx-5 py-2 mb-2">
+    <form action="" method="POST" id="filter" class="d-md-flex justify-content-around mx-5 py-2 mb-2 shadow-sm">
 
         <div class="col-md-2 align-self-center px-1">
             <select class="form-control" id="type" name="type">
