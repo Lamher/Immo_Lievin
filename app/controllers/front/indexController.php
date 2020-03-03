@@ -135,11 +135,23 @@ class IndexController extends AppController
             $newFav = new Favorite();
             $newFav->setAsFavorite($this->post('id'), $_SESSION['userId']);
         }
+        
         $propertyList->setType($param);
         $result = $propertyList->selectPropertyByType();
-
         $tab = ['lists' => $result];
         $this->render('index.listeAnnonces', $tab);
+    }
+
+    public function ajaxListeAnnoncesAction()
+    {
+        $propertyList = new Property();
+        if (isset($_POST['favorite']) && isset($_SESSION['userId'])) {
+            $newFav = new Favorite();
+            $newFav->setAsFavorite($this->post('id'), $_SESSION['userId']);
+        }
+        $ajax = $propertyList->selectPropertyByFilter($_POST['type'], $_POST['city'], $_POST['category'], $_POST['reference'], $_POST['minPrice'], $_POST['maxPrice']);
+        $tab = ['lists' => $ajax];
+        echo $this->renderViewAjax('index.listeAnnonces', $tab);
     }
 
     public function detailAnnonceAction($params)
@@ -259,7 +271,7 @@ class IndexController extends AppController
                             $imageErrors = $upload->getErrorMessage();
                         }
                         // Puis redirection
-                        header('Location:'.BASE_URI.'index/index');
+                        header('Location:' . BASE_URI . 'index/index');
                     } else {
                         // Si erreurs dans la validation
                         $propertyErrors = $insertProperty->getErrorMessage();

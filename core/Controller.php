@@ -47,6 +47,14 @@ class Controller
         return ob_get_clean();
     }
 
+    public function renderViewAjax($view, $tab = [])
+    {
+        extract($tab);
+        // ob_start();
+        require_once $this->viewPath . '/' . str_replace('.', '/', $view) . '.php';
+        // return ob_get_clean();
+    }
+
     protected function notFound()
     {
         header('HTTP/1.0 404 Not Found');

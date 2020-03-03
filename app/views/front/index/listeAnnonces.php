@@ -1,41 +1,6 @@
 <div id="content" class='pt-2'>
-    <form action="" method="POST" id="filter" class="d-md-flex justify-content-around mx-5 py-2 mb-2">
-
-        <div class="col-md-2 align-self-center">
-            <select class="form-control" id="type" name="type">
-                <option value="Vente">Vente</option>
-                <option value="Location">Location</option>
-            </select>
-        </div>
-        <div class="col-md-2 align-self-center">
-            <input type="text" class="form-control" id="city" name="city" placeholder="Ville">
-        </div>
-        <div class="col-md-2 align-self-center">
-            <select class="form-control" id="category" name="category">
-                <option value="1">Maison</option>
-                <option value="2">Appartement</option>
-                <option value="3">Terrain à bâtir</option>
-                <option value="4">Jardin</option>
-                <option value="5">Garage</option>
-                <option value="6">Parking</option>
-                <option value="7">Immobilier professionnel</option>
-            </select>
-        </div>
-        <div class="col-md-2 align-self-center">
-            <input type="text" class="form-control" id="reference" name="reference" placeholder="Référence">
-        </div>
-        <div class="col-md-2 align-self-center">
-            <input type="number" class="form-control" id="minPrice" name="minPrice" placeholder="Prix Min">
-        </div>
-        <div class="col-md-2 align-self-center">
-            <input type="number" class="form-control" id="maxPrice" name="maxPrice" placeholder="Prix Min">
-        </div>
-
-    </form>
-
-
     <div class="container-fluid">
-        <div class="row px-0">
+        <div id="content-list" class="row px-0">
             <?php foreach ($lists as $list) {
                 echo "<div class='col-md-6 col-lg-4 col-xl-3 px-2 py-2'><div class='card shadow-sm'>
             <div class='view overlay'>

@@ -100,8 +100,8 @@ class Model
   public function delete(array $data, string $where)
   {
     $delete = "UPDATE $this->_table SET active=0 WHERE $where;";
-    // var_dump($delete);
-    // var_dump($data);
+    var_dump($delete);
+    var_dump($data);
     return $this->query($delete, $data);
   }
 

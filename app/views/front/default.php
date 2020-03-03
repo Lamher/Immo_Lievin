@@ -17,6 +17,13 @@
     <?= $header ?>
 
     <?= $navigation  ?>
+<?php
+    $url = "http://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+
+if($url == "http://localhost/Immo_Lievin/public/index/listeAnnonces/Location" || $url == "http://localhost/Immo_Lievin/public/index/listeAnnonces/Vente"){
+    echo $filter;
+} 
+?>
     <?= $content ?>
 
     <?= $footer ?>

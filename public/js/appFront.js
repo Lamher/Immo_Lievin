@@ -1,5 +1,5 @@
 $(function () {
-    $(".description").text($(".description").text().substring(0,300) + ' ...');
+    $(".description").text($(".description").text().substring(0, 300) + ' ...');
 
     // PREVIEW IMAGE PRODUIT
     $("#product-preview2").on("click", function () {
@@ -19,59 +19,40 @@ $(function () {
         $(previewValue1) = $("#product-preview1").attr("src");
         $(previewValue3) = $("#product-preview3").attr("src");
     });
-    $("#product-preview1").on("click", function () {})
+    $("#product-preview1").on("click", function () {
+        // Zoom
+    })
 
+
+    // FILTRES PAGE LISTE PROPERTIES
     filter_data();
-
     function filter_data() {
-        $('.filter_data').html('<div id="loading" style="" ></div>');
-        let action = 'fetch_data';
-        let minimum_price = $('#hidden_minimum_price').val();
-        let maximum_price = $('#hidden_maximum_price').val();
-        let city = get_filter('city');
-        let category = get_filter('category');
-        let type = get_filter('type');
-        $.ajax({
-            url: "fetch_data.php",
-            method: "POST",
-            data: {
-                action: action,
-                minimum_price: minimum_price,
-                maximum_price: maximum_price,
-                brand: brand,
-                ram: ram,
-                storage: storage
-            },
-            success: function (data) {
-                $('.filter_data').html(data);
-            }
-        });
+        $('#filter').on('change', function () {
+            let type = $('#type').val();
+            let city = $('#city').val();
+            let category = $('#category').val();
+            let reference = $('#reference').val();
+            let minPrice = $('#minPrice').val();
+            let maxPrice = $('#maxPrice').val();
+            $.ajax({
+                url: "http://localhost/Immo_Lievin/public/index/ajaxListeAnnonces/",
+                method: "POST",
+                data: {
+                    type: type,
+                    city: city,
+                    category: category,
+                    reference: reference,
+                    minPrice: minPrice,
+                    maxPrice: maxPrice
+                },
+                success: function (data) {
+                    $("#content-list").html(data);
+                    $(".description").text($(".description").text().substring(0, 300) + ' ...');
+                }
+            });
+        })
     }
 
-    function get_filter(class_name) {
-        let filter = [];
-        $('.' + class_name + ':checked').each(function () {
-            filter.push($(this).val());
-        });
-        return filter;
-    }
 
-    $('.common_selector').click(function () {
-        filter_data();
-    });
-
-    $('#price_range').slider({
-        range: true,
-        min: 1000,
-        max: 65000,
-        values: [1000, 65000],
-        step: 500,
-        stop: function (event, ui) {
-            $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);
-            $('#hidden_minimum_price').val(ui.values[0]);
-            $('#hidden_maximum_price').val(ui.values[1]);
-            filter_data();
-        }
-    });
 
 });

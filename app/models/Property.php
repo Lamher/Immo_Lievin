@@ -41,9 +41,48 @@ class Property extends Model
     {
         return $this->select('properties.*, images.name as imageName', 'properties.indexTop = 1 AND properties.visible=1 AND images.default=1', [], 'INNER JOIN images ON properties.id=images.idProperty')->fetchAll();
     }
+
+    public function selectPropertyByFilter($type, $city, $category, $reference, $minPrice, $maxPrice)
+    {
+        $filter = '';
+        $markers = [];
+        if (!empty($type)) {
+            $filter .= ' properties.type = :type AND';
+            $tableType = ['type' => $type];
+            $markers = array_merge($markers, $tableType);
+        }
+        if (!empty($city)) {
+            $filter .= ' addresses.city = :city AND';
+            $tableCity = ['city' => $city];
+            $markers = array_merge($markers, $tableCity);
+        }
+        if (!empty($category)) {
+            $filter .= ' properties.idCategory = :idCategory AND';
+            $tableCategory = ['idCategory' => $category];
+            $markers = array_merge($markers, $tableCategory);
+        }
+        if (!empty($reference)) {
+            $filter .= ' properties.reference = :reference AND';
+            $tableReference = ['reference' => $reference];
+            $markers = array_merge($markers, $tableReference);
+        }
+        if (!empty($minPrice)) {
+            $filter .= ' properties.price > :minPrice AND';
+            $tableMinPrice = ['minPrice' => $minPrice];
+            $markers = array_merge($markers, $tableMinPrice);
+        }
+        if (!empty($maxPrice)) {
+            $filter .= ' properties.price < :maxPrice AND';
+            $tableMaxPrice = ['maxPrice' => $maxPrice];
+            $markers = array_merge($markers, $tableMaxPrice);
+        }
+        $filter = substr($filter, 0, -3);
+        return $this->select('properties.*, images.name as imageName, addresses.*', $filter, $markers, 'INNER JOIN images ON properties.id=images.idProperty AND images.default=1 INNER JOIN addresses ON addresses.id=properties.idAddress')->fetchAll();
+    }
+
     public function selectPropertyByType()
     {
-        return $this->select('properties.*, images.name as imageName', 'properties.type = :type AND images.default=1', ['type'=>$this->type], 'INNER JOIN images ON properties.id=images.idProperty')->fetchAll();
+        return $this->select('properties.*, images.name as imageName', 'properties.type = :type AND images.default=1', ['type' => $this->type], 'INNER JOIN images ON properties.id=images.idProperty')->fetchAll();
     }
 
     public function selectPropertiesByDate($dateStart, $dateEnd)
@@ -334,21 +373,21 @@ class Property extends Model
     }
 
     /**
-     * Get the value of idAdress
+     * Get the value of idAddress
      */
     public function getIdAddress()
     {
-        return $this->idAdress;
+        return $this->idAddress;
     }
 
     /**
-     * Set the value of idAdress
+     * Set the value of idAddress
      *
      * @return  self
      */
-    public function setIdAddress($idAdress)
+    public function setIdAddress($idAddress)
     {
-        $this->idAdress = $idAdress;
+        $this->idAddress = $idAddress;
 
         return $this;
     }

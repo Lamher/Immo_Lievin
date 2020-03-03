@@ -28,6 +28,7 @@ class AppController extends Controller
         $element['header'] = $this->buildHeader();
         $element['footer'] = $this->buildFooter();
         $element['navigation'] = $this->buildNavigation();
+        $element['filter'] = $this->buildFilter();
         $element['title'] = 'Immo Lievin';
 
         $this->addContentToView($element);
@@ -55,6 +56,10 @@ class AppController extends Controller
     public function buildNavigation()
     {
         return $this->renderView('partial.navigation');
+    }
+    public function buildFilter()
+    {
+        return $this->renderView('partial.filter');
     }
 
     public function buildFooter()
