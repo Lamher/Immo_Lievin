@@ -131,15 +131,15 @@ class IndexController extends AppController
     public function listeAnnoncesAction($param)
     {
         $propertyList = new Property();
-        $imageList = new Image();
-        $imageList->setName($param);
+        if (isset($_POST['favorite']) && isset($_SESSION['userId'])) {
+            $newFav = new Favorite();
+            $newFav->setAsFavorite($this->post('id'), $_SESSION['userId']);
+        }
         $propertyList->setType($param);
-        $result = $propertyList->selectPropertiesByType();
-        // $img = $imageList->selectImagesByPropertyId();
-        // var_dump($img);
-        $tab = ['infos' => $result];
-        // $card = ['infos' => $img];
-        // $this->render('index.listeAnnonces', $tab, $card);
+        $result = $propertyList->selectPropertyByType();
+
+        $tab = ['lists' => $result];
+        $this->render('index.listeAnnonces', $tab);
     }
 
     public function detailAnnonceAction($params)
