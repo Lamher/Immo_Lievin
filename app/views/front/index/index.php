@@ -20,10 +20,10 @@
             <span class='sr-only'>Next</span>
         </a>
     </div>
-<div class="container-fluid">
-<div class="row px-0">
-    <?php foreach ($lists as $list) {
-        echo "<div class='col-md-6 col-lg-4 col-xl-3 px-2 py-2'><div class='card shadow'>
+    <div class="container-fluid">
+        <div class="row px-0">
+            <?php foreach ($lists as $list) {
+                echo "<div class='col-md-6 col-lg-4 col-xl-3 px-2 py-2'><div class='card shadow'>
             <div class='view overlay'>
                 <img class='card-img-top card-properties img-fluid' src='" . BASE_IMG . $list['imageName'] . "' alt='Image pour {$list['name']}'>
                 <a href='#'>
@@ -43,8 +43,8 @@
                 </div></form>
             </div>
         </div></div>";
-    }
-    ?>
-</div>
-</div>
+            }
+            ?>
+        </div>
+    </div>
 </div>

@@ -41,6 +41,10 @@ class Property extends Model
     {
         return $this->select('properties.*, images.name as imageName', 'properties.indexTop = 1 AND images.default=1', [], 'INNER JOIN images ON properties.id=images.idProperty')->fetchAll();
     }
+    public function selectPropertyByType()
+    {
+        return $this->select('properties.*, images.name as imageName', 'properties.type = :type AND images.default=1', ['type'=>$this->type], 'INNER JOIN images ON properties.id=images.idProperty')->fetchAll();
+    }
 
     public function selectPropertiesByDate($dateStart, $dateEnd)
     {
