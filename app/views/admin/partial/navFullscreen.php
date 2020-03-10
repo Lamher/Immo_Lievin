@@ -16,6 +16,9 @@
         <li class="mx-2 mb-2">
             <a class="text-dark" href="<?= BASE_URI_ADMIN . 'index/import_export' ?>">Import / Export</a>
         </li>
+        <li class="mx-2 mb-2">
+            <a class="text-dark" href="<?= BASE_URI_ADMIN . 'index/xml' ?>">XML</a>
+        </li>
 
     </ul>
 </div>

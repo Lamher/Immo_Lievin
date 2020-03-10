@@ -142,6 +142,11 @@ class Model
     return $this->_PDOStatment->fetch();
   }
 
+  public function fetchAssoc()
+  {
+    return $this->_PDOStatment->fetchAll(\PDO::FETCH_ASSOC);
+  }
+
   /**
    * Get the value of errors
    */

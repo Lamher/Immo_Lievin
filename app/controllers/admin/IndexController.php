@@ -147,7 +147,7 @@ class IndexController extends AppController
         $element['title'] = "Liste des biens";
         $this->addContentToView($element);
         $propertyUpdate = new Property();
-        $imageErrors='';
+        $imageErrors = '';
 
         // CHange indexTop value on checkbox change
         if (isset($_POST['id'])) {
@@ -253,7 +253,7 @@ class IndexController extends AppController
     {
         $element['title'] = "Modifier un bien";
         $this->addContentToView($element);
-        $imageErrors='';
+        $imageErrors = '';
         $propertyUpdate = new Property();
         $addressUpdate = new Address();
         $imagesUpdate = new Image();
@@ -461,5 +461,35 @@ class IndexController extends AppController
             $this->render('index.import_export', $lists);
         }
         $this->render('index.import_export');
+    }
+
+    public function xmlAction()
+    {
+
+        $element['title'] = "XML";
+        $this->addContentToView($element);
+        $this->render('index.xml');
+    }
+
+    public function ajaxXmlAction()
+    {
+        $propertyTable = new Property();
+        $ajax = $propertyTable->selectPropertiesByDateAssoc($this->post('start'), $this->post('end'));
+        
+        $xml = new \DOMDocument("1.0", "UTF-8");
+        $xml_main = $xml->createElement('properties');
+        foreach ($ajax as $list) {
+            $xml_property = $xml->createElement('property');
+            foreach ($list as $key => $val) {
+                $xml_property->appendChild($xml->createElement($key, $val));
+            }
+            $xml_property->appendChild($xml->createElement('url', 'http://localhost/Immo_Lievin/public/index/detailAnnonce/'.$list['id']));
+            
+            $xml_main->appendChild($xml_property);
+        }
+        $xml->appendChild($xml_main);
+        $xml->saveXML();
+        var_dump($xml->saveXML());
+        file_put_contents('xml/result'. date("y-m-d_g-i-s") .'.xml', $xml->saveXML());
     }
 }

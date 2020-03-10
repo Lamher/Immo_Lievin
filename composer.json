@@ -14,6 +14,7 @@
             }
     },
     "require": {
-        "rap2hpoutre/fast-excel": "^1.7"
+        "rap2hpoutre/fast-excel": "^1.7",
+        "guzzlehttp/guzzle": "^6.5"
     }
 }

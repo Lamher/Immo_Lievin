@@ -12,6 +12,7 @@ use App\Models\Image;
 use App\Models\Message;
 use App\Models\Property;
 use Core\Upload;
+use GuzzleHttp\Client;
 
 
 class IndexController extends AppController
@@ -135,7 +136,7 @@ class IndexController extends AppController
             $newFav = new Favorite();
             $newFav->setAsFavorite($this->post('id'), $_SESSION['userId']);
         }
-        
+
         $propertyList->setType($param);
         $result = $propertyList->selectPropertyByType();
         $tab = ['lists' => $result];
@@ -287,6 +288,95 @@ class IndexController extends AppController
             $this->render('index.proposerBien');
         }
     }
+
+    public function testAction()
+    {
+        // echo "<form action='' method='POST'><label for='id'>Bien a retourner : </label><input type='number' name='id'><button type='submit' name='submit'>Resultat</button><br><form action='' method='POST'><label for='id'>Retourner tous les biens </label><button type='submit' name='submitAll'>Resultat</button><br>";
+        // $post = array(
+        //     'streetNumber' => '6',
+        //     'streetName' => 'rue test',
+        //     'postalCode' => '62840',
+        //     'city' => 'laventie',
+        //     'country' => 'france',
+        //     'name' => 'Maison',
+        //     'reference' => 'M0000008',
+        //     'type' => 'Vente',
+        //     'price' => '684654654',
+        //     'surfaceArea' => '88',
+        //     'rooms' => '5',
+        //     'bedrooms' => '3',
+        //     'energyClass' => 'A',
+        //     'indexTop' => '0',
+        //     'description' => 'blablabla',
+        //     'visible' => 1,
+        //     'idCategory' => 1,
+        //     'idUser' => 1
+        // );
+
+
+        // Methode POST
+        // echo 'test';
+        // $url = "http://localhost/Immo_Lievin/public/Api/properties";
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, $url);
+        // curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // curl_setopt($ch, CURLOPT_USERPWD, "test:1234");
+        // curl_setopt($ch, CURLOPT_POST, true);
+        // curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+        // $result = curl_exec($ch);
+
+        // curl_close($ch);
+        // echo $result;
+
+
+
+
+        // Methode GET
+        if (isset($_POST['submit']) && $_POST['id'] < 7) {
+            
+            
+            
+            
+            
+            
+            
+            
+            // SETUP REQUEST /W CURL
+            // $url = "http://localhost/Immo_Lievin/public/Api/property/" . $_POST['id'];
+            // $ch = curl_init($url);
+            // curl_setopt($ch, CURLOPT_USERPWD, "test:1234");
+            // curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            // $result = curl_exec($ch);
+            // curl_close($ch);
+        }
+
+        // if (isset($_POST['submitAll'])) {
+            header("Access-Control-Allow-Origin: *");
+            header("Content-Type: application/json; charset=UTF-8");
+            header("Access-Control-Allow-Methods: OPTIONS,GET,POST,PUT,DELETE");
+            header("Access-Control-Max-Age: 3600");
+            header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+            $client = new Client();
+            $response = $client->get('http://localhost/Immo_Lievin/public/Api/properties/');
+            $body = $response->getBody();
+            echo $body;
+            
+            
+            
+            
+            
+            
+            // SETUP REQUEST /W CURL
+            // $url = "http://localhost/Immo_Lievin/public/Api/properties";
+            // $ch = curl_init($url);
+            // curl_setopt($ch, CURLOPT_USERPWD, "test:1234");
+            // curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            // $result = curl_exec($ch);
+            // curl_close($ch);
+        // }
+    }
+
 
 
     public function notreAgenceAction()

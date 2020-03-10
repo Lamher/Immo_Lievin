@@ -89,6 +89,11 @@ class Property extends Model
     {
         return $this->select('properties.*,addresses.*, users.surname, users.name as username', "properties.creationDate >= :dateStart AND properties.creationDate <= :dateEnd ORDER BY properties.reference", ["dateStart" => $dateStart . "T00:00:00.000Z", "dateEnd" => $dateEnd . "T00:00:00.000Z"], "INNER JOIN users ON users.id=properties.idUser INNER JOIN addresses ON addresses.id = properties.idAddress")->fetchAll();
     }
+
+    public function selectPropertiesByDateAssoc($dateStart, $dateEnd)
+    {
+        return $this->select('properties.*,addresses.*, users.surname, users.name as username', "properties.creationDate >= :dateStart AND properties.creationDate <= :dateEnd ORDER BY properties.reference", ["dateStart" => $dateStart . "T00:00:00.000Z", "dateEnd" => $dateEnd . "T00:00:00.000Z"], "INNER JOIN users ON users.id=properties.idUser INNER JOIN addresses ON addresses.id = properties.idAddress")->fetchAssoc();
+    }
     public function exportProperties()
     {
         return $this->query("SELECT users.name INTO OUTFILE '" . BASE_DIR . "customers.txt' FROM users;");
@@ -98,6 +103,11 @@ class Property extends Model
     public function selectAll()
     {
         return $this->select('properties.*,users.surname, users.name as username', 'properties.active=1', [], "INNER JOIN users ON users.id=properties.idUser")->fetchAll();
+    }
+
+    public function selectAssoc()
+    {
+        return $this->select('properties.*,users.surname, users.name as username', 'properties.active=1', [], "INNER JOIN users ON users.id=properties.idUser")->fetchAssoc();
     }
 
     public function updateProperty()

@@ -36,4 +36,21 @@ $(function () {
     $( "#datepicker-end" ).datepicker();
     $( "#datepicker-end" ).datepicker("option", "dateFormat", "yy-mm-d");
 
+
+    $('#btn-xml').on('click', function(e){
+        e.preventDefault();
+        let start = $('#datepicker-start').val();
+        let end = $('#datepicker-end').val();
+        $.ajax({
+            url: "http://localhost/Immo_Lievin/public/admin/index/ajaxXml/",
+            method: "POST",
+            data: {
+                start: start,
+                end: end,
+            },
+            success: function (data) {
+                $('#resultXml').html('Le fichier XML a été généré avec succès.')
+            }
+        });
+    })
 })

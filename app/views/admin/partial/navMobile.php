@@ -20,6 +20,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?= BASE_URI_ADMIN . 'index/import_export' ?>">Import / Export</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASE_URI_ADMIN . 'index/xml' ?>">XML</a>
+            </li>
 
         </ul>
     </div>
